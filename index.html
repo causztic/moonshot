@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Market Update &mdash; Mar 17, 2026</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --card-bg: #161b22;
+      --accent: #58a6ff;
+      --accent-orange: #d29922;
+      --text: #e6edf3;
+      --text-dim: #8b949e;
+      --green: #3fb950;
+      --red: #f85149;
+      --border: #30363d;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      line-height: 1.6;
+      padding: 2rem 1rem;
+    }
+    .container { max-width: 900px; margin: 0 auto; }
+    header { text-align: center; margin-bottom: 2rem; }
+    header h1 { font-size: 1.75rem; color: #fff; margin-bottom: 0.25rem; }
+    header .subtitle { color: var(--text-dim); font-size: 0.9rem; }
+    h2 {
+      color: var(--accent);
+      font-size: 1.15rem;
+      border-top: 2px solid var(--accent);
+      padding-top: 0.75rem;
+      margin: 2rem 0 1rem;
+    }
+    h3 { color: #fff; font-size: 1rem; margin-bottom: 0.4rem; }
+    .dim { color: var(--text-dim); font-size: 0.85rem; }
+    .green { color: var(--green); }
+    .red { color: var(--red); }
+
+    /* Stock cards */
+    .stock-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0.75rem;
+    }
+    .stock-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+    }
+    .stock-card .company { color: var(--text-dim); font-size: 0.8rem; }
+    .stock-card .ticker { font-size: 1rem; font-weight: 700; color: #fff; margin: 0.25rem 0; }
+    .stock-card .price { font-size: 1.5rem; font-weight: 700; color: #fff; }
+    .stock-card .change { font-size: 0.9rem; margin-bottom: 0.5rem; }
+    .stock-card .detail { color: var(--text-dim); font-size: 0.75rem; line-height: 1.4; }
+
+    /* Catalysts */
+    .catalyst-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      margin-bottom: 0.5rem;
+    }
+    .catalyst-info { flex: 1; }
+    .catalyst-name { color: #fff; }
+    .catalyst-badge { text-align: right; min-width: 80px; }
+    .countdown-num { font-size: 1.5rem; font-weight: 700; color: var(--accent); }
+    .countdown-label { display: block; color: var(--text-dim); font-size: 0.7rem; }
+    .badge.imminent {
+      background: var(--red);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.75rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+    }
+
+    /* News */
+    .news-item {
+      border-bottom: 1px solid var(--border);
+      padding: 0.75rem 0;
+    }
+    .news-item:last-child { border-bottom: none; }
+    .source { color: var(--text-dim); font-size: 0.75rem; font-style: italic; margin-top: 0.25rem; }
+
+    /* Evaluations */
+    .eval-card { margin-bottom: 1.25rem; }
+    .eval {
+      padding: 0.5rem 0.75rem;
+      margin-top: 0.4rem;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+    .eval.bull { border-left: 3px solid var(--green); }
+    .eval.bear { border-left: 3px solid var(--red); }
+
+    /* Big picture */
+    .big-picture-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem 1.5rem;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+    .big-picture-box p { margin-bottom: 0.75rem; }
+    .big-picture-box p:last-child { margin-bottom: 0; }
+
+    /* Disclaimer */
+    .disclaimer {
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 0.7rem;
+      margin-top: 3rem;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 640px) {
+      .stock-grid { grid-template-columns: 1fr; }
+      .catalyst-row { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+      .catalyst-badge { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Daily Market Update</h1>
+      <p class="subtitle">CING | PYPD | SLS &mdash; Wednesday, March 18, 2026</p>
+      <p class="subtitle">Prices as of Mar 17, 2026 (most recent close)</p>
+    </header>
+    <section>
+    <h2>Price Snapshot</h2>
+    <div class="stock-grid"><div class="stock-card">
+      <div class="company">Cingulate Inc.</div>
+      <div class="ticker">CING</div>
+      <div class="price">$9.70</div>
+      <div class="change red">-$0.47 (-4.62%)</div>
+      <div class="detail">Day Range: $9.25 – $10.90</div><div class="detail">52-Week: $3.20 – $10.90</div><div class="detail">Mkt Cap: $75M</div><div class="detail">Target: $27.77 (Strong Buy)</div>
+    </div><div class="stock-card">
+      <div class="company">PolyPid Ltd.</div>
+      <div class="ticker">PYPD</div>
+      <div class="price">$4.40</div>
+      <div class="change dim">$0.00 (0.00%)</div>
+      <div class="detail">Day Range: $4.38 – $4.60</div><div class="detail">52-Week: $2.30 – $5.12</div><div class="detail">Mkt Cap: $71.0M</div><div class="detail">Target: $12.25 (Strong Buy)</div>
+    </div><div class="stock-card">
+      <div class="company">SELLAS Life Sciences Group</div>
+      <div class="ticker">SLS</div>
+      <div class="price">$5.27</div>
+      <div class="change red">-$0.10 (-1.81%)</div>
+      <div class="detail">Day Range: $5.20 – $5.69</div><div class="detail">52-Week: $0.95 – $6.14</div><div class="detail">Mkt Cap: $633M</div><div class="detail">Target: $7.83 (Strong Buy)</div>
+    </div></div>
+  </section>
+    <section>
+    <h2>Catalyst Countdown</h2>
+    <div class="catalyst-row">
+      <div class="catalyst-info">
+        <div class="catalyst-name"><strong>SLS &mdash; REGAL Phase 3 Final Analysis</strong></div>
+        <div class="dim">Overall survival study in AML. 72 of 80 events reached. Could read out any day now.</div>
+      </div>
+      <div class="catalyst-badge"><span class="badge imminent">IMMINENT</span></div>
+    </div><div class="catalyst-row">
+      <div class="catalyst-info">
+        <div class="catalyst-name"><strong>CING &mdash; Earnings Report</strong></div>
+        <div class="dim">Q4 2025 earnings. March 20, 2026.</div>
+      </div>
+      <div class="catalyst-badge"><span class="countdown-num">2</span><span class="countdown-label">days</span></div>
+    </div><div class="catalyst-row">
+      <div class="catalyst-info">
+        <div class="catalyst-name"><strong>CING &mdash; FDA Decision on CTx-1301 (PDUFA)</strong></div>
+        <div class="dim">The deadline for the FDA to say yes or no to their ADHD drug. May 31, 2026.</div>
+      </div>
+      <div class="catalyst-badge"><span class="countdown-num">74</span><span class="countdown-label">days</span></div>
+    </div><div class="catalyst-row">
+      <div class="catalyst-info">
+        <div class="catalyst-name"><strong>PYPD &mdash; D-PLEX100 Rolling NDA Submission</strong></div>
+        <div class="dim">Submitting approval paperwork to FDA in chunks. Targeted by end of March 2026. FDA just waived the $4.3M filing fee.</div>
+      </div>
+      <div class="catalyst-badge"><span class="countdown-num">≤13</span><span class="countdown-label">days</span></div>
+    </div><div class="catalyst-row">
+      <div class="catalyst-info">
+        <div class="catalyst-name"><strong>PYPD &mdash; U.S. Partnership Announcement</strong></div>
+        <div class="dim">Advanced discussions for a U.S. commercial partner to sell D-PLEX100. Could drop any time.</div>
+      </div>
+      <div class="catalyst-badge"><span class="countdown-num">TBD</span><span class="countdown-label"></span></div>
+    </div><div class="catalyst-row">
+      <div class="catalyst-info">
+        <div class="catalyst-name"><strong>PYPD &mdash; ROTH Conference Presentation</strong></div>
+        <div class="dim">Senior management presenting at 38th Annual ROTH Conference on March 23.</div>
+      </div>
+      <div class="catalyst-badge"><span class="countdown-num">5</span><span class="countdown-label">days</span></div>
+    </div><div class="catalyst-row">
+      <div class="catalyst-info">
+        <div class="catalyst-name"><strong>SLS &mdash; SLS009 Phase 2 Topline Data</strong></div>
+        <div class="dim">First-line AML trial. First patient enrolled Mar 12. Data expected Q4 2026.</div>
+      </div>
+      <div class="catalyst-badge"><span class="countdown-num">~7</span><span class="countdown-label">months</span></div>
+    </div>
+  </section>
+    <section>
+    <h2>Latest News &mdash; TL;DR</h2>
+    <div class="news-item">
+      <h3>PolyPid Receives $4.3M PDUFA Fee Waiver from FDA</h3>
+      <p class="dim">The FDA agreed to waive the $4.3 million application fee for PolyPid&#x27;s D-PLEX100 drug approval paperwork. This is a big deal for a company with only $12.9M in cash — it saves them roughly a third of their reserves and lets them focus that money on getting ready to sell the drug.</p><p class="source">GlobeNewsWire — Mar 17, 2026</p>
+    </div><div class="news-item">
+      <h3>CING Skyrockets 11% on Patent Approval for ADHD Drug</h3>
+      <p class="dim">The USPTO approved Cingulate&#x27;s key patent for its triple-release ADHD tablet technology, protecting CTx-1301 until the early 2040s. Investors piled in ahead of the May 31 FDA decision. Stock gave back some gains on March 17, settling around $9.70.</p><p class="source">Invezz / StockTwits — Mar 16, 2026</p>
+    </div><div class="news-item">
+      <h3>SELLAS Beats Q4 Earnings Estimates</h3>
+      <p class="dim">SELLAS reported Q4 earnings of -$0.06 per share, beating the expected -$0.08 by 22%. Still losing money each quarter (no revenue), but losing less than Wall Street feared. Expenses are under control while they wait for trial results.</p><p class="source">Nasdaq / Yahoo Finance — Mar 16, 2026</p>
+    </div><div class="news-item">
+      <h3>SELLAS Enrolls First Patient in Phase 2 SLS009 Trial for AML</h3>
+      <p class="dim">SELLAS started dosing patients in a new study testing its drug SLS009 combined with standard chemo for newly diagnosed blood cancer (AML). About 80 patients will be enrolled, with results expected Q4 2026.</p><p class="source">Stock Titan / GlobeNewsWire — Mar 12, 2026</p>
+    </div><div class="news-item">
+      <h3>Analysts Raise SLS Price Targets on Pipeline Progress</h3>
+      <p class="dim">Analysts bumped up their price targets for SELLAS after the company showed progress on multiple fronts: advancing the AML pipeline, strengthening their cash position through warrant exercises, and nearing the REGAL Phase 3 readout.</p><p class="source">Seeking Alpha — Mar 14, 2026</p>
+    </div><div class="news-item">
+      <h3>PolyPid on Track for Rolling NDA Submission by End of March</h3>
+      <p class="dim">PolyPid confirmed they&#x27;re still on schedule to start submitting their drug approval paperwork to the FDA in chunks this month. The FDA previously agreed their clinical data looks good enough to support the application.</p><p class="source">Seeking Alpha / Stock Titan — Mar 2026</p>
+    </div><div class="news-item">
+      <h3>Cingulate Earnings Report Due March 20</h3>
+      <p class="dim">Cingulate is set to release Q4 2025 earnings this Thursday, March 20. Investors will be watching for updates on cash position, CTx-1301 launch preparations, and any color on the FDA review timeline ahead of the May 31 PDUFA date.</p><p class="source">Yahoo Finance / Morningstar — Mar 2026</p>
+    </div>
+  </section>
+    <section>
+    <h2>What&rsquo;s Going On &mdash; Plain English</h2>
+    <div class="eval-card">
+      <h3>SLS</h3>
+      <div class="eval bull"><strong class="green">Bull case:</strong> The REGAL Phase 3 trial for their cancer vaccine GPS is incredibly close to its finish line — 72 out of 80 required events have happened, so results could drop literally any day. At the interim look, patients on GPS were living more than twice as long as expected (13.5+ months vs. the usual ~6 months). If the final results confirm this, it&#x27;s a potential game-changer for blood cancer treatment. They also just started a new trial for SLS009 in AML, analysts raised their price targets, and Q4 earnings beat expectations. Cash position was strengthened through warrant exercises (~$54.6M gross proceeds).</div><div class="eval bear"><strong class="red">What could go wrong:</strong> This is an all-or-nothing moment — if the final REGAL data doesn&#x27;t show a clear survival benefit, the stock could crater. The interim results were encouraging but the trial is still blinded, meaning nobody knows the actual results yet. Also, they have no revenue — they&#x27;re burning cash every quarter while waiting for results. The stock is near its 52-week high, so a lot of optimism may already be priced in.</div>
+    </div><div class="eval-card">
+      <h3>CING</h3>
+      <div class="eval bull"><strong class="green">Bull case:</strong> CING just hit a new 52-week high after getting a key patent approved, protecting their ADHD drug tech until the 2040s. The FDA decision day is May 31 — just 74 days away. Their Phase 3 trial had strong results, and they locked in a U.S. manufacturing deal. Analysts have an average target of ~$28, nearly 3x from here. Earnings drop Thursday (Mar 20) — could give more details on launch readiness.</div><div class="eval bear"><strong class="red">What could go wrong:</strong> They raised $12M in January at $5.04 with 80% warrant coverage — that means a lot of potential new shares could flood the market if the stock keeps rising, making each existing share worth less. Cash runway only extends into Q2 2026. If the FDA says no or asks for more data, the stock would crash and they&#x27;d need to raise money at much worse terms. The stock has already nearly tripled from its lows — some of the good news may already be priced in. Gave back ~5% on March 17 after the Monday spike.</div>
+    </div><div class="eval-card">
+      <h3>PYPD</h3>
+      <div class="eval bull"><strong class="green">Bull case:</strong> PolyPid just scored a $4.3M fee waiver from the FDA — a huge win for a company with only $12.9M in the bank. They&#x27;re on track to start filing their drug approval paperwork this month, and the FDA already said their clinical data looks good enough. Their drug D-PLEX100 reduced surgical infections by 60% in trials. A U.S. commercial partnership deal is in advanced talks — this could bring upfront cash and validate the whole story. Presenting at ROTH Conference on Mar 23, which could generate investor buzz.</div><div class="eval bear"><strong class="red">What could go wrong:</strong> With only $12.9M in cash and no revenue, they&#x27;re running on fumes. The fee waiver helps, but they&#x27;ll still need more money before the NDA review is complete (which takes 10-12 months after filing). If the partnership deal falls through or gets delayed, they&#x27;ll almost certainly need to sell new shares at a discount, which makes existing shares worth less. Any manufacturing, data quality, or safety issues found during FDA review could delay or kill the approval.</div>
+    </div>
+  </section>
+    <section>
+    <h2>The Big Picture</h2>
+    <div class="big-picture-box"><p>All three of these stocks are small biotech companies with &lt;b&gt;no revenue&lt;/b&gt; — they&#x27;re essentially bets on whether their drugs will get approved and make money someday.&lt;br/&gt;&lt;br/&gt;&lt;b&gt;CING&lt;/b&gt; gave back some of Monday&#x27;s 11% patent-fueled gains, settling at ~$9.70 on Tuesday. Earnings drop &lt;b&gt;this Thursday (Mar 20)&lt;/b&gt; — 2 days away — and the FDA decision is 74 days out. Your friend&#x27;s tip about a &#x27;catalyst to pop soon&#x27; continues to play out, but at nearly 3x from its lows, momentum traders may take profits on any dip.&lt;br/&gt;&lt;br/&gt;&lt;b&gt;PYPD&lt;/b&gt; scored a big win yesterday: a $4.3M fee waiver from the FDA that saves a huge chunk of their limited cash. NDA filing is on track for this month. Presenting at ROTH Conference on Mar 23 — watch for partnership news. The stock has been quiet but the catalysts are stacking up.&lt;br/&gt;&lt;br/&gt;&lt;b&gt;SLS&lt;/b&gt; held steady near $5.27 after earnings beat. The big story hasn&#x27;t changed — REGAL results are imminent and could be transformational. New SLS009 trial enrolling. Analysts raised targets.&lt;br/&gt;&lt;br/&gt;&lt;font color=&quot;#f0883e&quot;&gt;&lt;b&gt;Bottom line:&lt;/b&gt;&lt;/font&gt; Packed week ahead. CING earnings Thursday, PYPD at ROTH next Monday, and SLS REGAL could drop any day. These are all lottery-ticket-type investments — don&#x27;t put in more than you can afford to lose.</p></div>
+  </section>
+    <p class="disclaimer">
+      This report is for informational purposes only and does not constitute investment advice.
+      All tickers shown are high-risk, clinical-stage biotechs with no revenue.
+      Do your own research. Prices may be delayed. Generated automatically on Wednesday, March 18, 2026.
+    </p>
+  </div>
+</body>
+</html>
