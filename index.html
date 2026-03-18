@@ -4,6 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Daily Market Update &mdash; Mar 17, 2026</title>
+  <meta property="og:title" content="Daily Market Update &mdash; Mar 17, 2026">
+  <meta property="og:description" content="CING | PYPD | SLS &mdash; AI-analyzed biotech watchlist with catalysts, news, and plain-English evaluations.">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://causztic.github.io/finance/banner.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Daily Market Update &mdash; Mar 17, 2026">
+  <meta name="twitter:description" content="CING | PYPD | SLS &mdash; AI-analyzed biotech watchlist with catalysts, news, and plain-English evaluations.">
+  <meta name="twitter:image" content="https://causztic.github.io/finance/banner.png">
+  <meta name="description" content="CING | PYPD | SLS &mdash; AI-analyzed biotech watchlist with catalysts, news, and plain-English evaluations.">
   <style>
     :root {
       --bg: #0d1117;
@@ -116,13 +125,32 @@
     .big-picture-box p { margin-bottom: 0.75rem; }
     .big-picture-box p:last-child { margin-bottom: 0; }
 
-    /* Disclaimer */
+    /* Banner */
+    .banner {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    .banner img {
+      width: 100%;
+      max-width: 900px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+
+    /* Footer */
     .disclaimer {
       text-align: center;
       color: var(--text-dim);
       font-size: 0.7rem;
       margin-top: 3rem;
       line-height: 1.5;
+    }
+    .disclaimer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .disclaimer a:hover {
+      text-decoration: underline;
     }
 
     @media (max-width: 640px) {
@@ -134,6 +162,9 @@
 </head>
 <body>
   <div class="container">
+    <div class="banner">
+      <img src="banner.png" alt="Moonshots">
+    </div>
     <header>
       <h1>Daily Market Update</h1>
       <p class="subtitle">CING | PYPD | SLS &mdash; Wednesday, March 18, 2026</p>
@@ -252,7 +283,8 @@
     <p class="disclaimer">
       This report is for informational purposes only and does not constitute investment advice.
       All tickers shown are high-risk, clinical-stage biotechs with no revenue.
-      Do your own research. Prices may be delayed. Generated automatically on Wednesday, March 18, 2026.
+      Do your own research. Prices may be delayed.<br>
+      Analyzed by Claude Opus. Made by <a href="https://github.com/causztic">Lim Yao Jie</a>. Generated on Wednesday, March 18, 2026.
     </p>
   </div>
 </body>
