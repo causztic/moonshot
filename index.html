@@ -125,6 +125,20 @@
       color: var(--accent);
       border-color: var(--accent);
     }
+    .sector-pill--scored {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* Moonshot score badge on deep-dive cards */
+    .dd-score {
+      display: inline-block;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #fff;
+    }
 
     /* Sector details */
     .sector-details { margin-bottom: 1.5rem; }
@@ -299,17 +313,23 @@
 <section>
   <h2>What&rsquo;s Hot Today</h2>
   <div class="big-picture-box">
-    <b>Monday selloff deepens — but today's deep dives reveal diamonds in the wreckage.</b> The broad risk-off mood smashed most of the watchlist, with VNDA (-17.5%) leading the carnage after disappointing 2026 revenue guidance of $230-260M. But here's the thing: VNDA has $264M in cash, three FDA-approved drugs, and a fourth under review. The selloff looks like an overreaction. Meanwhile, AYRWF (-12.5%) is effectively dead — court-supervised wind-down at a $13M market cap. Remove from watchlist.<br/><br/>
+    <b>Monday bloodbath continues — but 10 fresh deep dives reveal the real story beneath the red.</b> The broad market selloff hit everything, but here's what actually matters today:<br/><br/>
 
-<b>The actually interesting stories from today's deep dives:</b><br/>
-• <b>UEC (-9.0%) has $818M cash, zero debt, and 12M lbs/yr uranium production capacity</b> — the most dominant financial position on this entire watchlist. Cash production cost is $30.52/lb vs $70+ spot price. This dip is a gift if you believe in nuclear energy's decade.<br/>
-• <b>EH (-8.5%) just had its first GAAP profitable quarter</b> and delivered 100 eVTOL units in Q4. Analyst target $24.80 vs $9.97 current. Only eVTOL company with real revenue AND profit. China-only risk is real but priced in.<br/>
-• <b>ALLO (-6.8%) has TWO binary catalysts in the next 90 days</b>: ALPHA3 futility analysis in April and ALLO-329 autoimmune POC in June. $258M cash runway to Q1 2028.<br/>
-• <b>PLUG (-7.1%) turned gross profit positive for the first time</b> ($5.5M vs -$233M loss YoY), but cash runway is CRITICAL at ~7-8 months. Existential risk vs turnaround story.<br/><br/>
+<b>The headliners from today's NEW deep dives:</b><br/>
+• <b>TSHA ($4.40, -3.5%) beat revenue estimates by 190%</b> and has FDA alignment on its BLA pathway for Rett syndrome gene therapy. REVEAL pivotal dosing completes Q2 2026. $319.8M cash = ~3yr runway. Analysts target $12 (+173% upside).<br/>
+• <b>CRSP ($46.24, -1.5%) is the gene editing fortress</b> — $2B cash, Casgevy generating $116M in year one, 300 patients referred. CTX460 trial mid-2026. The question isn't survival, it's Casgevy adoption speed.<br/>
+• <b>UUUU ($16.75, -6.5%) is printing money from uranium</b> — $927M working capital, zero debt, margins expanding from 31% to 50% in 2026. But 4 insiders sold $1M+ in March. Cash production costs of $30s/lb vs $70+ spot is remarkable.<br/>
+• <b>LUNR ($17.83, -5.7%) guides $900M-$1B revenue</b> (4-5x YoY growth!). NASA LTV contract imminent. But CEO sold $52M in stock. That's the biggest insider selling on the entire watchlist.<br/>
+• <b>NXE ($11.26, -1.1%) has a $7.3M insider PURCHASE</b> — the strongest buy signal on the list. Rook I construction start targeted for summer 2026. World's largest undeveloped high-grade uranium deposit.<br/><br/>
 
-<b>Round-robin discoveries:</b> IONQ ($130M revenue, +202% YoY, guiding $225-245M) is the real deal in quantum computing, but short-seller Wolfpack alleges $54.6M revenue hole from lost earmarks. SOUN beat Q4 estimates by 80% but lost its CFO. QS launched pilot production (Eagle Line) — the 'can it scale?' chapter begins. OSCR is guiding $18.7-19.0B revenue with $250-450M operating income — a health insurer inflection nobody is watching.<br/><br/>
+<b>The cautionary tales:</b><br/>
+• <b>FATE ($1.10) has just 18 months cash runway</b> at $136M annual burn. iPSC cell therapy platform is exciting but stock is in persistent downtrend.<br/>
+• <b>ACHR ($5.76) has $2B cash but burn is ACCELERATING</b> to $640-720M annualized. 100% FAA MoC acceptance is real progress, but 12-15 months runway at this pace.<br/>
+• <b>LAC ($3.71, -7.5%) is dilution city</b> — 100.7M shares issued + DOE warrants for 5% equity at $0.01. Thacker Pass is strategic but no revenue until late 2027.<br/>
+• <b>STEM ($9.70, -7.3%) hit profitability inflection</b> (first positive adj. EBITDA ever) but $48.9M cash vs $321.5M debt is precarious.<br/>
+• <b>BITF ($2.21, -7.3%) pivoting to HPC/AI</b> from Bitcoin mining. Earnings March 31. Net insider buying is encouraging but pivot is unproven.<br/><br/>
 
-<font color="#f0883e"><b>Bottom line:</b></font> Ugly tape, but catalysts are stacking up. ALLO's April futility analysis is the next binary event after SLS's REGAL readout. UEC is the financial fortress of the watchlist. PLUG is the highest-risk/highest-reward turnaround. <b>10 new deep dives completed: avg moonshot score 50.4/100. Top scores: UEC (68), EH (64), VNDA (62), ALLO (60), OSCR (58).</b>
+<font color="#f0883e"><b>Bottom line:</b></font> Two standout signals today: NXE's $7.3M insider purchase (bullish) and LUNR's $52M insider selling (bearish). UUUU's margin expansion story is compelling but insider sales are a caution flag. TSHA is the sleeper with 173% analyst upside. <b>10 new deep dives completed (20 total today): avg moonshot score 46.2/100. Top new scores: TSHA (58), NXE (56), UUUU (55), LUNR (52), ACHR (50).</b>
   </div>
   
 </section>
@@ -320,277 +340,11 @@
   <h2>Moonshot Scores</h2>
   <div class="heat-grid">
     
-    <a class="heat-tile" href="#sector-ai---automation"
-       style="background: #21262d"
-       aria-label="SYM: score N/A/100"
-       title="SYM — N/A/100">
-      <span class="heat-ticker">SYM</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-ai---data"
-       style="background: #21262d"
-       aria-label="INOD: score N/A/100"
-       title="INOD — N/A/100">
-      <span class="heat-ticker">INOD</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-ai---defense"
-       style="background: #21262d"
-       aria-label="BBAI: score N/A/100"
-       title="BBAI — N/A/100">
-      <span class="heat-ticker">BBAI</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-ai---fintech"
-       style="background: #21262d"
-       aria-label="UPST: score N/A/100"
-       title="UPST — N/A/100">
-      <span class="heat-ticker">UPST</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-ai---robotics"
-       style="background: #21262d"
-       aria-label="SERV: score N/A/100"
-       title="SERV — N/A/100">
-      <span class="heat-ticker">SERV</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-ai---software"
-       style="background: #21262d"
-       aria-label="AI: score N/A/100"
-       title="AI — N/A/100">
-      <span class="heat-ticker">AI</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-ai---software"
-       style="background: #21262d"
-       aria-label="FIVN: score N/A/100"
-       title="FIVN — N/A/100">
-      <span class="heat-ticker">FIVN</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-ai---voice-tech"
-       style="background: #8b949e"
-       aria-label="SOUN: score 52/100"
-       title="SOUN — 52/100">
-      <span class="heat-ticker">SOUN</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-aerospace---evtol"
-       style="background: #8b949e"
-       aria-label="EH: score 64/100"
-       title="EH — 64/100">
-      <span class="heat-ticker">EH</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-aerospace---evtol"
-       style="background: #8b949e"
-       aria-label="JOBY: score 58/100"
-       title="JOBY — 58/100">
-      <span class="heat-ticker">JOBY</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-aerospace---evtol"
-       style="background: #21262d"
-       aria-label="ACHR: score N/A/100"
-       title="ACHR — N/A/100">
-      <span class="heat-ticker">ACHR</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-aerospace---evtol"
-       style="background: #21262d"
-       aria-label="EVTL: score N/A/100"
-       title="EVTL — N/A/100">
-      <span class="heat-ticker">EVTL</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-alt.-agriculture"
-       style="background: #21262d"
-       aria-label="STKH: score N/A/100"
-       title="STKH — N/A/100">
-      <span class="heat-ticker">STKH</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-battery-tech"
-       style="background: #f0883e"
-       aria-label="QS: score 38/100"
-       title="QS — 38/100">
-      <span class="heat-ticker">QS</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-battery-tech"
-       style="background: #21262d"
-       aria-label="SLDP: score N/A/100"
-       title="SLDP — N/A/100">
-      <span class="heat-ticker">SLDP</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-biotech"
-       style="background: #8b949e"
-       aria-label="ALLO: score 60/100"
-       title="ALLO — 60/100">
-      <span class="heat-ticker">ALLO</span>
-    </a>
-    
     <a class="heat-tile" href="#sector-biotech"
        style="background: #56d364"
        aria-label="SLS: score 86/100"
        title="SLS — 86/100">
       <span class="heat-ticker">SLS</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-biotech"
-       style="background: #21262d"
-       aria-label="BEAM: score N/A/100"
-       title="BEAM — N/A/100">
-      <span class="heat-ticker">BEAM</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-biotech"
-       style="background: #21262d"
-       aria-label="CRBU: score N/A/100"
-       title="CRBU — N/A/100">
-      <span class="heat-ticker">CRBU</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-biotech"
-       style="background: #21262d"
-       aria-label="CRSP: score N/A/100"
-       title="CRSP — N/A/100">
-      <span class="heat-ticker">CRSP</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-biotech"
-       style="background: #21262d"
-       aria-label="FATE: score N/A/100"
-       title="FATE — N/A/100">
-      <span class="heat-ticker">FATE</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-biotech"
-       style="background: #21262d"
-       aria-label="NTLA: score N/A/100"
-       title="NTLA — N/A/100">
-      <span class="heat-ticker">NTLA</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-biotech"
-       style="background: #21262d"
-       aria-label="PBYI: score N/A/100"
-       title="PBYI — N/A/100">
-      <span class="heat-ticker">PBYI</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-biotech"
-       style="background: #21262d"
-       aria-label="TSHA: score N/A/100"
-       title="TSHA — N/A/100">
-      <span class="heat-ticker">TSHA</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-biotech---medtech"
-       style="background: #56d364"
-       aria-label="PYPD: score 75/100"
-       title="PYPD — 75/100">
-      <span class="heat-ticker">PYPD</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-biotech---pharma"
-       style="background: #8b949e"
-       aria-label="CING: score 66/100"
-       title="CING — 66/100">
-      <span class="heat-ticker">CING</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-biotech---pharma"
-       style="background: #8b949e"
-       aria-label="VNDA: score 62/100"
-       title="VNDA — 62/100">
-      <span class="heat-ticker">VNDA</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-cannabis"
-       style="background: #f85149"
-       aria-label="AYRWF: score 15/100"
-       title="AYRWF — 15/100">
-      <span class="heat-ticker">AYRWF</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-cannabis"
-       style="background: #21262d"
-       aria-label="MAPS: score N/A/100"
-       title="MAPS — N/A/100">
-      <span class="heat-ticker">MAPS</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-cannabis"
-       style="background: #21262d"
-       aria-label="PLNH: score N/A/100"
-       title="PLNH — N/A/100">
-      <span class="heat-ticker">PLNH</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-clean-energy"
-       style="background: #8b949e"
-       aria-label="BE: score 52/100"
-       title="BE — 52/100">
-      <span class="heat-ticker">BE</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-clean-energy"
-       style="background: #f0883e"
-       aria-label="PLUG: score 32/100"
-       title="PLUG — 32/100">
-      <span class="heat-ticker">PLUG</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-clean-energy"
-       style="background: #21262d"
-       aria-label="BLDP: score N/A/100"
-       title="BLDP — N/A/100">
-      <span class="heat-ticker">BLDP</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-clean-energy"
-       style="background: #21262d"
-       aria-label="ENVX: score N/A/100"
-       title="ENVX — N/A/100">
-      <span class="heat-ticker">ENVX</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-clean-energy"
-       style="background: #21262d"
-       aria-label="JKS: score N/A/100"
-       title="JKS — N/A/100">
-      <span class="heat-ticker">JKS</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-clean-energy"
-       style="background: #21262d"
-       aria-label="STEM: score N/A/100"
-       title="STEM — N/A/100">
-      <span class="heat-ticker">STEM</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-crypto-mining"
-       style="background: #21262d"
-       aria-label="ARBK: score N/A/100"
-       title="ARBK — N/A/100">
-      <span class="heat-ticker">ARBK</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-crypto-mining"
-       style="background: #21262d"
-       aria-label="BITF: score N/A/100"
-       title="BITF — N/A/100">
-      <span class="heat-ticker">BITF</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-cybersecurity"
-       style="background: #21262d"
-       aria-label="RPD: score N/A/100"
-       title="RPD — N/A/100">
-      <span class="heat-ticker">RPD</span>
     </a>
     
     <a class="heat-tile" href="#sector-digital-health"
@@ -600,53 +354,11 @@
       <span class="heat-ticker">HIMS</span>
     </a>
     
-    <a class="heat-tile" href="#sector-digital-health"
-       style="background: #8b949e"
-       aria-label="OSCR: score 58/100"
-       title="OSCR — 58/100">
-      <span class="heat-ticker">OSCR</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-digital-health"
-       style="background: #21262d"
-       aria-label="TEM: score N/A/100"
-       title="TEM — N/A/100">
-      <span class="heat-ticker">TEM</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-fintech"
-       style="background: #21262d"
-       aria-label="SEZL: score N/A/100"
-       title="SEZL — N/A/100">
-      <span class="heat-ticker">SEZL</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-fintech---ai"
-       style="background: #21262d"
-       aria-label="UPST: score N/A/100"
-       title="UPST — N/A/100">
-      <span class="heat-ticker">UPST</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-mining---lithium"
-       style="background: #21262d"
-       aria-label="LAC: score N/A/100"
-       title="LAC — N/A/100">
-      <span class="heat-ticker">LAC</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-mining---rare-earths"
-       style="background: #21262d"
-       aria-label="MP: score N/A/100"
-       title="MP — N/A/100">
-      <span class="heat-ticker">MP</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-mining---uranium"
-       style="background: #8b949e"
-       aria-label="UEC: score 68/100"
-       title="UEC — 68/100">
-      <span class="heat-ticker">UEC</span>
+    <a class="heat-tile" href="#sector-biotech---medtech"
+       style="background: #56d364"
+       aria-label="PYPD: score 75/100"
+       title="PYPD — 75/100">
+      <span class="heat-ticker">PYPD</span>
     </a>
     
     <a class="heat-tile" href="#sector-mining---uranium"
@@ -657,94 +369,66 @@
     </a>
     
     <a class="heat-tile" href="#sector-mining---uranium"
-       style="background: #21262d"
-       aria-label="DNN: score N/A/100"
-       title="DNN — N/A/100">
-      <span class="heat-ticker">DNN</span>
+       style="background: #8b949e"
+       aria-label="UEC: score 68/100"
+       title="UEC — 68/100">
+      <span class="heat-ticker">UEC</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-biotech---pharma"
+       style="background: #8b949e"
+       aria-label="CING: score 66/100"
+       title="CING — 66/100">
+      <span class="heat-ticker">CING</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-aerospace---evtol"
+       style="background: #8b949e"
+       aria-label="EH: score 64/100"
+       title="EH — 64/100">
+      <span class="heat-ticker">EH</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-biotech---pharma"
+       style="background: #8b949e"
+       aria-label="VNDA: score 62/100"
+       title="VNDA — 62/100">
+      <span class="heat-ticker">VNDA</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-biotech"
+       style="background: #8b949e"
+       aria-label="ALLO: score 60/100"
+       title="ALLO — 60/100">
+      <span class="heat-ticker">ALLO</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-aerospace---evtol"
+       style="background: #8b949e"
+       aria-label="JOBY: score 58/100"
+       title="JOBY — 58/100">
+      <span class="heat-ticker">JOBY</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-biotech"
+       style="background: #8b949e"
+       aria-label="TSHA: score 58/100"
+       title="TSHA — 58/100">
+      <span class="heat-ticker">TSHA</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-digital-health"
+       style="background: #8b949e"
+       aria-label="OSCR: score 58/100"
+       title="OSCR — 58/100">
+      <span class="heat-ticker">OSCR</span>
     </a>
     
     <a class="heat-tile" href="#sector-mining---uranium"
-       style="background: #21262d"
-       aria-label="NXE: score N/A/100"
-       title="NXE — N/A/100">
+       style="background: #8b949e"
+       aria-label="NXE: score 56/100"
+       title="NXE — 56/100">
       <span class="heat-ticker">NXE</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-mining---uranium"
-       style="background: #21262d"
-       aria-label="UUUU: score N/A/100"
-       title="UUUU — N/A/100">
-      <span class="heat-ticker">UUUU</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-nanotech"
-       style="background: #21262d"
-       aria-label="NNDM: score N/A/100"
-       title="NNDM — N/A/100">
-      <span class="heat-ticker">NNDM</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-quantum-computing"
-       style="background: #8b949e"
-       aria-label="IONQ: score 55/100"
-       title="IONQ — 55/100">
-      <span class="heat-ticker">IONQ</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-quantum-computing"
-       style="background: #8b949e"
-       aria-label="QBTS: score 51/100"
-       title="QBTS — 51/100">
-      <span class="heat-ticker">QBTS</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-quantum-computing"
-       style="background: #21262d"
-       aria-label="QUBT: score N/A/100"
-       title="QUBT — N/A/100">
-      <span class="heat-ticker">QUBT</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-quantum-computing"
-       style="background: #21262d"
-       aria-label="RGTI: score N/A/100"
-       title="RGTI — N/A/100">
-      <span class="heat-ticker">RGTI</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-semiconductors"
-       style="background: #21262d"
-       aria-label="AMBA: score N/A/100"
-       title="AMBA — N/A/100">
-      <span class="heat-ticker">AMBA</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-semiconductors"
-       style="background: #21262d"
-       aria-label="CAMT: score N/A/100"
-       title="CAMT — N/A/100">
-      <span class="heat-ticker">CAMT</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-semiconductors"
-       style="background: #21262d"
-       aria-label="NVMI: score N/A/100"
-       title="NVMI — N/A/100">
-      <span class="heat-ticker">NVMI</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-space---data"
-       style="background: #21262d"
-       aria-label="SIDU: score N/A/100"
-       title="SIDU — N/A/100">
-      <span class="heat-ticker">SIDU</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-space---drones"
-       style="background: #21262d"
-       aria-label="PDYN: score N/A/100"
-       title="PDYN — N/A/100">
-      <span class="heat-ticker">PDYN</span>
     </a>
     
     <a class="heat-tile" href="#sector-space---launch"
@@ -754,35 +438,113 @@
       <span class="heat-ticker">RKLB</span>
     </a>
     
+    <a class="heat-tile" href="#sector-mining---uranium"
+       style="background: #8b949e"
+       aria-label="UUUU: score 55/100"
+       title="UUUU — 55/100">
+      <span class="heat-ticker">UUUU</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-quantum-computing"
+       style="background: #8b949e"
+       aria-label="IONQ: score 55/100"
+       title="IONQ — 55/100">
+      <span class="heat-ticker">IONQ</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-ai---voice-tech"
+       style="background: #8b949e"
+       aria-label="SOUN: score 52/100"
+       title="SOUN — 52/100">
+      <span class="heat-ticker">SOUN</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-clean-energy"
+       style="background: #8b949e"
+       aria-label="BE: score 52/100"
+       title="BE — 52/100">
+      <span class="heat-ticker">BE</span>
+    </a>
+    
     <a class="heat-tile" href="#sector-space---lunar"
-       style="background: #21262d"
-       aria-label="LUNR: score N/A/100"
-       title="LUNR — N/A/100">
+       style="background: #8b949e"
+       aria-label="LUNR: score 52/100"
+       title="LUNR — 52/100">
       <span class="heat-ticker">LUNR</span>
     </a>
     
-    <a class="heat-tile" href="#sector-space---telecom"
-       style="background: #21262d"
-       aria-label="ASTS: score N/A/100"
-       title="ASTS — N/A/100">
-      <span class="heat-ticker">ASTS</span>
+    <a class="heat-tile" href="#sector-quantum-computing"
+       style="background: #8b949e"
+       aria-label="QBTS: score 51/100"
+       title="QBTS — 51/100">
+      <span class="heat-ticker">QBTS</span>
     </a>
     
-    <a class="heat-tile" href="#sector-water-utilities"
-       style="background: #21262d"
-       aria-label="ARTNA: score N/A/100"
-       title="ARTNA — N/A/100">
-      <span class="heat-ticker">ARTNA</span>
+    <a class="heat-tile" href="#sector-aerospace---evtol"
+       style="background: #8b949e"
+       aria-label="ACHR: score 50/100"
+       title="ACHR — 50/100">
+      <span class="heat-ticker">ACHR</span>
     </a>
     
-    <a class="heat-tile" href="#sector-water-utilities"
-       style="background: #21262d"
-       aria-label="YORW: score N/A/100"
-       title="YORW — N/A/100">
-      <span class="heat-ticker">YORW</span>
+    <a class="heat-tile" href="#sector-biotech"
+       style="background: #f0883e"
+       aria-label="CRSP: score 48/100"
+       title="CRSP — 48/100">
+      <span class="heat-ticker">CRSP</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-crypto-mining"
+       style="background: #f0883e"
+       aria-label="BITF: score 40/100"
+       title="BITF — 40/100">
+      <span class="heat-ticker">BITF</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-battery-tech"
+       style="background: #f0883e"
+       aria-label="QS: score 38/100"
+       title="QS — 38/100">
+      <span class="heat-ticker">QS</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-biotech"
+       style="background: #f0883e"
+       aria-label="FATE: score 38/100"
+       title="FATE — 38/100">
+      <span class="heat-ticker">FATE</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-clean-energy"
+       style="background: #f0883e"
+       aria-label="STEM: score 35/100"
+       title="STEM — 35/100">
+      <span class="heat-ticker">STEM</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-clean-energy"
+       style="background: #f0883e"
+       aria-label="PLUG: score 32/100"
+       title="PLUG — 32/100">
+      <span class="heat-ticker">PLUG</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-mining---lithium"
+       style="background: #f0883e"
+       aria-label="LAC: score 30/100"
+       title="LAC — 30/100">
+      <span class="heat-ticker">LAC</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-cannabis"
+       style="background: #f85149"
+       aria-label="AYRWF: score 15/100"
+       title="AYRWF — 15/100">
+      <span class="heat-ticker">AYRWF</span>
     </a>
     
   </div>
+  <p class="dim" style="margin-top: 0.5rem; text-align: center;">29 scored of 66 tracked &mdash; 37 awaiting deep dive</p>
 </section>
 
 
@@ -801,43 +563,43 @@
       
       <a class="sector-pill" href="#sector-ai---software">AI / Software (2)</a>
       
-      <a class="sector-pill" href="#sector-ai---voice-tech">AI / Voice Tech (1)</a>
+      <a class="sector-pill sector-pill--scored" href="#sector-ai---voice-tech">AI / Voice Tech (1)</a>
       
-      <a class="sector-pill" href="#sector-aerospace---evtol">Aerospace / eVTOL (4)</a>
+      <a class="sector-pill sector-pill--scored" href="#sector-aerospace---evtol">Aerospace / eVTOL (4)</a>
       
       <a class="sector-pill" href="#sector-alt.-agriculture">Alt. Agriculture (1)</a>
       
-      <a class="sector-pill" href="#sector-battery-tech">Battery Tech (2)</a>
+      <a class="sector-pill sector-pill--scored" href="#sector-battery-tech">Battery Tech (2)</a>
       
-      <a class="sector-pill" href="#sector-biotech">Biotech (9)</a>
+      <a class="sector-pill sector-pill--scored" href="#sector-biotech">Biotech (9)</a>
       
-      <a class="sector-pill" href="#sector-biotech---medtech">Biotech / MedTech (1)</a>
+      <a class="sector-pill sector-pill--scored" href="#sector-biotech---medtech">Biotech / MedTech (1)</a>
       
-      <a class="sector-pill" href="#sector-biotech---pharma">Biotech / Pharma (2)</a>
+      <a class="sector-pill sector-pill--scored" href="#sector-biotech---pharma">Biotech / Pharma (2)</a>
       
-      <a class="sector-pill" href="#sector-cannabis">Cannabis (3)</a>
+      <a class="sector-pill sector-pill--scored" href="#sector-cannabis">Cannabis (3)</a>
       
-      <a class="sector-pill" href="#sector-clean-energy">Clean Energy (6)</a>
+      <a class="sector-pill sector-pill--scored" href="#sector-clean-energy">Clean Energy (6)</a>
       
-      <a class="sector-pill" href="#sector-crypto-mining">Crypto Mining (2)</a>
+      <a class="sector-pill sector-pill--scored" href="#sector-crypto-mining">Crypto Mining (2)</a>
       
       <a class="sector-pill" href="#sector-cybersecurity">Cybersecurity (1)</a>
       
-      <a class="sector-pill" href="#sector-digital-health">Digital Health (3)</a>
+      <a class="sector-pill sector-pill--scored" href="#sector-digital-health">Digital Health (3)</a>
       
       <a class="sector-pill" href="#sector-fintech">Fintech (1)</a>
       
       <a class="sector-pill" href="#sector-fintech---ai">Fintech / AI (1)</a>
       
-      <a class="sector-pill" href="#sector-mining---lithium">Mining / Lithium (1)</a>
+      <a class="sector-pill sector-pill--scored" href="#sector-mining---lithium">Mining / Lithium (1)</a>
       
       <a class="sector-pill" href="#sector-mining---rare-earths">Mining / Rare Earths (1)</a>
       
-      <a class="sector-pill" href="#sector-mining---uranium">Mining / Uranium (5)</a>
+      <a class="sector-pill sector-pill--scored" href="#sector-mining---uranium">Mining / Uranium (5)</a>
       
       <a class="sector-pill" href="#sector-nanotech">Nanotech (1)</a>
       
-      <a class="sector-pill" href="#sector-quantum-computing">Quantum Computing (4)</a>
+      <a class="sector-pill sector-pill--scored" href="#sector-quantum-computing">Quantum Computing (4)</a>
       
       <a class="sector-pill" href="#sector-semiconductors">Semiconductors (3)</a>
       
@@ -845,9 +607,9 @@
       
       <a class="sector-pill" href="#sector-space---drones">Space / Drones (1)</a>
       
-      <a class="sector-pill" href="#sector-space---launch">Space / Launch (1)</a>
+      <a class="sector-pill sector-pill--scored" href="#sector-space---launch">Space / Launch (1)</a>
       
-      <a class="sector-pill" href="#sector-space---lunar">Space / Lunar (1)</a>
+      <a class="sector-pill sector-pill--scored" href="#sector-space---lunar">Space / Lunar (1)</a>
       
       <a class="sector-pill" href="#sector-space---telecom">Space / Telecom (1)</a>
       
@@ -859,7 +621,7 @@
     
     
     
-    <details class="sector-details" id="sector-ai---automation" open>
+    <details class="sector-details" id="sector-ai---automation">
   <summary class="sector-summary">
     <h2>AI / Automation <span class="dim">(1)</span></h2>
   </summary>
@@ -890,7 +652,7 @@
     
     
     
-    <details class="sector-details" id="sector-ai---data" open>
+    <details class="sector-details" id="sector-ai---data">
   <summary class="sector-summary">
     <h2>AI / Data <span class="dim">(1)</span></h2>
   </summary>
@@ -921,7 +683,7 @@
     
     
     
-    <details class="sector-details" id="sector-ai---defense" open>
+    <details class="sector-details" id="sector-ai---defense">
   <summary class="sector-summary">
     <h2>AI / Defense <span class="dim">(1)</span></h2>
   </summary>
@@ -952,7 +714,7 @@
     
     
     
-    <details class="sector-details" id="sector-ai---fintech" open>
+    <details class="sector-details" id="sector-ai---fintech">
   <summary class="sector-summary">
     <h2>AI / Fintech <span class="dim">(1)</span></h2>
   </summary>
@@ -983,7 +745,7 @@
     
     
     
-    <details class="sector-details" id="sector-ai---robotics" open>
+    <details class="sector-details" id="sector-ai---robotics">
   <summary class="sector-summary">
     <h2>AI / Robotics <span class="dim">(1)</span></h2>
   </summary>
@@ -1014,7 +776,7 @@
     
     
     
-    <details class="sector-details" id="sector-ai---software" open>
+    <details class="sector-details" id="sector-ai---software">
   <summary class="sector-summary">
     <h2>AI / Software <span class="dim">(2)</span></h2>
   </summary>
@@ -1071,7 +833,7 @@
   <div class="dd-header">
     <div>
       <div class="company">SoundHound AI</div>
-      <div class="ticker">SOUN</div>
+      <div class="ticker">SOUN <span class="dd-score" style="background: #8b949e">52/100</span></div>
     </div>
     <div class="dd-price-block">
       <div class="price">$6.55</div>
@@ -1142,8 +904,88 @@
     <div class="stock-card deep-dive">
   <div class="dd-header">
     <div>
+      <div class="company">Archer Aviation</div>
+      <div class="ticker">ACHR <span class="dd-score" style="background: #8b949e">50/100</span></div>
+    </div>
+    <div class="dd-price-block">
+      <div class="price">$5.76</div>
+      <div class="change red">-$0.25 (-4.16%)</div>
+    </div>
+  </div>
+
+  
+  <div class="dd-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,8.4 6.0,5.7 10.0,6.8 14.0,3.6 18.0,6.5 22.0,2.0 26.0,11.1 30.0,10.6 34.0,14.0 38.0,16.3 42.0,13.4 46.0,15.6 50.0,14.4 54.0,17.6 58.0,18.9 62.0,17.9 66.0,16.0 70.0,19.2 74.0,19.2 78.0,22.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  
+
+  <div class="dd-metrics">
+    
+    
+    <div class="detail">Mkt Cap: $4.3B</div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+  
+  <div class="dd-news">
+    
+    <div class="news-item compact">
+      <strong>Archer Announces Fourth Quarter and Full Year 2025 Results, US and UAE Air Taxi Pilot Programs On-Track for 2026</strong>
+      <p class="dim">100% FAA MoC acceptance achieved. $2B liquidity. But Q1 2026 EBITDA guidance of -$160M to -$180M worse than expected.</p>
+      <p class="source" data-utc="2026-03-03">Archer Aviation IR</p>
+    </div>
+    
+    <div class="news-item compact">
+      <strong>White House eVTOL Pilot Program Selection Could Be A Game Changer For Archer Aviation</strong>
+      <p class="dim">Archer&#39;s partners in Texas, Florida, and New York selected for DOT/FAA integration pilot program for early operations.</p>
+      <p class="source" data-utc="2026-03-10">Simply Wall St</p>
+    </div>
+    
+    <div class="news-item compact">
+      <strong>Archer Aviation CEO Highlights Midnight FAA Certification Push at BofA Forum</strong>
+      <p class="dim">Stock rose 12% after CEO detailed certification milestones. Piloted for-credit testing expected this year.</p>
+      <p class="source" data-utc="2026-03-15">Yahoo Finance</p>
+    </div>
+    
+    <div class="news-item compact">
+      <strong>Archer Aviation&#39;s FAA Certification Progress — What Investors Need to Know</strong>
+      <p class="dim">Deep analysis of certification timeline: Type Inspection Authorization activities to begin 2026, full cert possible by year-end.</p>
+      <p class="source" data-utc="2025-11-26">Motley Fool</p>
+    </div>
+    
+  </div>
+  
+
+  
+</div>
+    
+    <div class="stock-card deep-dive">
+  <div class="dd-header">
+    <div>
       <div class="company">EHang Holdings</div>
-      <div class="ticker">EH</div>
+      <div class="ticker">EH <span class="dd-score" style="background: #8b949e">64/100</span></div>
     </div>
     <div class="dd-price-block">
       <div class="price">$9.95</div>
@@ -1195,7 +1037,7 @@
   <div class="dd-header">
     <div>
       <div class="company">Joby Aviation</div>
-      <div class="ticker">JOBY</div>
+      <div class="ticker">JOBY <span class="dd-score" style="background: #8b949e">58/100</span></div>
     </div>
     <div class="dd-price-block">
       <div class="price">$9.23</div>
@@ -1250,17 +1092,6 @@
   <div class="scan-section">
     
     <div class="scan-row">
-  <span class="scan-ticker">ACHR</span>
-  <span class="scan-company dim">Archer Aviation</span>
-  <span class="scan-price">$5.76</span>
-  <span class="scan-change red">-$0.25 (-4.16%)</span>
-  <span class="scan-cap dim">$4.3B</span>
-  
-  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,8.4 6.0,5.7 10.0,6.8 14.0,3.6 18.0,6.5 22.0,2.0 26.0,11.1 30.0,10.6 34.0,14.0 38.0,16.3 42.0,13.4 46.0,15.6 50.0,14.4 54.0,17.6 58.0,18.9 62.0,17.9 66.0,16.0 70.0,19.2 74.0,19.2 78.0,22.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-  
-</div>
-    
-    <div class="scan-row">
   <span class="scan-ticker">EVTL</span>
   <span class="scan-company dim">Vertical Aerospace</span>
   <span class="scan-price">$3.59</span>
@@ -1278,7 +1109,7 @@
     
     
     
-    <details class="sector-details" id="sector-alt.-agriculture" open>
+    <details class="sector-details" id="sector-alt.-agriculture">
   <summary class="sector-summary">
     <h2>Alt. Agriculture <span class="dim">(1)</span></h2>
   </summary>
@@ -1324,7 +1155,7 @@
   <div class="dd-header">
     <div>
       <div class="company">QuantumScape</div>
-      <div class="ticker">QS</div>
+      <div class="ticker">QS <span class="dd-score" style="background: #f0883e">38/100</span></div>
     </div>
     <div class="dd-price-block">
       <div class="price">$6.59</div>
@@ -1411,7 +1242,7 @@
   <div class="dd-header">
     <div>
       <div class="company">Allogene Therapeutics</div>
-      <div class="ticker">ALLO</div>
+      <div class="ticker">ALLO <span class="dd-score" style="background: #8b949e">60/100</span></div>
     </div>
     <div class="dd-price-block">
       <div class="price">$2.07</div>
@@ -1462,8 +1293,156 @@
     <div class="stock-card deep-dive">
   <div class="dd-header">
     <div>
+      <div class="company">CRISPR Therapeutics</div>
+      <div class="ticker">CRSP <span class="dd-score" style="background: #f0883e">48/100</span></div>
+    </div>
+    <div class="dd-price-block">
+      <div class="price">$46.24</div>
+      <div class="change red">-$0.71 (-1.51%)</div>
+    </div>
+  </div>
+
+  
+  <div class="dd-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,12.0 6.0,8.4 10.0,10.4 14.0,2.0 18.0,4.1 22.0,3.3 26.0,6.7 30.0,4.2 34.0,7.7 38.0,8.8 42.0,5.8 46.0,13.5 50.0,17.2 54.0,18.6 58.0,18.8 62.0,19.2 66.0,17.0 70.0,20.1 74.0,21.1 78.0,22.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  
+
+  <div class="dd-metrics">
+    
+    
+    <div class="detail">Mkt Cap: $4.4B</div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+  
+  <div class="dd-news">
+    
+    <div class="news-item compact">
+      <strong>CRISPR Therapeutics Reports $116M FY25 Revenue Driven by CASGEVY Growth</strong>
+      <p class="dim">First full year of Casgevy sales hit $116M with 64 patients infused. Revenue expected to accelerate in 2026.</p>
+      <p class="source" data-utc="2026-02-12">Yahoo Finance</p>
+    </div>
+    
+    <div class="news-item compact">
+      <strong>CRISPR Therapeutics Posts $130.6M Q4 2025 Net Loss</strong>
+      <p class="dim">Quarterly loss wider than expected at -$1.37 EPS vs -$1.20 est, but offset by strong Casgevy ramp.</p>
+      <p class="source" data-utc="2026-02-12">StockTitan</p>
+    </div>
+    
+    <div class="news-item compact">
+      <strong>Is CRISPR Therapeutics a Buy, Sell, or Hold in 2026?</strong>
+      <p class="dim">Motley Fool analysis highlights $2B cash position and Casgevy growth as key bull thesis, offset by high treatment complexity.</p>
+      <p class="source" data-utc="2025-12-19">Motley Fool</p>
+    </div>
+    
+  </div>
+  
+
+  
+</div>
+    
+    <div class="stock-card deep-dive">
+  <div class="dd-header">
+    <div>
+      <div class="company">Fate Therapeutics</div>
+      <div class="ticker">FATE <span class="dd-score" style="background: #f0883e">38/100</span></div>
+    </div>
+    <div class="dd-price-block">
+      <div class="price">$1.10</div>
+      <div class="change green">+$0.02 (+1.85%)</div>
+    </div>
+  </div>
+
+  
+  <div class="dd-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,5.9 6.0,2.0 10.0,7.0 14.0,4.1 18.0,7.0 22.0,6.3 26.0,10.9 30.0,8.1 34.0,10.6 38.0,12.4 42.0,12.4 46.0,13.8 50.0,15.9 54.0,18.1 58.0,18.1 62.0,18.4 66.0,19.5 70.0,22.0 74.0,21.3 78.0,20.6" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  
+
+  <div class="dd-metrics">
+    
+    
+    <div class="detail">Mkt Cap: $128M</div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+  
+  <div class="dd-news">
+    
+    <div class="news-item compact">
+      <strong>Fate Therapeutics Reports Fourth Quarter and Full Year 2025 Financial Results and Business Updates</strong>
+      <p class="dim">Net loss narrowed 27% to $136.3M. Cash of $205.1M with runway to year-end 2027. Operating expenses cut significantly.</p>
+      <p class="source" data-utc="2026-02-26">GlobeNewsWire</p>
+    </div>
+    
+    <div class="news-item compact">
+      <strong>Fate Therapeutics Presents Updated Phase 1 Clinical Data of FT819 for Systemic Lupus Erythematosus</strong>
+      <p class="dim">FT819 off-the-shelf CAR T successfully dosed in outpatient setting for autoimmune disease — breakthrough for scalability.</p>
+      <p class="source" data-utc="2026-01-15">Fate Therapeutics IR</p>
+    </div>
+    
+    <div class="news-item compact">
+      <strong>Fate Therapeutics Details iPSC Cell Therapy Pipeline in 10-K Filing</strong>
+      <p class="dim">Annual report details RMAT designation plans for FT819, FT836 early colorectal cancer activity, and 2026 registrational trial timeline.</p>
+      <p class="source" data-utc="2026-02-26">SEC Filing (10-K)</p>
+    </div>
+    
+  </div>
+  
+
+  
+</div>
+    
+    <div class="stock-card deep-dive">
+  <div class="dd-header">
+    <div>
       <div class="company">SELLAS Life Sciences</div>
-      <div class="ticker">SLS</div>
+      <div class="ticker">SLS <span class="dd-score" style="background: #56d364">86/100</span></div>
     </div>
     <div class="dd-price-block">
       <div class="price">$4.76</div>
@@ -1511,6 +1490,86 @@
   
 </div>
     
+    <div class="stock-card deep-dive">
+  <div class="dd-header">
+    <div>
+      <div class="company">Taysha Gene Therapies</div>
+      <div class="ticker">TSHA <span class="dd-score" style="background: #8b949e">58/100</span></div>
+    </div>
+    <div class="dd-price-block">
+      <div class="price">$4.40</div>
+      <div class="change red">-$0.16 (-3.51%)</div>
+    </div>
+  </div>
+
+  
+  <div class="dd-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,4.0 6.0,2.0 10.0,11.0 14.0,15.1 18.0,16.7 22.0,16.7 26.0,16.7 30.0,12.2 34.0,18.3 38.0,15.1 42.0,14.2 46.0,15.1 50.0,17.3 54.0,13.4 58.0,18.3 62.0,16.7 66.0,15.1 70.0,20.0 74.0,15.5 78.0,22.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  
+
+  <div class="dd-metrics">
+    
+    
+    <div class="detail">Mkt Cap: $1.2B</div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+  
+  <div class="dd-news">
+    
+    <div class="news-item compact">
+      <strong>Taysha Gene Therapies Reports Full-Year 2025 Financial Results and Provides Corporate Update</strong>
+      <p class="dim">Beat revenue estimates by 190% ($5.49M vs $1.89M), narrowed losses. Cash runway into 2028 confirmed.</p>
+      <p class="source" data-utc="2026-03-19">GlobeNewsWire</p>
+    </div>
+    
+    <div class="news-item compact">
+      <strong>Taysha Gene Therapies Receives Average Recommendation of Moderate Buy from Brokerages</strong>
+      <p class="dim">Consensus buy with $12 price target from Needham and Chardan, representing 173% upside.</p>
+      <p class="source" data-utc="2026-03-21">Markets Daily</p>
+    </div>
+    
+    <div class="news-item compact">
+      <strong>Taysha Gene Therapies Shares Gap Up After Better-Than-Expected Earnings</strong>
+      <p class="dim">Stock gapped up on earnings beat before broader market selloff pulled it back down.</p>
+      <p class="source" data-utc="2026-03-19">Markets Daily</p>
+    </div>
+    
+    <div class="news-item compact">
+      <strong>FDA Clears ASPIRE Trial for TSHA-102 in Young Rett Syndrome Patients</strong>
+      <p class="dim">Broadens label potential to patients aged 2+, increasing total addressable market.</p>
+      <p class="source" data-utc="2026-02-15">Company Press Release</p>
+    </div>
+    
+  </div>
+  
+
+  
+</div>
+    
   </div>
   
 
@@ -1540,28 +1599,6 @@
 </div>
     
     <div class="scan-row">
-  <span class="scan-ticker">CRSP</span>
-  <span class="scan-company dim">CRISPR Therapeutics</span>
-  <span class="scan-price">$46.24</span>
-  <span class="scan-change red">-$0.71 (-1.51%)</span>
-  <span class="scan-cap dim">$4.4B</span>
-  
-  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,12.0 6.0,8.4 10.0,10.4 14.0,2.0 18.0,4.1 22.0,3.3 26.0,6.7 30.0,4.2 34.0,7.7 38.0,8.8 42.0,5.8 46.0,13.5 50.0,17.2 54.0,18.6 58.0,18.8 62.0,19.2 66.0,17.0 70.0,20.1 74.0,21.1 78.0,22.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-  
-</div>
-    
-    <div class="scan-row">
-  <span class="scan-ticker">FATE</span>
-  <span class="scan-company dim">Fate Therapeutics</span>
-  <span class="scan-price">$1.10</span>
-  <span class="scan-change green">+$0.02 (+1.85%)</span>
-  <span class="scan-cap dim">$128M</span>
-  
-  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,5.9 6.0,2.0 10.0,7.0 14.0,4.1 18.0,7.0 22.0,6.3 26.0,10.9 30.0,8.1 34.0,10.6 38.0,12.4 42.0,12.4 46.0,13.8 50.0,15.9 54.0,18.1 58.0,18.1 62.0,18.4 66.0,19.5 70.0,22.0 74.0,21.3 78.0,20.6" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-  
-</div>
-    
-    <div class="scan-row">
   <span class="scan-ticker">NTLA</span>
   <span class="scan-company dim">Intellia Therapeutics</span>
   <span class="scan-price">$12.84</span>
@@ -1580,17 +1617,6 @@
   <span class="scan-cap dim">$311M</span>
   
   <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,7.8 6.0,3.9 10.0,2.0 14.0,2.8 18.0,22.0 22.0,14.7 26.0,16.8 30.0,14.9 34.0,16.6 38.0,18.5 42.0,16.7 46.0,18.4 50.0,19.0 54.0,20.2 58.0,20.0 62.0,18.3 66.0,17.6 70.0,19.0 74.0,17.5 78.0,17.8" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-  
-</div>
-    
-    <div class="scan-row">
-  <span class="scan-ticker">TSHA</span>
-  <span class="scan-company dim">Taysha Gene Therapies</span>
-  <span class="scan-price">$4.40</span>
-  <span class="scan-change red">-$0.16 (-3.51%)</span>
-  <span class="scan-cap dim">$1.2B</span>
-  
-  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,4.0 6.0,2.0 10.0,11.0 14.0,15.1 18.0,16.7 22.0,16.7 26.0,16.7 30.0,12.2 34.0,18.3 38.0,15.1 42.0,14.2 46.0,15.1 50.0,17.3 54.0,13.4 58.0,18.3 62.0,16.7 66.0,15.1 70.0,20.0 74.0,15.5 78.0,22.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
   
 </div>
     
@@ -1616,7 +1642,7 @@
   <div class="dd-header">
     <div>
       <div class="company">PolyPid Ltd.</div>
-      <div class="ticker">PYPD</div>
+      <div class="ticker">PYPD <span class="dd-score" style="background: #56d364">75/100</span></div>
     </div>
     <div class="dd-price-block">
       <div class="price">$4.16</div>
@@ -1688,7 +1714,7 @@
   <div class="dd-header">
     <div>
       <div class="company">Cingulate Inc.</div>
-      <div class="ticker">CING</div>
+      <div class="ticker">CING <span class="dd-score" style="background: #8b949e">66/100</span></div>
     </div>
     <div class="dd-price-block">
       <div class="price">$7.38</div>
@@ -1740,7 +1766,7 @@
   <div class="dd-header">
     <div>
       <div class="company">Vanda Pharmaceuticals</div>
-      <div class="ticker">VNDA</div>
+      <div class="ticker">VNDA <span class="dd-score" style="background: #8b949e">62/100</span></div>
     </div>
     <div class="dd-price-block">
       <div class="price">$7.07</div>
@@ -1812,7 +1838,7 @@
   <div class="dd-header">
     <div>
       <div class="company">Ayr Wellness</div>
-      <div class="ticker">AYRWF</div>
+      <div class="ticker">AYRWF <span class="dd-score" style="background: #f85149">15/100</span></div>
     </div>
     <div class="dd-price-block">
       <div class="price">$0.01</div>
@@ -1910,7 +1936,7 @@
   <div class="dd-header">
     <div>
       <div class="company">Bloom Energy</div>
-      <div class="ticker">BE</div>
+      <div class="ticker">BE <span class="dd-score" style="background: #8b949e">52/100</span></div>
     </div>
     <div class="dd-price-block">
       <div class="price">$150.12</div>
@@ -1962,7 +1988,7 @@
   <div class="dd-header">
     <div>
       <div class="company">Plug Power</div>
-      <div class="ticker">PLUG</div>
+      <div class="ticker">PLUG <span class="dd-score" style="background: #f0883e">32/100</span></div>
     </div>
     <div class="dd-price-block">
       <div class="price">$2.23</div>
@@ -2010,6 +2036,80 @@
   
 </div>
     
+    <div class="stock-card deep-dive">
+  <div class="dd-header">
+    <div>
+      <div class="company">Stem Inc.</div>
+      <div class="ticker">STEM <span class="dd-score" style="background: #f0883e">35/100</span></div>
+    </div>
+    <div class="dd-price-block">
+      <div class="price">$9.70</div>
+      <div class="change red">-$0.76 (-7.27%)</div>
+    </div>
+  </div>
+
+  
+  <div class="dd-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,13.6 6.0,9.8 10.0,6.0 14.0,7.9 18.0,14.5 22.0,17.7 26.0,22.0 30.0,17.9 34.0,2.0 38.0,2.5 42.0,8.8 46.0,11.9 50.0,13.5 54.0,13.8 58.0,14.8 62.0,11.6 66.0,11.6 70.0,13.9 74.0,14.8 78.0,20.5" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  
+
+  <div class="dd-metrics">
+    
+    
+    <div class="detail">Mkt Cap: $83M</div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+  
+  <div class="dd-news">
+    
+    <div class="news-item compact">
+      <strong>Stem Announces Fourth Quarter and Full Year 2025 Results</strong>
+      <p class="dim">Revenue up 8% to $156.3M, first positive adj. EBITDA of $6.7M. Profitability inflection achieved.</p>
+      <p class="source" data-utc="2026-03-04">BusinessWire</p>
+    </div>
+    
+    <div class="news-item compact">
+      <strong>Stem Inc: Deciphering the SaaS Pivot and Strategic Realignment</strong>
+      <p class="dim">Analysis of STEM&#39;s transition from hardware to software-centric model with PowerTrack platform consolidation.</p>
+      <p class="source" data-utc="2026-03-10">TradingView/GuruFocus</p>
+    </div>
+    
+    <div class="news-item compact">
+      <strong>Stem Q4 2025 Earnings Call Transcript</strong>
+      <p class="dim">Management guided FY2026 revenue $140-190M, EBITDA $10-15M, ARR $65-70M. Emphasized software recurring revenue growth.</p>
+      <p class="source" data-utc="2026-03-04">Motley Fool</p>
+    </div>
+    
+  </div>
+  
+
+  
+</div>
+    
   </div>
   
 
@@ -2049,17 +2149,6 @@
   
 </div>
     
-    <div class="scan-row">
-  <span class="scan-ticker">STEM</span>
-  <span class="scan-company dim">Stem Inc.</span>
-  <span class="scan-price">$9.70</span>
-  <span class="scan-change red">-$0.76 (-7.27%)</span>
-  <span class="scan-cap dim">$83M</span>
-  
-  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,13.6 6.0,9.8 10.0,6.0 14.0,7.9 18.0,14.5 22.0,17.7 26.0,22.0 30.0,17.9 34.0,2.0 38.0,2.5 42.0,8.8 46.0,11.9 50.0,13.5 54.0,13.8 58.0,14.8 62.0,11.6 66.0,11.6 70.0,13.9 74.0,14.8 78.0,20.5" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-  
-</div>
-    
   </div>
   
 </details>
@@ -2076,6 +2165,84 @@
   
 
   
+  <div class="deep-dive-section">
+    
+    <div class="stock-card deep-dive">
+  <div class="dd-header">
+    <div>
+      <div class="company">Bitfarms Ltd.</div>
+      <div class="ticker">BITF <span class="dd-score" style="background: #f0883e">40/100</span></div>
+    </div>
+    <div class="dd-price-block">
+      <div class="price">$2.21</div>
+      <div class="change red">-$0.18 (-7.32%)</div>
+    </div>
+  </div>
+
+  
+  <div class="dd-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,19.5 6.0,11.5 10.0,6.0 14.0,5.0 18.0,11.5 22.0,14.0 26.0,22.0 30.0,9.5 34.0,10.5 38.0,19.5 42.0,16.0 46.0,13.5 50.0,9.5 54.0,10.5 58.0,9.5 62.0,8.5 66.0,3.0 70.0,5.5 74.0,2.0 78.0,10.8" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  
+
+  <div class="dd-metrics">
+    
+    
+    <div class="detail">Mkt Cap: $1.3B</div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+  
+  <div class="dd-news">
+    
+    <div class="news-item compact">
+      <strong>Bitfarms&#39; New Strategy Signifies Digital Infrastructure Leap</strong>
+      <p class="dim">Company pivoting from Bitcoin mining to HPC/AI data centers with strategic hires and infrastructure investments.</p>
+      <p class="source" data-utc="2026-03-19">StocksToTrade</p>
+    </div>
+    
+    <div class="news-item compact">
+      <strong>Bitfarms Embraces U.S. Transition Amid Market Growth</strong>
+      <p class="dim">ISS recommends shareholders vote FOR US redomiciliation. Rebrand to Keel Infrastructure planned.</p>
+      <p class="source" data-utc="2026-03-19">TimothySykes</p>
+    </div>
+    
+    <div class="news-item compact">
+      <strong>Bitfarms to Rebrand as Keel Infrastructure Amid Major Financial Moves</strong>
+      <p class="dim">Announced $300M debt repayment and US redomiciliation plan. Strategic shift from crypto mining to digital infrastructure.</p>
+      <p class="source" data-utc="2026-02-25">TimothySykes</p>
+    </div>
+    
+  </div>
+  
+
+  
+</div>
+    
+  </div>
+  
 
   
   <div class="scan-section">
@@ -2091,17 +2258,6 @@
   
 </div>
     
-    <div class="scan-row">
-  <span class="scan-ticker">BITF</span>
-  <span class="scan-company dim">Bitfarms Ltd.</span>
-  <span class="scan-price">$2.21</span>
-  <span class="scan-change red">-$0.18 (-7.32%)</span>
-  <span class="scan-cap dim">$1.3B</span>
-  
-  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,19.5 6.0,11.5 10.0,6.0 14.0,5.0 18.0,11.5 22.0,14.0 26.0,22.0 30.0,9.5 34.0,10.5 38.0,19.5 42.0,16.0 46.0,13.5 50.0,9.5 54.0,10.5 58.0,9.5 62.0,8.5 66.0,3.0 70.0,5.5 74.0,2.0 78.0,10.8" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-  
-</div>
-    
   </div>
   
 </details>
@@ -2109,7 +2265,7 @@
     
     
     
-    <details class="sector-details" id="sector-cybersecurity" open>
+    <details class="sector-details" id="sector-cybersecurity">
   <summary class="sector-summary">
     <h2>Cybersecurity <span class="dim">(1)</span></h2>
   </summary>
@@ -2155,7 +2311,7 @@
   <div class="dd-header">
     <div>
       <div class="company">Hims &amp; Hers Health</div>
-      <div class="ticker">HIMS</div>
+      <div class="ticker">HIMS <span class="dd-score" style="background: #56d364">78/100</span></div>
     </div>
     <div class="dd-price-block">
       <div class="price">$22.02</div>
@@ -2207,7 +2363,7 @@
   <div class="dd-header">
     <div>
       <div class="company">Oscar Health</div>
-      <div class="ticker">OSCR</div>
+      <div class="ticker">OSCR <span class="dd-score" style="background: #8b949e">58/100</span></div>
     </div>
     <div class="dd-price-block">
       <div class="price">$12.63</div>
@@ -2279,7 +2435,7 @@
     
     
     
-    <details class="sector-details" id="sector-fintech" open>
+    <details class="sector-details" id="sector-fintech">
   <summary class="sector-summary">
     <h2>Fintech <span class="dim">(1)</span></h2>
   </summary>
@@ -2310,7 +2466,7 @@
     
     
     
-    <details class="sector-details" id="sector-fintech---ai" open>
+    <details class="sector-details" id="sector-fintech---ai">
   <summary class="sector-summary">
     <h2>Fintech / AI <span class="dim">(1)</span></h2>
   </summary>
@@ -2350,29 +2506,98 @@
   
 
   
+  <div class="deep-dive-section">
+    
+    <div class="stock-card deep-dive">
+  <div class="dd-header">
+    <div>
+      <div class="company">Lithium Americas</div>
+      <div class="ticker">LAC <span class="dd-score" style="background: #f0883e">30/100</span></div>
+    </div>
+    <div class="dd-price-block">
+      <div class="price">$3.71</div>
+      <div class="change red">-$0.30 (-7.48%)</div>
+    </div>
+  </div>
 
   
-  <div class="scan-section">
-    
-    <div class="scan-row">
-  <span class="scan-ticker">LAC</span>
-  <span class="scan-company dim">Lithium Americas</span>
-  <span class="scan-price">$3.71</span>
-  <span class="scan-change red">-$0.30 (-7.48%)</span>
-  <span class="scan-cap dim">$1.1B</span>
+  <div class="dd-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,10.1 6.0,3.5 10.0,2.6 14.0,2.0 18.0,3.3 22.0,2.4 26.0,7.3 30.0,6.7 34.0,9.6 38.0,10.3 42.0,9.1 46.0,8.4 50.0,8.4 54.0,10.3 58.0,12.6 62.0,12.6 66.0,11.0 70.0,14.1 74.0,17.8 78.0,22.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
   
-  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,10.1 6.0,3.5 10.0,2.6 14.0,2.0 18.0,3.3 22.0,2.4 26.0,7.3 30.0,6.7 34.0,9.6 38.0,10.3 42.0,9.1 46.0,8.4 50.0,8.4 54.0,10.3 58.0,12.6 62.0,12.6 66.0,11.0 70.0,14.1 74.0,17.8 78.0,22.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+
+  <div class="dd-metrics">
+    
+    
+    <div class="detail">Mkt Cap: $1.1B</div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+  
+  <div class="dd-news">
+    
+    <div class="news-item compact">
+      <strong>Lithium Americas Sets $1.3-$1.6 Billion 2026 Capex as Thacker Pass Construction Advances</strong>
+      <p class="dim">Peak construction year with 1,800 workers. Engineering 93% complete. Early commissioning targeted Q4 2026.</p>
+      <p class="source" data-utc="2026-03-10">TipRanks</p>
+    </div>
+    
+    <div class="news-item compact">
+      <strong>Lithium Americas Highlights Strong Liquidity and Thacker Pass Progress</strong>
+      <p class="dim">$905.6M cash position with DOE loan backing. But 2026 CapEx of $1.3-1.6B means more financing likely needed.</p>
+      <p class="source" data-utc="2026-03-15">TipRanks</p>
+    </div>
+    
+    <div class="news-item compact">
+      <strong>Lithium Americas Details Thacker Pass Timeline, Capex, and Execution Risks</strong>
+      <p class="dim">Mechanical completion late 2027, first production late 2027. 60% procurement complete. Budget and timeline risk flagged.</p>
+      <p class="source" data-utc="2026-03-12">Simply Wall St</p>
+    </div>
+    
+    <div class="news-item compact">
+      <strong>Why Lithium Americas Could Be a 2030 Power Play—Not a 2025 One</strong>
+      <p class="dim">Long-term strategic value of US lithium independence is clear, but near-term returns unlikely given construction timeline.</p>
+      <p class="source" data-utc="2026-01-20">Yahoo Finance</p>
+    </div>
+    
+  </div>
+  
+
   
 </div>
     
   </div>
+  
+
   
 </details>
     
     
     
     
-    <details class="sector-details" id="sector-mining---rare-earths" open>
+    <details class="sector-details" id="sector-mining---rare-earths">
   <summary class="sector-summary">
     <h2>Mining / Rare Earths <span class="dim">(1)</span></h2>
   </summary>
@@ -2417,8 +2642,88 @@
     <div class="stock-card deep-dive">
   <div class="dd-header">
     <div>
+      <div class="company">NexGen Energy</div>
+      <div class="ticker">NXE <span class="dd-score" style="background: #8b949e">56/100</span></div>
+    </div>
+    <div class="dd-price-block">
+      <div class="price">$11.26</div>
+      <div class="change red">-$0.13 (-1.14%)</div>
+    </div>
+  </div>
+
+  
+  <div class="dd-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,10.9 6.0,6.4 10.0,6.7 14.0,7.3 18.0,7.1 22.0,2.0 26.0,11.2 30.0,7.2 34.0,10.8 38.0,13.9 42.0,8.3 46.0,4.9 50.0,8.5 54.0,10.2 58.0,13.8 62.0,17.4 66.0,15.3 70.0,17.1 74.0,20.7 78.0,22.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  
+
+  <div class="dd-metrics">
+    
+    
+    <div class="detail">Mkt Cap: $7.4B</div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+  
+  <div class="dd-news">
+    
+    <div class="news-item compact">
+      <strong>NexGen Energy Up 123% This Past Year as Investor Adds $7.3 Million Before Major Approval</strong>
+      <p class="dim">Significant $7.3M insider purchase ahead of Rook I construction approval. Stock momentum reflects growing confidence in project timeline.</p>
+      <p class="source" data-utc="2026-03-22">Motley Fool</p>
+    </div>
+    
+    <div class="news-item compact">
+      <strong>Assessing NexGen Energy&#39;s Valuation As 2026 Becomes Pivotal For Rook I Progress</strong>
+      <p class="dim">2026 is make-or-break year with construction start targeted for summer. Valuation premium reflects world-class deposit quality.</p>
+      <p class="source" data-utc="2026-03-15">Yahoo Finance/Simply Wall St</p>
+    </div>
+    
+    <div class="news-item compact">
+      <strong>NexGen Energy Releases Quarterly Earnings Results</strong>
+      <p class="dim">Q4 EPS of -$0.05 missed consensus of -$0.03. Net loss widened to C$309M. But Rook I progress on track.</p>
+      <p class="source" data-utc="2026-03-06">Stock Observer</p>
+    </div>
+    
+    <div class="news-item compact">
+      <strong>NexGen Energy&#39;s Shares Up After Jim Cramer Said You Can Let It Run</strong>
+      <p class="dim">Cramer endorsement drives retail interest. Stock at 90-day return of 43.4% and 1-year return of 161.5%.</p>
+      <p class="source" data-utc="2026-03-18">Yahoo Finance</p>
+    </div>
+    
+  </div>
+  
+
+  
+</div>
+    
+    <div class="stock-card deep-dive">
+  <div class="dd-header">
+    <div>
       <div class="company">Uranium Energy Corp</div>
-      <div class="ticker">UEC</div>
+      <div class="ticker">UEC <span class="dd-score" style="background: #8b949e">68/100</span></div>
     </div>
     <div class="dd-price-block">
       <div class="price">$12.09</div>
@@ -2470,7 +2775,7 @@
   <div class="dd-header">
     <div>
       <div class="company">Ur-Energy Inc.</div>
-      <div class="ticker">URG</div>
+      <div class="ticker">URG <span class="dd-score" style="background: #56d364">70/100</span></div>
     </div>
     <div class="dd-price-block">
       <div class="price">$1.45</div>
@@ -2518,6 +2823,86 @@
   
 </div>
     
+    <div class="stock-card deep-dive">
+  <div class="dd-header">
+    <div>
+      <div class="company">Energy Fuels Inc.</div>
+      <div class="ticker">UUUU <span class="dd-score" style="background: #8b949e">55/100</span></div>
+    </div>
+    <div class="dd-price-block">
+      <div class="price">$16.75</div>
+      <div class="change red">-$1.17 (-6.53%)</div>
+    </div>
+  </div>
+
+  
+  <div class="dd-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,9.1 6.0,3.8 10.0,4.3 14.0,3.6 18.0,8.2 22.0,2.0 26.0,9.5 30.0,6.7 34.0,11.2 38.0,15.1 42.0,12.6 46.0,11.2 50.0,12.0 54.0,12.7 58.0,16.2 62.0,14.5 66.0,14.2 70.0,16.1 74.0,18.5 78.0,22.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  
+
+  <div class="dd-metrics">
+    
+    
+    <div class="detail">Mkt Cap: $4.0B</div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+  
+  <div class="dd-news">
+    
+    <div class="news-item compact">
+      <strong>Energy Fuels Announces 2025 Results and 2026 Guidance</strong>
+      <p class="dim">Mined 1.72M lbs uranium exceeding guidance, sold 650k lbs for $48.2M. Guiding 2-2.5M lbs production in 2026 with margin expansion to 50%.</p>
+      <p class="source" data-utc="2026-02-26">PR Newswire</p>
+    </div>
+    
+    <div class="news-item compact">
+      <strong>What Could Lift Energy Fuels&#39; Uranium Margins in 2026?</strong>
+      <p class="dim">Processing scale-up should drive finished inventory costs from $43/lb to low $30s, dramatically expanding margins vs $70+ uranium spot.</p>
+      <p class="source" data-utc="2026-03-15">TradingView/Zacks</p>
+    </div>
+    
+    <div class="news-item compact">
+      <strong>Energy Fuels VP Sells 25,000 Shares in March 2026 Trade</strong>
+      <p class="dim">VP Daniel Kapostasy sold 25k shares at $18.84. Part of broader insider selling pattern in March.</p>
+      <p class="source" data-utc="2026-03-18">SEC Form 4</p>
+    </div>
+    
+    <div class="news-item compact">
+      <strong>Energy Fuels Q4 2025 Earnings Call Highlights: Strong Uranium Production</strong>
+      <p class="dim">Beat production guidance, completed $700M convertible notes offering, working capital swelled to $927M.</p>
+      <p class="source" data-utc="2026-02-27">Investing.com</p>
+    </div>
+    
+  </div>
+  
+
+  
+</div>
+    
   </div>
   
 
@@ -2535,28 +2920,6 @@
   
 </div>
     
-    <div class="scan-row">
-  <span class="scan-ticker">NXE</span>
-  <span class="scan-company dim">NexGen Energy</span>
-  <span class="scan-price">$11.26</span>
-  <span class="scan-change red">-$0.13 (-1.14%)</span>
-  <span class="scan-cap dim">$7.4B</span>
-  
-  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,10.9 6.0,6.4 10.0,6.7 14.0,7.3 18.0,7.1 22.0,2.0 26.0,11.2 30.0,7.2 34.0,10.8 38.0,13.9 42.0,8.3 46.0,4.9 50.0,8.5 54.0,10.2 58.0,13.8 62.0,17.4 66.0,15.3 70.0,17.1 74.0,20.7 78.0,22.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-  
-</div>
-    
-    <div class="scan-row">
-  <span class="scan-ticker">UUUU</span>
-  <span class="scan-company dim">Energy Fuels Inc.</span>
-  <span class="scan-price">$16.75</span>
-  <span class="scan-change red">-$1.17 (-6.53%)</span>
-  <span class="scan-cap dim">$4.0B</span>
-  
-  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,9.1 6.0,3.8 10.0,4.3 14.0,3.6 18.0,8.2 22.0,2.0 26.0,9.5 30.0,6.7 34.0,11.2 38.0,15.1 42.0,12.6 46.0,11.2 50.0,12.0 54.0,12.7 58.0,16.2 62.0,14.5 66.0,14.2 70.0,16.1 74.0,18.5 78.0,22.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-  
-</div>
-    
   </div>
   
 </details>
@@ -2564,7 +2927,7 @@
     
     
     
-    <details class="sector-details" id="sector-nanotech" open>
+    <details class="sector-details" id="sector-nanotech">
   <summary class="sector-summary">
     <h2>Nanotech <span class="dim">(1)</span></h2>
   </summary>
@@ -2610,7 +2973,7 @@
   <div class="dd-header">
     <div>
       <div class="company">IonQ</div>
-      <div class="ticker">IONQ</div>
+      <div class="ticker">IONQ <span class="dd-score" style="background: #8b949e">55/100</span></div>
     </div>
     <div class="dd-price-block">
       <div class="price">$31.20</div>
@@ -2662,7 +3025,7 @@
   <div class="dd-header">
     <div>
       <div class="company">D-Wave Quantum</div>
-      <div class="ticker">QBTS</div>
+      <div class="ticker">QBTS <span class="dd-score" style="background: #8b949e">51/100</span></div>
     </div>
     <div class="dd-price-block">
       <div class="price">$15.73</div>
@@ -2745,7 +3108,7 @@
     
     
     
-    <details class="sector-details" id="sector-semiconductors" open>
+    <details class="sector-details" id="sector-semiconductors">
   <summary class="sector-summary">
     <h2>Semiconductors <span class="dim">(3)</span></h2>
   </summary>
@@ -2798,7 +3161,7 @@
     
     
     
-    <details class="sector-details" id="sector-space---data" open>
+    <details class="sector-details" id="sector-space---data">
   <summary class="sector-summary">
     <h2>Space / Data <span class="dim">(1)</span></h2>
   </summary>
@@ -2829,7 +3192,7 @@
     
     
     
-    <details class="sector-details" id="sector-space---drones" open>
+    <details class="sector-details" id="sector-space---drones">
   <summary class="sector-summary">
     <h2>Space / Drones <span class="dim">(1)</span></h2>
   </summary>
@@ -2875,7 +3238,7 @@
   <div class="dd-header">
     <div>
       <div class="company">Rocket Lab USA</div>
-      <div class="ticker">RKLB</div>
+      <div class="ticker">RKLB <span class="dd-score" style="background: #8b949e">56/100</span></div>
     </div>
     <div class="dd-price-block">
       <div class="price">$67.23</div>
@@ -2941,29 +3304,98 @@
   
 
   
+  <div class="deep-dive-section">
+    
+    <div class="stock-card deep-dive">
+  <div class="dd-header">
+    <div>
+      <div class="company">Intuitive Machines</div>
+      <div class="ticker">LUNR <span class="dd-score" style="background: #8b949e">52/100</span></div>
+    </div>
+    <div class="dd-price-block">
+      <div class="price">$17.83</div>
+      <div class="change red">-$1.08 (-5.71%)</div>
+    </div>
+  </div>
 
   
-  <div class="scan-section">
-    
-    <div class="scan-row">
-  <span class="scan-ticker">LUNR</span>
-  <span class="scan-company dim">Intuitive Machines</span>
-  <span class="scan-price">$17.83</span>
-  <span class="scan-change red">-$1.08 (-5.71%)</span>
-  <span class="scan-cap dim">$2.5B</span>
+  <div class="dd-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,7.1 6.0,2.1 10.0,22.0 14.0,10.2 18.0,18.1 22.0,8.1 26.0,6.7 30.0,3.9 34.0,10.2 38.0,10.5 42.0,7.5 46.0,10.1 50.0,5.0 54.0,10.4 58.0,10.7 62.0,10.1 66.0,2.1 70.0,7.3 74.0,2.0 78.0,9.2" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
   
-  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,7.1 6.0,2.1 10.0,22.0 14.0,10.2 18.0,18.1 22.0,8.1 26.0,6.7 30.0,3.9 34.0,10.2 38.0,10.5 42.0,7.5 46.0,10.1 50.0,5.0 54.0,10.4 58.0,10.7 62.0,10.1 66.0,2.1 70.0,7.3 74.0,2.0 78.0,9.2" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+
+  <div class="dd-metrics">
+    
+    
+    <div class="detail">Mkt Cap: $2.5B</div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+  
+  <div class="dd-news">
+    
+    <div class="news-item compact">
+      <strong>Did Intuitive Machines&#39; Bold 2026 Near-$1 Billion Revenue Target Just Redefine Its Risk Profile?</strong>
+      <p class="dim">Revenue guidance of $900M-$1B for 2026 represents 4-5x growth, supported by $943M backlog but with significant execution risk.</p>
+      <p class="source" data-utc="2026-03-20">Simply Wall St</p>
+    </div>
+    
+    <div class="news-item compact">
+      <strong>Intuitive Machines to Acquire Lanteris Space Systems</strong>
+      <p class="dim">Acquisition creates next-gen commercial, civil, and national security space prime with in-house satellite manufacturing.</p>
+      <p class="source" data-utc="2026-02-28">Intuitive Machines IR</p>
+    </div>
+    
+    <div class="news-item compact">
+      <strong>LUNR Stock To Fly Higher? Analyst Sees Revenue Doubling From NASA Contract</strong>
+      <p class="dim">NASA LTV contract award described as imminent, could significantly expand revenue and backlog.</p>
+      <p class="source" data-utc="2026-03-18">StockTwits</p>
+    </div>
+    
+    <div class="news-item compact">
+      <strong>Intuitive Machines Q4 2025 Earnings Transcript</strong>
+      <p class="dim">Management highlighted $943M backlog, 60-65% conversion expected in 2026, partnerships with Leonardo/JAXA for lunar comm networks.</p>
+      <p class="source" data-utc="2026-03-19">Motley Fool</p>
+    </div>
+    
+  </div>
+  
+
   
 </div>
     
   </div>
+  
+
   
 </details>
     
     
     
     
-    <details class="sector-details" id="sector-space---telecom" open>
+    <details class="sector-details" id="sector-space---telecom">
   <summary class="sector-summary">
     <h2>Space / Telecom <span class="dim">(1)</span></h2>
   </summary>
@@ -2994,7 +3426,7 @@
     
     
     
-    <details class="sector-details" id="sector-water-utilities" open>
+    <details class="sector-details" id="sector-water-utilities">
   <summary class="sector-summary">
     <h2>Water Utilities <span class="dim">(2)</span></h2>
   </summary>
@@ -3049,23 +3481,23 @@
     </div>
     
     <div class="scouting-item">
-      <span class="scouting-ticker">STRL</span>
-      <span class="scouting-name">Sterling Infrastructure</span>
-      <span class="scouting-sector dim">Infrastructure / Semiconductors</span>
+      <span class="scouting-ticker">SKYT</span>
+      <span class="scouting-name">SkyWater Technology</span>
+      <span class="scouting-sector dim">Semiconductors / Quantum</span>
       <p class="dim"></p>
     </div>
     
     <div class="scouting-item">
-      <span class="scouting-ticker">AVAV</span>
-      <span class="scouting-name">AeroVironment</span>
+      <span class="scouting-ticker">SWMR</span>
+      <span class="scouting-name">Swarmer (IPO)</span>
       <span class="scouting-sector dim">Defense / Drones</span>
       <p class="dim"></p>
     </div>
     
     <div class="scouting-item">
-      <span class="scouting-ticker">FLY</span>
-      <span class="scouting-name">Flywire Corporation</span>
-      <span class="scouting-sector dim">Fintech / Payments</span>
+      <span class="scouting-ticker">INDI</span>
+      <span class="scouting-name">Indie Semiconductor</span>
+      <span class="scouting-sector dim">Automotive AI / Semiconductors</span>
       <p class="dim"></p>
     </div>
     
