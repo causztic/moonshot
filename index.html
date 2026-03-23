@@ -3,16 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Daily Market Update &mdash; Mar 20, 2026</title>
-  <meta property="og:title" content="Daily Market Update &mdash; Mar 20, 2026">
-  <meta property="og:description" content="CING | PYPD | SLS &mdash; AI-analyzed biotech watchlist with catalysts, news, and plain-English evaluations.">
+  <title>Moonshot Daily &mdash; Monday, March 23, 2026</title>
+  <meta property="og:title" content="Moonshot Daily &mdash; Monday, March 23, 2026">
+  <meta property="og:description" content="66 moonshot stocks across 32 sectors &mdash; AI-analyzed watchlist with catalysts, financials, and plain-English evaluations.">
   <meta property="og:type" content="article">
   <meta property="og:image" content="https://moonshot.causztic.com/banner.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Daily Market Update &mdash; Mar 20, 2026">
-  <meta name="twitter:description" content="CING | PYPD | SLS &mdash; AI-analyzed biotech watchlist with catalysts, news, and plain-English evaluations.">
+  <meta name="twitter:title" content="Moonshot Daily &mdash; Monday, March 23, 2026">
+  <meta name="twitter:description" content="66 moonshot stocks &mdash; AI-analyzed watchlist.">
   <meta name="twitter:image" content="https://moonshot.causztic.com/banner.png">
-  <meta name="description" content="CING | PYPD | SLS &mdash; AI-analyzed biotech watchlist with catalysts, news, and plain-English evaluations.">
   <style>
     :root {
       --bg: #0d1117;
@@ -24,6 +23,12 @@
       --green: #3fb950;
       --red: #f85149;
       --border: #30363d;
+      --score-green: #3fb950;
+      --score-light-green: #56d364;
+      --score-gray: #8b949e;
+      --score-amber: #f0883e;
+      --score-red: #f85149;
+      --score-none: #21262d;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -33,7 +38,7 @@
       line-height: 1.6;
       padding: 2rem 1rem;
     }
-    .container { max-width: 900px; margin: 0 auto; }
+    .container { max-width: 960px; margin: 0 auto; }
     header { text-align: center; margin-bottom: 2rem; }
     header h1 { font-size: 1.75rem; color: #fff; margin-bottom: 0.25rem; }
     header .subtitle { color: var(--text-dim); font-size: 0.9rem; }
@@ -48,62 +53,145 @@
     .dim { color: var(--text-dim); font-size: 0.85rem; }
     .green { color: var(--green); }
     .red { color: var(--red); }
+    .accent { color: var(--accent); }
 
-    /* Stock cards */
-    .stock-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 0.75rem;
+    /* Banner */
+    .banner { text-align: center; margin-bottom: 1.5rem; }
+    .banner img {
+      width: 100%;
+      max-width: 960px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
     }
+
+    /* Heat map */
+    .heat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+      gap: 4px;
+    }
+    .heat-tile {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+    .heat-tile:hover { opacity: 0.8; }
+    .heat-ticker {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    }
+
+    /* Movers row */
+    .movers-row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
+    }
+    .mover { font-weight: 700; font-size: 0.9rem; }
+
+    /* Sector nav */
+    .sector-nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      padding: 0.5rem 0;
+      margin: 1.5rem 0;
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      overflow-x: auto;
+    }
+    .sector-pill {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+      font-size: 0.75rem;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: all 0.15s;
+    }
+    .sector-pill:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* Sector details */
+    .sector-details { margin-bottom: 1.5rem; }
+    .sector-summary {
+      cursor: pointer;
+      list-style: none;
+    }
+    .sector-summary::-webkit-details-marker { display: none; }
+    .sector-summary h2 { user-select: none; }
+    .sector-details[open] .sector-summary h2::before { content: "▾ "; }
+    .sector-details:not([open]) .sector-summary h2::before { content: "▸ "; }
+
+    /* Scan rows */
+    .scan-row {
+      display: grid;
+      grid-template-columns: 60px 1fr auto auto auto auto;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 0.75rem;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.85rem;
+    }
+    .scan-ticker { font-weight: 700; color: #fff; }
+    .scan-price { font-weight: 600; color: #fff; text-align: right; }
+    .scan-change { text-align: right; font-size: 0.8rem; }
+    .scan-cap { text-align: right; font-size: 0.75rem; }
+    .scan-sparkline { width: 80px; height: 24px; display: inline-block; }
+    .scan-sparkline svg { width: 100%; height: 100%; }
+
+    /* Deep-dive cards */
     .stock-card {
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: 8px;
       padding: 1rem;
-      text-align: center;
+      margin-bottom: 0.75rem;
     }
-    .stock-card .company { color: var(--text-dim); font-size: 0.8rem; }
-    .stock-card .ticker { font-size: 1rem; font-weight: 700; color: #fff; margin: 0.25rem 0; }
-    .stock-card .price { font-size: 1.5rem; font-weight: 700; color: #fff; }
-    .stock-card .change { font-size: 0.9rem; margin-bottom: 0.5rem; }
-    .stock-card .detail { color: var(--text-dim); font-size: 0.75rem; line-height: 1.4; }
-
-    /* Catalysts */
-    .catalyst-row {
+    .dd-header {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 0.75rem 1rem;
-      margin-bottom: 0.5rem;
+      align-items: flex-start;
+      margin-bottom: 0.75rem;
     }
-    .catalyst-info { flex: 1; }
-    .catalyst-name { color: #fff; }
-    .catalyst-badge { text-align: right; min-width: 80px; }
-    .countdown-num { font-size: 1.5rem; font-weight: 700; color: var(--accent); }
-    .countdown-label { display: block; color: var(--text-dim); font-size: 0.7rem; }
-    .badge.imminent {
-      background: var(--red);
-      color: #fff;
-      font-weight: 700;
-      font-size: 0.75rem;
-      padding: 0.25rem 0.6rem;
+    .stock-card .company { color: var(--text-dim); font-size: 0.8rem; }
+    .stock-card .ticker { font-size: 1rem; font-weight: 700; color: #fff; }
+    .dd-price-block { text-align: right; }
+    .stock-card .price { font-size: 1.5rem; font-weight: 700; color: #fff; }
+    .stock-card .change { font-size: 0.9rem; }
+    .stock-card .detail { color: var(--text-dim); font-size: 0.75rem; line-height: 1.4; }
+    .dd-metrics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .dd-sparkline { margin-bottom: 0.75rem; }
+    .dd-sparkline svg { width: 100%; height: 40px; }
+    .dd-timing, .dd-changed {
+      padding: 0.5rem 0.75rem;
+      margin-top: 0.4rem;
       border-radius: 4px;
+      font-size: 0.9rem;
+      border-left: 3px solid var(--accent);
     }
-
-    /* News */
-    .news-item {
-      border-bottom: 1px solid var(--border);
-      padding: 0.75rem 0;
-    }
-    .news-item:last-child { border-bottom: none; }
-    .source { color: var(--text-dim); font-size: 0.75rem; font-style: italic; margin-top: 0.25rem; }
-    .local-time { color: var(--accent); font-style: normal; }
+    .dd-catalysts, .dd-news, .dd-insiders { margin-top: 0.75rem; }
 
     /* Evaluations */
-    .eval-card { margin-bottom: 1.25rem; }
     .eval {
       padding: 0.5rem 0.75rem;
       margin-top: 0.4rem;
@@ -114,29 +202,57 @@
     .eval.bull { border-left: 3px solid var(--green); }
     .eval.bear { border-left: 3px solid var(--red); }
 
+    /* Catalysts */
+    .catalyst-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .catalyst-row.compact { padding: 0.3rem 0; }
+    .catalyst-info { flex: 1; }
+    .catalyst-badge { text-align: right; min-width: 70px; }
+    .countdown-num { font-size: 1.2rem; font-weight: 700; color: var(--accent); }
+    .countdown-label { display: block; color: var(--text-dim); font-size: 0.65rem; }
+    .badge.imminent {
+      background: var(--red);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.7rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+    }
+
+    /* News */
+    .news-item { padding: 0.5rem 0; border-bottom: 1px solid var(--border); }
+    .news-item.compact { padding: 0.3rem 0; }
+    .news-item:last-child { border-bottom: none; }
+    .source { color: var(--text-dim); font-size: 0.7rem; font-style: italic; margin-top: 0.15rem; }
+    .local-time { color: var(--accent); font-style: normal; }
+
+    /* Insiders */
+    .insider { font-size: 0.8rem; margin-right: 0.75rem; }
+
     /* Big picture */
     .big-picture-box {
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: 8px;
-      padding: 1.25rem 1.5rem;
+      padding: 1rem 1.25rem;
       font-size: 0.95rem;
       line-height: 1.7;
     }
-    .big-picture-box p { margin-bottom: 0.75rem; }
+    .big-picture-box p { margin-bottom: 0.5rem; }
     .big-picture-box p:last-child { margin-bottom: 0; }
 
-    /* Banner */
-    .banner {
-      text-align: center;
-      margin-bottom: 1.5rem;
+    /* Scouting */
+    .scouting-item {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border);
     }
-    .banner img {
-      width: 100%;
-      max-width: 900px;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-    }
+    .scouting-ticker { font-weight: 700; color: var(--accent); margin-right: 0.5rem; }
+    .scouting-name { color: #fff; margin-right: 0.5rem; }
 
     /* Footer */
     .disclaimer {
@@ -146,18 +262,23 @@
       margin-top: 3rem;
       line-height: 1.5;
     }
-    .disclaimer a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-    .disclaimer a:hover {
-      text-decoration: underline;
-    }
+    .disclaimer a { color: var(--accent); text-decoration: none; }
+    .disclaimer a:hover { text-decoration: underline; }
 
+    /* Responsive */
+    @media (max-width: 900px) {
+      .heat-grid { grid-template-columns: repeat(auto-fill, minmax(60px, 1fr)); }
+    }
     @media (max-width: 640px) {
-      .stock-grid { grid-template-columns: 1fr; }
-      .catalyst-row { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
-      .catalyst-badge { text-align: left; }
+      .heat-grid { grid-template-columns: repeat(4, 1fr); }
+      .heat-ticker { font-size: 0.6rem; }
+      .scan-row {
+        grid-template-columns: 50px 1fr auto auto;
+      }
+      .scan-company, .scan-sparkline { display: none; }
+      .dd-header { flex-direction: column; }
+      .dd-price-block { text-align: left; margin-top: 0.25rem; }
+      .sector-nav { padding: 0.4rem 0; }
     }
   </style>
 </head>
@@ -167,184 +288,2820 @@
       <img src="banner.png" alt="Moonshots">
     </div>
     <header>
-      <h1>Daily Market Update</h1>
-      <p class="subtitle">CING | PYPD | SLS &mdash; Monday, March 23, 2026</p>
-      <p class="subtitle">Prices as of Mar 20, 2026 (most recent close, <span data-utc="2026-03-23T20:00:00Z" data-format="tz-only"></span>)</p>
+      <h1>Moonshot Daily</h1>
+      <p class="subtitle">66 stocks across 32 sectors &mdash; Monday, March 23, 2026</p>
+      
+      <p class="subtitle">Prices as of 2026-03-23</p>
+      
     </header>
-    <section>
-    <h2>Price Snapshot</h2>
-    <div class="stock-grid"><div class="stock-card">
-      <div class="company">Cingulate Inc.</div>
-      <div class="ticker">CING</div>
-      <div class="price">$7.48</div>
-      <div class="change red">-$0.10 (-1.32%)</div>
-      <div class="detail">Day Range: $6.60 – $8.19</div><div class="detail">52-Week: $3.20 – $11.89</div><div class="detail">Mkt Cap: $47M</div><div class="detail">Target: $37.00 (Strong Buy)</div>
-    </div><div class="stock-card">
+
+    
+<section>
+  <h2>What&rsquo;s Hot Today</h2>
+  <div class="big-picture-box">
+    <b>Monday selloff deepens — but today's deep dives reveal diamonds in the wreckage.</b> The broad risk-off mood smashed most of the watchlist, with VNDA (-17.5%) leading the carnage after disappointing 2026 revenue guidance of $230-260M. But here's the thing: VNDA has $264M in cash, three FDA-approved drugs, and a fourth under review. The selloff looks like an overreaction. Meanwhile, AYRWF (-12.5%) is effectively dead — court-supervised wind-down at a $13M market cap. Remove from watchlist.<br/><br/>
+
+<b>The actually interesting stories from today's deep dives:</b><br/>
+• <b>UEC (-9.0%) has $818M cash, zero debt, and 12M lbs/yr uranium production capacity</b> — the most dominant financial position on this entire watchlist. Cash production cost is $30.52/lb vs $70+ spot price. This dip is a gift if you believe in nuclear energy's decade.<br/>
+• <b>EH (-8.5%) just had its first GAAP profitable quarter</b> and delivered 100 eVTOL units in Q4. Analyst target $24.80 vs $9.97 current. Only eVTOL company with real revenue AND profit. China-only risk is real but priced in.<br/>
+• <b>ALLO (-6.8%) has TWO binary catalysts in the next 90 days</b>: ALPHA3 futility analysis in April and ALLO-329 autoimmune POC in June. $258M cash runway to Q1 2028.<br/>
+• <b>PLUG (-7.1%) turned gross profit positive for the first time</b> ($5.5M vs -$233M loss YoY), but cash runway is CRITICAL at ~7-8 months. Existential risk vs turnaround story.<br/><br/>
+
+<b>Round-robin discoveries:</b> IONQ ($130M revenue, +202% YoY, guiding $225-245M) is the real deal in quantum computing, but short-seller Wolfpack alleges $54.6M revenue hole from lost earmarks. SOUN beat Q4 estimates by 80% but lost its CFO. QS launched pilot production (Eagle Line) — the 'can it scale?' chapter begins. OSCR is guiding $18.7-19.0B revenue with $250-450M operating income — a health insurer inflection nobody is watching.<br/><br/>
+
+<font color="#f0883e"><b>Bottom line:</b></font> Ugly tape, but catalysts are stacking up. ALLO's April futility analysis is the next binary event after SLS's REGAL readout. UEC is the financial fortress of the watchlist. PLUG is the highest-risk/highest-reward turnaround. <b>10 new deep dives completed: avg moonshot score 50.4/100. Top scores: UEC (68), EH (64), VNDA (62), ALLO (60), OSCR (58).</b>
+  </div>
+  
+</section>
+
+
+    
+<section>
+  <h2>Moonshot Scores</h2>
+  <div class="heat-grid">
+    
+    <a class="heat-tile" href="#sector-ai---automation"
+       style="background: #21262d"
+       aria-label="SYM: score N/A/100"
+       title="SYM — N/A/100">
+      <span class="heat-ticker">SYM</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-ai---data"
+       style="background: #21262d"
+       aria-label="INOD: score N/A/100"
+       title="INOD — N/A/100">
+      <span class="heat-ticker">INOD</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-ai---defense"
+       style="background: #21262d"
+       aria-label="BBAI: score N/A/100"
+       title="BBAI — N/A/100">
+      <span class="heat-ticker">BBAI</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-ai---fintech"
+       style="background: #21262d"
+       aria-label="UPST: score N/A/100"
+       title="UPST — N/A/100">
+      <span class="heat-ticker">UPST</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-ai---robotics"
+       style="background: #21262d"
+       aria-label="SERV: score N/A/100"
+       title="SERV — N/A/100">
+      <span class="heat-ticker">SERV</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-ai---software"
+       style="background: #21262d"
+       aria-label="AI: score N/A/100"
+       title="AI — N/A/100">
+      <span class="heat-ticker">AI</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-ai---software"
+       style="background: #21262d"
+       aria-label="FIVN: score N/A/100"
+       title="FIVN — N/A/100">
+      <span class="heat-ticker">FIVN</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-ai---voice-tech"
+       style="background: #8b949e"
+       aria-label="SOUN: score 52/100"
+       title="SOUN — 52/100">
+      <span class="heat-ticker">SOUN</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-aerospace---evtol"
+       style="background: #8b949e"
+       aria-label="EH: score 64/100"
+       title="EH — 64/100">
+      <span class="heat-ticker">EH</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-aerospace---evtol"
+       style="background: #8b949e"
+       aria-label="JOBY: score 58/100"
+       title="JOBY — 58/100">
+      <span class="heat-ticker">JOBY</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-aerospace---evtol"
+       style="background: #21262d"
+       aria-label="ACHR: score N/A/100"
+       title="ACHR — N/A/100">
+      <span class="heat-ticker">ACHR</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-aerospace---evtol"
+       style="background: #21262d"
+       aria-label="EVTL: score N/A/100"
+       title="EVTL — N/A/100">
+      <span class="heat-ticker">EVTL</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-alt.-agriculture"
+       style="background: #21262d"
+       aria-label="STKH: score N/A/100"
+       title="STKH — N/A/100">
+      <span class="heat-ticker">STKH</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-battery-tech"
+       style="background: #f0883e"
+       aria-label="QS: score 38/100"
+       title="QS — 38/100">
+      <span class="heat-ticker">QS</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-battery-tech"
+       style="background: #21262d"
+       aria-label="SLDP: score N/A/100"
+       title="SLDP — N/A/100">
+      <span class="heat-ticker">SLDP</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-biotech"
+       style="background: #8b949e"
+       aria-label="ALLO: score 60/100"
+       title="ALLO — 60/100">
+      <span class="heat-ticker">ALLO</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-biotech"
+       style="background: #56d364"
+       aria-label="SLS: score 86/100"
+       title="SLS — 86/100">
+      <span class="heat-ticker">SLS</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-biotech"
+       style="background: #21262d"
+       aria-label="BEAM: score N/A/100"
+       title="BEAM — N/A/100">
+      <span class="heat-ticker">BEAM</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-biotech"
+       style="background: #21262d"
+       aria-label="CRBU: score N/A/100"
+       title="CRBU — N/A/100">
+      <span class="heat-ticker">CRBU</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-biotech"
+       style="background: #21262d"
+       aria-label="CRSP: score N/A/100"
+       title="CRSP — N/A/100">
+      <span class="heat-ticker">CRSP</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-biotech"
+       style="background: #21262d"
+       aria-label="FATE: score N/A/100"
+       title="FATE — N/A/100">
+      <span class="heat-ticker">FATE</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-biotech"
+       style="background: #21262d"
+       aria-label="NTLA: score N/A/100"
+       title="NTLA — N/A/100">
+      <span class="heat-ticker">NTLA</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-biotech"
+       style="background: #21262d"
+       aria-label="PBYI: score N/A/100"
+       title="PBYI — N/A/100">
+      <span class="heat-ticker">PBYI</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-biotech"
+       style="background: #21262d"
+       aria-label="TSHA: score N/A/100"
+       title="TSHA — N/A/100">
+      <span class="heat-ticker">TSHA</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-biotech---medtech"
+       style="background: #56d364"
+       aria-label="PYPD: score 75/100"
+       title="PYPD — 75/100">
+      <span class="heat-ticker">PYPD</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-biotech---pharma"
+       style="background: #8b949e"
+       aria-label="CING: score 66/100"
+       title="CING — 66/100">
+      <span class="heat-ticker">CING</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-biotech---pharma"
+       style="background: #8b949e"
+       aria-label="VNDA: score 62/100"
+       title="VNDA — 62/100">
+      <span class="heat-ticker">VNDA</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-cannabis"
+       style="background: #f85149"
+       aria-label="AYRWF: score 15/100"
+       title="AYRWF — 15/100">
+      <span class="heat-ticker">AYRWF</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-cannabis"
+       style="background: #21262d"
+       aria-label="MAPS: score N/A/100"
+       title="MAPS — N/A/100">
+      <span class="heat-ticker">MAPS</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-cannabis"
+       style="background: #21262d"
+       aria-label="PLNH: score N/A/100"
+       title="PLNH — N/A/100">
+      <span class="heat-ticker">PLNH</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-clean-energy"
+       style="background: #8b949e"
+       aria-label="BE: score 52/100"
+       title="BE — 52/100">
+      <span class="heat-ticker">BE</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-clean-energy"
+       style="background: #f0883e"
+       aria-label="PLUG: score 32/100"
+       title="PLUG — 32/100">
+      <span class="heat-ticker">PLUG</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-clean-energy"
+       style="background: #21262d"
+       aria-label="BLDP: score N/A/100"
+       title="BLDP — N/A/100">
+      <span class="heat-ticker">BLDP</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-clean-energy"
+       style="background: #21262d"
+       aria-label="ENVX: score N/A/100"
+       title="ENVX — N/A/100">
+      <span class="heat-ticker">ENVX</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-clean-energy"
+       style="background: #21262d"
+       aria-label="JKS: score N/A/100"
+       title="JKS — N/A/100">
+      <span class="heat-ticker">JKS</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-clean-energy"
+       style="background: #21262d"
+       aria-label="STEM: score N/A/100"
+       title="STEM — N/A/100">
+      <span class="heat-ticker">STEM</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-crypto-mining"
+       style="background: #21262d"
+       aria-label="ARBK: score N/A/100"
+       title="ARBK — N/A/100">
+      <span class="heat-ticker">ARBK</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-crypto-mining"
+       style="background: #21262d"
+       aria-label="BITF: score N/A/100"
+       title="BITF — N/A/100">
+      <span class="heat-ticker">BITF</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-cybersecurity"
+       style="background: #21262d"
+       aria-label="RPD: score N/A/100"
+       title="RPD — N/A/100">
+      <span class="heat-ticker">RPD</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-digital-health"
+       style="background: #56d364"
+       aria-label="HIMS: score 78/100"
+       title="HIMS — 78/100">
+      <span class="heat-ticker">HIMS</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-digital-health"
+       style="background: #8b949e"
+       aria-label="OSCR: score 58/100"
+       title="OSCR — 58/100">
+      <span class="heat-ticker">OSCR</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-digital-health"
+       style="background: #21262d"
+       aria-label="TEM: score N/A/100"
+       title="TEM — N/A/100">
+      <span class="heat-ticker">TEM</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-fintech"
+       style="background: #21262d"
+       aria-label="SEZL: score N/A/100"
+       title="SEZL — N/A/100">
+      <span class="heat-ticker">SEZL</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-fintech---ai"
+       style="background: #21262d"
+       aria-label="UPST: score N/A/100"
+       title="UPST — N/A/100">
+      <span class="heat-ticker">UPST</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-mining---lithium"
+       style="background: #21262d"
+       aria-label="LAC: score N/A/100"
+       title="LAC — N/A/100">
+      <span class="heat-ticker">LAC</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-mining---rare-earths"
+       style="background: #21262d"
+       aria-label="MP: score N/A/100"
+       title="MP — N/A/100">
+      <span class="heat-ticker">MP</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-mining---uranium"
+       style="background: #8b949e"
+       aria-label="UEC: score 68/100"
+       title="UEC — 68/100">
+      <span class="heat-ticker">UEC</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-mining---uranium"
+       style="background: #56d364"
+       aria-label="URG: score 70/100"
+       title="URG — 70/100">
+      <span class="heat-ticker">URG</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-mining---uranium"
+       style="background: #21262d"
+       aria-label="DNN: score N/A/100"
+       title="DNN — N/A/100">
+      <span class="heat-ticker">DNN</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-mining---uranium"
+       style="background: #21262d"
+       aria-label="NXE: score N/A/100"
+       title="NXE — N/A/100">
+      <span class="heat-ticker">NXE</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-mining---uranium"
+       style="background: #21262d"
+       aria-label="UUUU: score N/A/100"
+       title="UUUU — N/A/100">
+      <span class="heat-ticker">UUUU</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-nanotech"
+       style="background: #21262d"
+       aria-label="NNDM: score N/A/100"
+       title="NNDM — N/A/100">
+      <span class="heat-ticker">NNDM</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-quantum-computing"
+       style="background: #8b949e"
+       aria-label="IONQ: score 55/100"
+       title="IONQ — 55/100">
+      <span class="heat-ticker">IONQ</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-quantum-computing"
+       style="background: #8b949e"
+       aria-label="QBTS: score 51/100"
+       title="QBTS — 51/100">
+      <span class="heat-ticker">QBTS</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-quantum-computing"
+       style="background: #21262d"
+       aria-label="QUBT: score N/A/100"
+       title="QUBT — N/A/100">
+      <span class="heat-ticker">QUBT</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-quantum-computing"
+       style="background: #21262d"
+       aria-label="RGTI: score N/A/100"
+       title="RGTI — N/A/100">
+      <span class="heat-ticker">RGTI</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-semiconductors"
+       style="background: #21262d"
+       aria-label="AMBA: score N/A/100"
+       title="AMBA — N/A/100">
+      <span class="heat-ticker">AMBA</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-semiconductors"
+       style="background: #21262d"
+       aria-label="CAMT: score N/A/100"
+       title="CAMT — N/A/100">
+      <span class="heat-ticker">CAMT</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-semiconductors"
+       style="background: #21262d"
+       aria-label="NVMI: score N/A/100"
+       title="NVMI — N/A/100">
+      <span class="heat-ticker">NVMI</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-space---data"
+       style="background: #21262d"
+       aria-label="SIDU: score N/A/100"
+       title="SIDU — N/A/100">
+      <span class="heat-ticker">SIDU</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-space---drones"
+       style="background: #21262d"
+       aria-label="PDYN: score N/A/100"
+       title="PDYN — N/A/100">
+      <span class="heat-ticker">PDYN</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-space---launch"
+       style="background: #8b949e"
+       aria-label="RKLB: score 56/100"
+       title="RKLB — 56/100">
+      <span class="heat-ticker">RKLB</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-space---lunar"
+       style="background: #21262d"
+       aria-label="LUNR: score N/A/100"
+       title="LUNR — N/A/100">
+      <span class="heat-ticker">LUNR</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-space---telecom"
+       style="background: #21262d"
+       aria-label="ASTS: score N/A/100"
+       title="ASTS — N/A/100">
+      <span class="heat-ticker">ASTS</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-water-utilities"
+       style="background: #21262d"
+       aria-label="ARTNA: score N/A/100"
+       title="ARTNA — N/A/100">
+      <span class="heat-ticker">ARTNA</span>
+    </a>
+    
+    <a class="heat-tile" href="#sector-water-utilities"
+       style="background: #21262d"
+       aria-label="YORW: score N/A/100"
+       title="YORW — N/A/100">
+      <span class="heat-ticker">YORW</span>
+    </a>
+    
+  </div>
+</section>
+
+
+    
+    <nav class="sector-nav" aria-label="Sector navigation">
+      
+      <a class="sector-pill" href="#sector-ai---automation">AI / Automation (1)</a>
+      
+      <a class="sector-pill" href="#sector-ai---data">AI / Data (1)</a>
+      
+      <a class="sector-pill" href="#sector-ai---defense">AI / Defense (1)</a>
+      
+      <a class="sector-pill" href="#sector-ai---fintech">AI / Fintech (1)</a>
+      
+      <a class="sector-pill" href="#sector-ai---robotics">AI / Robotics (1)</a>
+      
+      <a class="sector-pill" href="#sector-ai---software">AI / Software (2)</a>
+      
+      <a class="sector-pill" href="#sector-ai---voice-tech">AI / Voice Tech (1)</a>
+      
+      <a class="sector-pill" href="#sector-aerospace---evtol">Aerospace / eVTOL (4)</a>
+      
+      <a class="sector-pill" href="#sector-alt.-agriculture">Alt. Agriculture (1)</a>
+      
+      <a class="sector-pill" href="#sector-battery-tech">Battery Tech (2)</a>
+      
+      <a class="sector-pill" href="#sector-biotech">Biotech (9)</a>
+      
+      <a class="sector-pill" href="#sector-biotech---medtech">Biotech / MedTech (1)</a>
+      
+      <a class="sector-pill" href="#sector-biotech---pharma">Biotech / Pharma (2)</a>
+      
+      <a class="sector-pill" href="#sector-cannabis">Cannabis (3)</a>
+      
+      <a class="sector-pill" href="#sector-clean-energy">Clean Energy (6)</a>
+      
+      <a class="sector-pill" href="#sector-crypto-mining">Crypto Mining (2)</a>
+      
+      <a class="sector-pill" href="#sector-cybersecurity">Cybersecurity (1)</a>
+      
+      <a class="sector-pill" href="#sector-digital-health">Digital Health (3)</a>
+      
+      <a class="sector-pill" href="#sector-fintech">Fintech (1)</a>
+      
+      <a class="sector-pill" href="#sector-fintech---ai">Fintech / AI (1)</a>
+      
+      <a class="sector-pill" href="#sector-mining---lithium">Mining / Lithium (1)</a>
+      
+      <a class="sector-pill" href="#sector-mining---rare-earths">Mining / Rare Earths (1)</a>
+      
+      <a class="sector-pill" href="#sector-mining---uranium">Mining / Uranium (5)</a>
+      
+      <a class="sector-pill" href="#sector-nanotech">Nanotech (1)</a>
+      
+      <a class="sector-pill" href="#sector-quantum-computing">Quantum Computing (4)</a>
+      
+      <a class="sector-pill" href="#sector-semiconductors">Semiconductors (3)</a>
+      
+      <a class="sector-pill" href="#sector-space---data">Space / Data (1)</a>
+      
+      <a class="sector-pill" href="#sector-space---drones">Space / Drones (1)</a>
+      
+      <a class="sector-pill" href="#sector-space---launch">Space / Launch (1)</a>
+      
+      <a class="sector-pill" href="#sector-space---lunar">Space / Lunar (1)</a>
+      
+      <a class="sector-pill" href="#sector-space---telecom">Space / Telecom (1)</a>
+      
+      <a class="sector-pill" href="#sector-water-utilities">Water Utilities (2)</a>
+      
+    </nav>
+
+    
+    
+    
+    
+    <details class="sector-details" id="sector-ai---automation" open>
+  <summary class="sector-summary">
+    <h2>AI / Automation <span class="dim">(1)</span></h2>
+  </summary>
+
+  
+  
+
+  
+
+  
+  <div class="scan-section">
+    
+    <div class="scan-row">
+  <span class="scan-ticker">SYM</span>
+  <span class="scan-company dim">Symbotic Inc.</span>
+  <span class="scan-price">$50.12</span>
+  <span class="scan-change red">-$1.16 (-2.26%)</span>
+  <span class="scan-cap dim">$30.2B</span>
+  
+  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,9.0 6.0,4.5 10.0,4.9 14.0,2.0 18.0,8.0 22.0,9.3 26.0,12.8 30.0,9.7 34.0,11.6 38.0,22.0 42.0,18.3 46.0,19.1 50.0,16.6 54.0,17.5 58.0,20.1 62.0,16.6 66.0,13.1 70.0,18.7 74.0,15.9 78.0,18.6" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  
+</div>
+    
+  </div>
+  
+</details>
+    
+    
+    
+    
+    <details class="sector-details" id="sector-ai---data" open>
+  <summary class="sector-summary">
+    <h2>AI / Data <span class="dim">(1)</span></h2>
+  </summary>
+
+  
+  
+
+  
+
+  
+  <div class="scan-section">
+    
+    <div class="scan-row">
+  <span class="scan-ticker">INOD</span>
+  <span class="scan-company dim">Innodata Inc.</span>
+  <span class="scan-price">$43.66</span>
+  <span class="scan-change red">-$0.77 (-1.73%)</span>
+  <span class="scan-cap dim">$1.4B</span>
+  
+  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,16.6 6.0,15.3 10.0,7.5 14.0,2.0 18.0,15.4 22.0,14.3 26.0,17.2 30.0,14.4 34.0,14.5 38.0,11.6 42.0,10.2 46.0,16.0 50.0,12.7 54.0,21.0 58.0,22.0 62.0,15.4 66.0,10.5 70.0,14.9 74.0,14.4 78.0,17.4" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  
+</div>
+    
+  </div>
+  
+</details>
+    
+    
+    
+    
+    <details class="sector-details" id="sector-ai---defense" open>
+  <summary class="sector-summary">
+    <h2>AI / Defense <span class="dim">(1)</span></h2>
+  </summary>
+
+  
+  
+
+  
+
+  
+  <div class="scan-section">
+    
+    <div class="scan-row">
+  <span class="scan-ticker">BBAI</span>
+  <span class="scan-company dim">BigBear.ai</span>
+  <span class="scan-price">$3.58</span>
+  <span class="scan-change red">-$0.15 (-4.02%)</span>
+  <span class="scan-cap dim">$1.7B</span>
+  
+  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,18.1 6.0,12.4 10.0,11.6 14.0,5.0 18.0,10.7 22.0,6.5 26.0,15.4 30.0,14.5 34.0,8.3 38.0,2.0 42.0,3.5 46.0,7.4 50.0,5.3 54.0,8.6 58.0,11.3 62.0,11.0 66.0,10.7 70.0,15.4 74.0,17.5 78.0,22.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  
+</div>
+    
+  </div>
+  
+</details>
+    
+    
+    
+    
+    <details class="sector-details" id="sector-ai---fintech" open>
+  <summary class="sector-summary">
+    <h2>AI / Fintech <span class="dim">(1)</span></h2>
+  </summary>
+
+  
+  
+
+  
+
+  
+  <div class="scan-section">
+    
+    <div class="scan-row">
+  <span class="scan-ticker">UPST</span>
+  <span class="scan-company dim">Upstart Holdings</span>
+  <span class="scan-price">$25.98</span>
+  <span class="scan-change red">-$0.79 (-2.95%)</span>
+  <span class="scan-cap dim">$2.5B</span>
+  
+  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,14.3 6.0,9.8 10.0,8.3 14.0,2.0 18.0,14.5 22.0,9.1 26.0,9.3 30.0,8.7 34.0,7.4 38.0,11.7 42.0,11.0 46.0,9.7 50.0,13.3 54.0,22.0 58.0,18.9 62.0,11.6 66.0,11.4 70.0,21.6 74.0,16.8 78.0,20.9" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  
+</div>
+    
+  </div>
+  
+</details>
+    
+    
+    
+    
+    <details class="sector-details" id="sector-ai---robotics" open>
+  <summary class="sector-summary">
+    <h2>AI / Robotics <span class="dim">(1)</span></h2>
+  </summary>
+
+  
+  
+
+  
+
+  
+  <div class="scan-section">
+    
+    <div class="scan-row">
+  <span class="scan-ticker">SERV</span>
+  <span class="scan-company dim">Serve Robotics</span>
+  <span class="scan-price">$8.86</span>
+  <span class="scan-change red">-$0.27 (-2.96%)</span>
+  <span class="scan-cap dim">$671M</span>
+  
+  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,17.8 6.0,12.9 10.0,5.2 14.0,4.0 18.0,9.4 22.0,9.3 26.0,13.3 30.0,11.1 34.0,12.8 38.0,15.5 42.0,15.0 46.0,12.9 50.0,2.0 54.0,13.7 58.0,19.1 62.0,10.9 66.0,13.5 70.0,15.6 74.0,19.0 78.0,22.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  
+</div>
+    
+  </div>
+  
+</details>
+    
+    
+    
+    
+    <details class="sector-details" id="sector-ai---software" open>
+  <summary class="sector-summary">
+    <h2>AI / Software <span class="dim">(2)</span></h2>
+  </summary>
+
+  
+  
+
+  
+
+  
+  <div class="scan-section">
+    
+    <div class="scan-row">
+  <span class="scan-ticker">AI</span>
+  <span class="scan-company dim">C3.ai Inc.</span>
+  <span class="scan-price">$8.47</span>
+  <span class="scan-change red">-$0.20 (-2.31%)</span>
+  <span class="scan-cap dim">$1.2B</span>
+  
+  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,6.4 6.0,3.6 10.0,2.0 14.0,18.2 18.0,22.0 22.0,16.1 26.0,12.3 30.0,10.6 34.0,9.8 38.0,11.5 42.0,10.8 46.0,13.4 50.0,10.9 54.0,14.2 58.0,13.9 62.0,14.8 66.0,14.7 70.0,16.4 74.0,15.9 78.0,17.6" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  
+</div>
+    
+    <div class="scan-row">
+  <span class="scan-ticker">FIVN</span>
+  <span class="scan-company dim">Five9 Inc.</span>
+  <span class="scan-price">$15.53</span>
+  <span class="scan-change red">-$0.27 (-1.71%)</span>
+  <span class="scan-cap dim">$1.2B</span>
+  
+  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,8.1 6.0,7.5 10.0,7.4 14.0,2.0 18.0,9.9 22.0,9.8 26.0,8.6 30.0,7.1 34.0,4.9 38.0,5.8 42.0,6.2 46.0,12.9 50.0,14.1 54.0,17.5 58.0,20.5 62.0,20.7 66.0,19.2 70.0,21.3 74.0,20.3 78.0,22.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  
+</div>
+    
+  </div>
+  
+</details>
+    
+    
+    
+    
+    <details class="sector-details" id="sector-ai---voice-tech" open>
+  <summary class="sector-summary">
+    <h2>AI / Voice Tech <span class="dim">(1)</span></h2>
+  </summary>
+
+  
+  
+
+  
+  <div class="deep-dive-section">
+    
+    <div class="stock-card deep-dive">
+  <div class="dd-header">
+    <div>
+      <div class="company">SoundHound AI</div>
+      <div class="ticker">SOUN</div>
+    </div>
+    <div class="dd-price-block">
+      <div class="price">$6.55</div>
+      <div class="change red">-$0.32 (-4.73%)</div>
+    </div>
+  </div>
+
+  
+  <div class="dd-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,11.5 6.0,7.1 10.0,5.8 14.0,2.0 18.0,5.1 22.0,5.0 26.0,5.9 30.0,8.7 34.0,7.8 38.0,9.5 42.0,8.3 46.0,10.9 50.0,11.8 54.0,14.4 58.0,15.8 62.0,13.9 66.0,11.5 70.0,15.1 74.0,19.3 78.0,22.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  
+
+  <div class="dd-metrics">
+    
+    
+    <div class="detail">Mkt Cap: $2.8B</div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+</div>
+    
+  </div>
+  
+
+  
+</details>
+    
+    
+    
+    
+    <details class="sector-details" id="sector-aerospace---evtol" open>
+  <summary class="sector-summary">
+    <h2>Aerospace / eVTOL <span class="dim">(4)</span></h2>
+  </summary>
+
+  
+  
+
+  
+  <div class="deep-dive-section">
+    
+    <div class="stock-card deep-dive">
+  <div class="dd-header">
+    <div>
+      <div class="company">EHang Holdings</div>
+      <div class="ticker">EH</div>
+    </div>
+    <div class="dd-price-block">
+      <div class="price">$9.95</div>
+      <div class="change red">-$0.92 (-8.46%)</div>
+    </div>
+  </div>
+
+  
+  <div class="dd-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,5.4 6.0,3.0 10.0,2.0 14.0,2.9 18.0,5.2 22.0,5.6 26.0,13.7 30.0,11.0 34.0,12.0 38.0,10.7 42.0,8.9 46.0,7.1 50.0,5.2 54.0,6.4 58.0,8.3 62.0,7.0 66.0,10.2 70.0,13.2 74.0,15.4 78.0,22.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  
+
+  <div class="dd-metrics">
+    
+    
+    <div class="detail">Mkt Cap: $716M</div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+</div>
+    
+    <div class="stock-card deep-dive">
+  <div class="dd-header">
+    <div>
+      <div class="company">Joby Aviation</div>
+      <div class="ticker">JOBY</div>
+    </div>
+    <div class="dd-price-block">
+      <div class="price">$9.23</div>
+      <div class="change red">-$0.46 (-4.75%)</div>
+    </div>
+  </div>
+
+  
+  <div class="dd-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,16.0 6.0,12.6 10.0,10.7 14.0,2.8 18.0,6.0 22.0,2.0 26.0,11.8 30.0,9.3 34.0,14.7 38.0,15.8 42.0,6.4 46.0,9.5 50.0,2.8 54.0,12.2 58.0,13.0 62.0,10.7 66.0,8.5 70.0,16.0 74.0,13.2 78.0,22.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  
+
+  <div class="dd-metrics">
+    
+    
+    <div class="detail">Mkt Cap: $9.0B</div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+</div>
+    
+  </div>
+  
+
+  
+  <div class="scan-section">
+    
+    <div class="scan-row">
+  <span class="scan-ticker">ACHR</span>
+  <span class="scan-company dim">Archer Aviation</span>
+  <span class="scan-price">$5.76</span>
+  <span class="scan-change red">-$0.25 (-4.16%)</span>
+  <span class="scan-cap dim">$4.3B</span>
+  
+  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,8.4 6.0,5.7 10.0,6.8 14.0,3.6 18.0,6.5 22.0,2.0 26.0,11.1 30.0,10.6 34.0,14.0 38.0,16.3 42.0,13.4 46.0,15.6 50.0,14.4 54.0,17.6 58.0,18.9 62.0,17.9 66.0,16.0 70.0,19.2 74.0,19.2 78.0,22.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  
+</div>
+    
+    <div class="scan-row">
+  <span class="scan-ticker">EVTL</span>
+  <span class="scan-company dim">Vertical Aerospace</span>
+  <span class="scan-price">$3.59</span>
+  <span class="scan-change red">-$0.12 (-3.23%)</span>
+  <span class="scan-cap dim">$358M</span>
+  
+  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,9.2 6.0,6.3 10.0,7.3 14.0,2.0 18.0,4.7 22.0,3.3 26.0,10.3 30.0,7.9 34.0,7.6 38.0,10.8 42.0,9.2 46.0,11.1 50.0,10.5 54.0,15.9 58.0,18.0 62.0,15.9 66.0,13.2 70.0,19.3 74.0,18.8 78.0,22.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  
+</div>
+    
+  </div>
+  
+</details>
+    
+    
+    
+    
+    <details class="sector-details" id="sector-alt.-agriculture" open>
+  <summary class="sector-summary">
+    <h2>Alt. Agriculture <span class="dim">(1)</span></h2>
+  </summary>
+
+  
+  
+
+  
+
+  
+  <div class="scan-section">
+    
+    <div class="scan-row">
+  <span class="scan-ticker">STKH</span>
+  <span class="scan-company dim">Steakholder Foods</span>
+  <span class="scan-price">$1.21</span>
+  <span class="scan-change red">-$0.04 (-3.20%)</span>
+  <span class="scan-cap dim">$6M</span>
+  
+  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,5.3 6.0,5.6 10.0,5.0 14.0,5.0 18.0,2.0 22.0,5.6 26.0,15.3 30.0,15.9 34.0,14.1 38.0,15.9 42.0,17.8 46.0,17.2 50.0,15.9 54.0,22.0 58.0,20.2 62.0,8.1 66.0,11.7 70.0,19.3 74.0,14.7 78.0,17.2" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  
+</div>
+    
+  </div>
+  
+</details>
+    
+    
+    
+    
+    <details class="sector-details" id="sector-battery-tech" open>
+  <summary class="sector-summary">
+    <h2>Battery Tech <span class="dim">(2)</span></h2>
+  </summary>
+
+  
+  
+
+  
+  <div class="deep-dive-section">
+    
+    <div class="stock-card deep-dive">
+  <div class="dd-header">
+    <div>
+      <div class="company">QuantumScape</div>
+      <div class="ticker">QS</div>
+    </div>
+    <div class="dd-price-block">
+      <div class="price">$6.59</div>
+      <div class="change red">-$0.30 (-4.35%)</div>
+    </div>
+  </div>
+
+  
+  <div class="dd-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,13.4 6.0,8.2 10.0,8.4 14.0,2.0 18.0,11.4 22.0,12.3 26.0,22.0 30.0,9.2 34.0,11.4 38.0,17.8 42.0,14.8 46.0,14.2 50.0,9.2 54.0,12.0 58.0,16.7 62.0,12.3 66.0,10.3 70.0,13.4 74.0,12.3 78.0,20.6" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  
+
+  <div class="dd-metrics">
+    
+    
+    <div class="detail">Mkt Cap: $4.0B</div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+</div>
+    
+  </div>
+  
+
+  
+  <div class="scan-section">
+    
+    <div class="scan-row">
+  <span class="scan-ticker">SLDP</span>
+  <span class="scan-company dim">Solid Power</span>
+  <span class="scan-price">$3.04</span>
+  <span class="scan-change red">-$0.12 (-3.80%)</span>
+  <span class="scan-cap dim">$671M</span>
+  
+  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,12.9 6.0,9.7 10.0,6.2 14.0,2.0 18.0,9.7 22.0,9.7 26.0,14.3 30.0,14.8 34.0,16.6 38.0,20.0 42.0,18.0 46.0,17.1 50.0,16.6 54.0,18.0 58.0,19.3 62.0,18.0 66.0,18.3 70.0,20.0 74.0,19.0 78.0,22.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  
+</div>
+    
+  </div>
+  
+</details>
+    
+    
+    
+    
+    <details class="sector-details" id="sector-biotech" open>
+  <summary class="sector-summary">
+    <h2>Biotech <span class="dim">(9)</span></h2>
+  </summary>
+
+  
+  
+
+  
+  <div class="deep-dive-section">
+    
+    <div class="stock-card deep-dive">
+  <div class="dd-header">
+    <div>
+      <div class="company">Allogene Therapeutics</div>
+      <div class="ticker">ALLO</div>
+    </div>
+    <div class="dd-price-block">
+      <div class="price">$2.07</div>
+      <div class="change red">-$0.15 (-6.76%)</div>
+    </div>
+  </div>
+
+  
+  <div class="dd-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,21.7 6.0,15.8 10.0,9.0 14.0,3.4 18.0,2.0 22.0,5.7 26.0,9.0 30.0,9.0 34.0,15.2 38.0,15.5 42.0,9.9 46.0,4.0 50.0,6.2 54.0,10.7 58.0,12.7 62.0,11.6 66.0,16.4 70.0,19.7 74.0,17.8 78.0,22.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  
+
+  <div class="dd-metrics">
+    
+    
+    <div class="detail">Mkt Cap: $465M</div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+</div>
+    
+    <div class="stock-card deep-dive">
+  <div class="dd-header">
+    <div>
+      <div class="company">SELLAS Life Sciences</div>
+      <div class="ticker">SLS</div>
+    </div>
+    <div class="dd-price-block">
+      <div class="price">$4.76</div>
+      <div class="change red">-$0.44 (-8.46%)</div>
+    </div>
+  </div>
+
+  
+  <div class="dd-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,22.0 6.0,18.7 10.0,21.3 14.0,16.2 18.0,16.1 22.0,14.5 26.0,10.9 30.0,7.8 34.0,11.3 38.0,7.9 42.0,2.0 46.0,3.9 50.0,8.6 54.0,14.7 58.0,10.1 62.0,10.2 66.0,14.6 70.0,15.8 74.0,12.4 78.0,18.4" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  
+
+  <div class="dd-metrics">
+    
+    
+    <div class="detail">Mkt Cap: $855M</div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+</div>
+    
+  </div>
+  
+
+  
+  <div class="scan-section">
+    
+    <div class="scan-row">
+  <span class="scan-ticker">BEAM</span>
+  <span class="scan-company dim">Beam Therapeutics</span>
+  <span class="scan-price">$24.63</span>
+  <span class="scan-change red">-$0.54 (-2.15%)</span>
+  <span class="scan-cap dim">$2.5B</span>
+  
+  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,12.3 6.0,2.0 10.0,9.0 14.0,10.8 18.0,12.0 22.0,11.4 26.0,15.2 30.0,14.7 34.0,19.7 38.0,17.0 42.0,14.2 46.0,18.2 50.0,18.2 54.0,19.5 58.0,20.6 62.0,19.8 66.0,18.9 70.0,20.2 74.0,20.6 78.0,22.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  
+</div>
+    
+    <div class="scan-row">
+  <span class="scan-ticker">CRBU</span>
+  <span class="scan-company dim">Caribou Biosciences</span>
+  <span class="scan-price">$1.87</span>
+  <span class="scan-change red">-$0.10 (-5.08%)</span>
+  <span class="scan-cap dim">$181M</span>
+  
+  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,12.2 6.0,2.0 10.0,10.8 14.0,9.0 18.0,13.2 22.0,16.0 26.0,19.7 30.0,17.8 34.0,22.0 38.0,16.9 42.0,9.9 46.0,7.1 50.0,9.9 54.0,13.6 58.0,14.1 62.0,14.6 66.0,9.9 70.0,12.7 74.0,9.9 78.0,14.6" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  
+</div>
+    
+    <div class="scan-row">
+  <span class="scan-ticker">CRSP</span>
+  <span class="scan-company dim">CRISPR Therapeutics</span>
+  <span class="scan-price">$46.24</span>
+  <span class="scan-change red">-$0.71 (-1.51%)</span>
+  <span class="scan-cap dim">$4.4B</span>
+  
+  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,12.0 6.0,8.4 10.0,10.4 14.0,2.0 18.0,4.1 22.0,3.3 26.0,6.7 30.0,4.2 34.0,7.7 38.0,8.8 42.0,5.8 46.0,13.5 50.0,17.2 54.0,18.6 58.0,18.8 62.0,19.2 66.0,17.0 70.0,20.1 74.0,21.1 78.0,22.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  
+</div>
+    
+    <div class="scan-row">
+  <span class="scan-ticker">FATE</span>
+  <span class="scan-company dim">Fate Therapeutics</span>
+  <span class="scan-price">$1.10</span>
+  <span class="scan-change green">+$0.02 (+1.85%)</span>
+  <span class="scan-cap dim">$128M</span>
+  
+  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,5.9 6.0,2.0 10.0,7.0 14.0,4.1 18.0,7.0 22.0,6.3 26.0,10.9 30.0,8.1 34.0,10.6 38.0,12.4 42.0,12.4 46.0,13.8 50.0,15.9 54.0,18.1 58.0,18.1 62.0,18.4 66.0,19.5 70.0,22.0 74.0,21.3 78.0,20.6" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  
+</div>
+    
+    <div class="scan-row">
+  <span class="scan-ticker">NTLA</span>
+  <span class="scan-company dim">Intellia Therapeutics</span>
+  <span class="scan-price">$12.84</span>
+  <span class="scan-change red">-$0.31 (-2.36%)</span>
+  <span class="scan-cap dim">$1.5B</span>
+  
+  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,19.0 6.0,15.9 10.0,17.1 14.0,10.7 18.0,14.4 22.0,2.0 26.0,15.7 30.0,14.1 34.0,19.1 38.0,16.9 42.0,13.6 46.0,16.7 50.0,20.1 54.0,21.3 58.0,22.0 62.0,17.4 66.0,16.6 70.0,18.6 74.0,19.1 78.0,21.4" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  
+</div>
+    
+    <div class="scan-row">
+  <span class="scan-ticker">PBYI</span>
+  <span class="scan-company dim">Puma Biotechnology</span>
+  <span class="scan-price">$6.12</span>
+  <span class="scan-change red">-$0.03 (-0.49%)</span>
+  <span class="scan-cap dim">$311M</span>
+  
+  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,7.8 6.0,3.9 10.0,2.0 14.0,2.8 18.0,22.0 22.0,14.7 26.0,16.8 30.0,14.9 34.0,16.6 38.0,18.5 42.0,16.7 46.0,18.4 50.0,19.0 54.0,20.2 58.0,20.0 62.0,18.3 66.0,17.6 70.0,19.0 74.0,17.5 78.0,17.8" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  
+</div>
+    
+    <div class="scan-row">
+  <span class="scan-ticker">TSHA</span>
+  <span class="scan-company dim">Taysha Gene Therapies</span>
+  <span class="scan-price">$4.40</span>
+  <span class="scan-change red">-$0.16 (-3.51%)</span>
+  <span class="scan-cap dim">$1.2B</span>
+  
+  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,4.0 6.0,2.0 10.0,11.0 14.0,15.1 18.0,16.7 22.0,16.7 26.0,16.7 30.0,12.2 34.0,18.3 38.0,15.1 42.0,14.2 46.0,15.1 50.0,17.3 54.0,13.4 58.0,18.3 62.0,16.7 66.0,15.1 70.0,20.0 74.0,15.5 78.0,22.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  
+</div>
+    
+  </div>
+  
+</details>
+    
+    
+    
+    
+    <details class="sector-details" id="sector-biotech---medtech" open>
+  <summary class="sector-summary">
+    <h2>Biotech / MedTech <span class="dim">(1)</span></h2>
+  </summary>
+
+  
+  
+
+  
+  <div class="deep-dive-section">
+    
+    <div class="stock-card deep-dive">
+  <div class="dd-header">
+    <div>
       <div class="company">PolyPid Ltd.</div>
       <div class="ticker">PYPD</div>
-      <div class="price">$4.56</div>
-      <div class="change green">+$0.16 (+3.64%)</div>
-      <div class="detail">Day Range: $4.35 – $4.60</div><div class="detail">52-Week: $2.30 – $5.12</div><div class="detail">Mkt Cap: $84M</div><div class="detail">Target: $12.50 (Strong Buy)</div>
-    </div><div class="stock-card">
-      <div class="company">SELLAS Life Sciences Group</div>
-      <div class="ticker">SLS</div>
-      <div class="price">$4.76</div>
-      <div class="change red">-$0.38 (-7.39%)</div>
-      <div class="detail">Day Range: $4.80 – $5.60</div><div class="detail">52-Week: $0.95 – $6.14</div><div class="detail">Mkt Cap: $679M</div><div class="detail">Target: $7.83 (Strong Buy)</div>
-    </div></div>
-  </section>
-    <section>
-    <h2>Catalyst Countdown</h2>
-    <div class="catalyst-row">
-      <div class="catalyst-info">
-        <div class="catalyst-name"><strong>SLS &mdash; REGAL Phase 3 Final Analysis</strong></div>
-        <div class="dim">Overall survival study in AML. 72 of 80 events reached as of late December. Could read out any day now. SELLAS confirmed on March 19 that 2026 is a &#x27;pivotal year&#x27; — they&#x27;ll announce when the 80th event hits.</div>
-      </div>
-      <div class="catalyst-badge" data-format="catalyst-badge" data-countdown="IMMINENT"><span class="badge imminent">IMMINENT</span></div>
-    </div><div class="catalyst-row">
-      <div class="catalyst-info">
-        <div class="catalyst-name"><strong>SLS &mdash; SLS009 Phase 2 Topline Data</strong></div>
-        <div class="dim">First-line AML trial with ~80 patients. First patient dosed March 12. European expansion via IMPACT-AML in Q2. Data expected Q4 2026.</div>
-      </div>
-      <div class="catalyst-badge" data-format="catalyst-badge" data-countdown="~7"><span class="countdown-num">~7</span><span class="countdown-label">months</span></div>
-    </div><div class="catalyst-row">
-      <div class="catalyst-info">
-        <div class="catalyst-name"><strong>SLS &mdash; AACR Presentation</strong></div>
-        <div class="dim">SELLAS presenting preclinical SLS009 combination data at the AACR conference in early April.</div>
-      </div>
-      <div class="catalyst-badge" data-format="catalyst-badge" data-countdown="~2"><span class="countdown-num">~2</span><span class="countdown-label">weeks</span></div>
-    </div><div class="catalyst-row">
-      <div class="catalyst-info">
-        <div class="catalyst-name"><strong>CING &mdash; FDA Decision on CTx-1301 (PDUFA)</strong></div>
-        <div class="dim">The deadline for the FDA to say yes or no to their ADHD drug. May 31, 2026.</div>
-      </div>
-      <div class="catalyst-badge" data-format="catalyst-badge" data-target-date="2026-05-31" data-countdown="69"><span class="countdown-num">69</span><span class="countdown-label">days</span></div>
-    </div><div class="catalyst-row">
-      <div class="catalyst-info">
-        <div class="catalyst-name"><strong>PYPD &mdash; D-PLEX100 Rolling NDA Submission</strong></div>
-        <div class="dim">Submitting approval paperwork to FDA in chunks. Targeted by end of March 2026 — that&#x27;s just 8 days away. Manufacturing data goes first, clinical data follows shortly after.</div>
-      </div>
-      <div class="catalyst-badge" data-format="catalyst-badge" data-countdown="≤8"><span class="countdown-num">≤8</span><span class="countdown-label">days</span></div>
-    </div><div class="catalyst-row">
-      <div class="catalyst-info">
-        <div class="catalyst-name"><strong>PYPD &mdash; ROTH Conference Presentation</strong></div>
-        <div class="dim" data-utc="2026-03-23T19:30:00Z">Senior management presenting at 38th Annual ROTH Conference TODAY, March 23 at 12:30 PM PT at The Ritz-Carlton Laguna Niguel. Could be where they announce a commercial partnership deal.</div>
-      </div>
-      <div class="catalyst-badge" data-format="catalyst-badge" data-utc="2026-03-23T19:30:00Z" data-target-date="2026-03-23" data-countdown="TODAY"><span class="badge imminent">IMMINENT</span></div>
-    </div><div class="catalyst-row">
-      <div class="catalyst-info">
-        <div class="catalyst-name"><strong>PYPD &mdash; U.S. Partnership Announcement</strong></div>
-        <div class="dim">Advanced discussions with hospital-focused companies that have deep operating room presence. ROTH Conference TODAY is a prime venue for partnership announcements in biotech.</div>
-      </div>
-      <div class="catalyst-badge" data-format="catalyst-badge" data-countdown="TBD"><span class="countdown-num">TBD</span><span class="countdown-label"></span></div>
     </div>
-  </section>
-    <section>
-    <h2>Latest News &mdash; TL;DR</h2>
-    <div class="news-item">
-      <h3>SELLAS Reports 2025 Results: Loss Shrinks, Cash Swells to $71.8M</h3>
-      <p class="dim">SELLAS posted full-year 2025 earnings on March 19. They ended the year with $71.8 million in cash, plus banked another $42.6M from warrant exercises in early 2026. Net loss narrowed from $30.9M to $26.9M. For a company with no revenue, that&#x27;s a strong war chest — over $114M total.</p><p class="source" data-utc="2026-03-19T20:00:00Z">GlobeNewsWire — Mar 19, 2026</p>
-    </div><div class="news-item">
-      <h3>SELLAS Stock Up 346% in One Year as Cancer Vaccine Trial Nears Final 8 Deaths</h3>
-      <p class="dim">24/7 Wall Street highlighted SLS running from under $1 to nearly $5 in a year. The entire thesis revolves around the REGAL Phase 3 trial, which needs just 8 more patient deaths to trigger the final data readout. This is the definition of an all-or-nothing moment.</p><p class="source" data-utc="2026-03-20T14:30:00Z">24/7 Wall St. — Mar 20, 2026</p>
-    </div><div class="news-item">
-      <h3>SELLAS Enrolls First Patient in Phase 2 SLS009 Trial for AML</h3>
-      <p class="dim">SELLAS started dosing patients in a new study testing SLS009 combined with standard chemo for newly diagnosed blood cancer (AML). About 80 patients will be enrolled. Also expanding to European sites through the IMPACT-AML agreement.</p><p class="source" data-utc="2026-03-12T12:00:00Z">GlobeNewsWire — Mar 12, 2026</p>
-    </div><div class="news-item">
-      <h3>CING Crashes 31% After Earnings Reveal Dangerously Thin Cash</h3>
-      <p class="dim">Cingulate released Q4 2025 results on March 18 — the stock got hammered, dropping 31% in a single day (from $11.66 to $8.04). Despite good news (patent approval, FDA accepted their ADHD drug application), investors focused on the scary part: only $11M in cash, a $22.4M annual loss, and working capital of just $1.7M.</p><p class="source" data-utc="2026-03-18T20:15:00Z">GlobeNewsWire / Yahoo Finance — Mar 18, 2026</p>
-    </div><div class="news-item">
-      <h3>CING Continues Bleeding — Falls to $7.48 in Three-Day Selloff</h3>
-      <p class="dim">The selling continued through the week with CING dropping to $7.48 by Friday. The $12M PIPE from January came with 80% warrant coverage — those IOUs let investors buy even more shares later, which creates more shares and makes each existing share worth less. The stock lost roughly 36% from its pre-earnings peak in just three days.</p><p class="source" data-utc="2026-03-20T20:00:00Z">Yahoo Finance / Investing.com — Mar 20, 2026</p>
-    </div><div class="news-item">
-      <h3>PolyPid Receives $4.3M PDUFA Fee Waiver from FDA</h3>
-      <p class="dim">The FDA agreed to waive the $4.3 million application fee for PolyPid&#x27;s D-PLEX100 drug approval paperwork. This is a big deal for a company with only $12.9M in cash — it saves them roughly a third of their reserves and lets them focus money on getting ready to sell the drug.</p><p class="source" data-utc="2026-03-17T12:30:00Z">GlobeNewsWire — Mar 17, 2026</p>
-    </div><div class="news-item">
-      <h3>PolyPid Presents at ROTH Conference Today — NDA Submission Imminent</h3>
-      <p class="dim">PolyPid&#x27;s senior management presents at the 38th Annual ROTH Conference today at 12:30 PM PT. The rolling NDA submission for D-PLEX100 is targeted by end of March — just 8 days away. This is a frequent venue for partnership deal announcements in biotech, and PolyPid has described their U.S. partnership talks as &#x27;advanced.&#x27;</p><p class="source" data-utc="2026-03-23T16:00:00Z">GlobeNewsWire / Seeking Alpha — Mar 2026</p>
+    <div class="dd-price-block">
+      <div class="price">$4.16</div>
+      <div class="change red">-$0.21 (-4.81%)</div>
     </div>
-  </section>
-    <section>
-    <h2>What&rsquo;s Going On &mdash; Plain English</h2>
-    <div class="eval-card">
-      <h3>SLS</h3>
-      <div class="eval bull"><strong class="green">Bull case:</strong> SELLAS just reported a strong balance sheet — $71.8M in cash at year-end plus $42.6M more from warrant exercises in early 2026. That&#x27;s over $114M in firepower, which is unusual for a biotech with no revenue. The REGAL cancer vaccine trial is tantalizingly close: 72 of 80 required patient deaths have occurred, so the final data could drop any day. At the interim look, patients on the vaccine were living more than twice as long as expected (13.5+ months vs ~6 months). Analysts still see 65%+ upside to $7.83. Plus they now have a second shot on goal with SLS009 enrolling in AML.</div><div class="eval bear"><strong class="red">What could go wrong:</strong> This is the textbook definition of an all-or-nothing bet. When the REGAL data drops, SLS either rockets or crashes — there&#x27;s no middle ground. The interim results were encouraging but the trial is still blinded, so nobody actually knows the final answer yet. The stock already ran from under $1 to nearly $6, so a LOT of optimism is priced in. Last week&#x27;s 7.4% drop to $4.76 shows how volatile this stock is even without news. If REGAL fails, the $114M war chest buys time, but the stock would likely lose 50-70% of its value overnight.</div>
-    </div><div class="eval-card">
-      <h3>CING</h3>
-      <div class="eval bull"><strong class="green">Bull case:</strong> Despite the brutal 36% three-day crash, the core story hasn&#x27;t changed: the FDA accepted their ADHD drug application with a May 31 decision date — just 69 days away. They got a key patent approved in both the U.S. and Europe, extending protection into the 2040s. Phase 3 pediatric results showed the drug works for a full active day. Analysts still have a $37 target (nearly 5x from here). If you believe the FDA will approve the drug, buying after a 36% crash could be a huge opportunity. Your friend&#x27;s tip about &#x27;catalyst to pop soon&#x27; = the May 31 FDA decision.</div><div class="eval bear"><strong class="red">What could go wrong:</strong> The crash was a reality check about the money situation. Only $11M in the bank with a $22.4M annual burn rate and working capital of just $1.7M means they probably need to raise more money before the FDA even makes its decision. The $12M PIPE from January came with 80% warrant coverage — those IOUs let investors buy even more shares later, which creates more shares and makes yours worth less. If the FDA says no or asks for more studies, this stock could go to near zero. Three days of 36% losses show just how violent these moves can be. Market cap is now only $47M.</div>
-    </div><div class="eval-card">
-      <h3>PYPD</h3>
-      <div class="eval bull"><strong class="green">Bull case:</strong> PolyPid is the most action-packed of the three right now. The $4.3M FDA fee waiver was huge for a cash-strapped company. Rolling NDA submission starts within days (end of March target). Their drug D-PLEX100 reduced surgical infections by 60% in Phase 3 — that&#x27;s a massive real-world problem affecting millions of surgeries. TODAY at ROTH Conference they present to investors — a frequent venue for partnership deal announcements. Analyst target of $12.50 is nearly 3x current price. A partnership deal would both validate the drug commercially and solve the cash problem in one announcement.</div><div class="eval bear"><strong class="red">What could go wrong:</strong> Cash is the constant worry — $12.9M at year-end (plus $3.7M from warrant exercises) still isn&#x27;t much when you&#x27;re trying to get a drug approved and launched. The NDA review process takes 10-12 months after filing, so they need to survive financially well into 2027. If the partnership deal falls through or drags on, they&#x27;ll almost certainly need to sell new shares at a discount. Management says cash lasts into &#x27;second half of 2026&#x27; — that&#x27;s only a few months of runway. Look at what happened to CING last week: investors punish cash-poor biotechs brutally.</div>
+  </div>
+
+  
+  <div class="dd-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,18.0 6.0,17.5 10.0,15.5 14.0,19.0 18.0,17.5 22.0,13.0 26.0,18.5 30.0,17.5 34.0,18.5 38.0,20.5 42.0,21.0 46.0,14.0 50.0,12.5 54.0,21.5 58.0,20.5 62.0,10.0 66.0,2.0 70.0,10.5 74.0,11.5 78.0,22.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  
+
+  <div class="dd-metrics">
+    
+    
+    <div class="detail">Mkt Cap: $79M</div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+</div>
+    
+  </div>
+  
+
+  
+</details>
+    
+    
+    
+    
+    <details class="sector-details" id="sector-biotech---pharma" open>
+  <summary class="sector-summary">
+    <h2>Biotech / Pharma <span class="dim">(2)</span></h2>
+  </summary>
+
+  
+  
+
+  
+  <div class="deep-dive-section">
+    
+    <div class="stock-card deep-dive">
+  <div class="dd-header">
+    <div>
+      <div class="company">Cingulate Inc.</div>
+      <div class="ticker">CING</div>
     </div>
-  </section>
-    <section>
-    <h2>The Big Picture</h2>
-    <div class="big-picture-box"><p><b>Monday morning — action-packed week begins.</b> Last Friday closed mixed: PYPD was the only green ticker (+3.6% to $4.56), while SLS dropped 7.4% to $4.76 and CING continued its post-earnings slide to $7.48 (-36% from pre-earnings highs).<br/><br/><b>What to watch TODAY and this week:</b><br/>• <b>PYPD at ROTH Conference TODAY</b> (<span data-utc="2026-03-23T19:30:00Z" data-format="inline">Monday March 23, 12:30 PM PT</span>) — PolyPid management takes the stage at The Ritz-Carlton Laguna Niguel. They described commercial partnership talks as 'advanced' with hospital-focused companies. A deal announcement could move this $84M market cap stock significantly. The rolling NDA submission is also due by month-end — just 8 days away.<br/>• <b>SLS REGAL readout</b> could come any day — 72 of 80 events reached. When it drops, expect a massive move in either direction. The $114M cash position means they have plenty of runway regardless.<br/>• <b>CING</b> needs to find a floor after last week's 36% plunge. The FDA decision on CTx-1301 is 69 days away (May 31) but the cash situation ($11M, $1.7M working capital) is dicey. Watch for potential capital raise announcements.<br/><br/><font color="#f0883e"><b>Bottom line:</b></font> PYPD has the most near-term action (ROTH today + NDA this month). SLS is the biggest all-or-nothing bet (REGAL imminent). CING is the most concerning cash-wise despite having a clear FDA timeline. <b>These are all micro-cap biotechs with no revenue — they can move 30%+ in a single day. Don't invest more than you can afford to lose.</b></p></div>
-  </section>
+    <div class="dd-price-block">
+      <div class="price">$7.38</div>
+      <div class="change red">-$0.13 (-1.73%)</div>
+    </div>
+  </div>
+
+  
+  <div class="dd-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,22.0 6.0,21.1 10.0,19.4 14.0,20.6 18.0,21.4 22.0,20.4 26.0,21.2 30.0,19.7 34.0,20.3 38.0,20.8 42.0,19.3 46.0,15.6 50.0,13.3 54.0,11.1 58.0,12.7 62.0,5.4 66.0,2.0 70.0,15.0 74.0,16.9 78.0,17.4" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  
+
+  <div class="dd-metrics">
+    
+    
+    <div class="detail">Mkt Cap: $81M</div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+</div>
+    
+    <div class="stock-card deep-dive">
+  <div class="dd-header">
+    <div>
+      <div class="company">Vanda Pharmaceuticals</div>
+      <div class="ticker">VNDA</div>
+    </div>
+    <div class="dd-price-block">
+      <div class="price">$7.07</div>
+      <div class="change red">-$1.50 (-17.50%)</div>
+    </div>
+  </div>
+
+  
+  <div class="dd-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,13.3 6.0,13.2 10.0,12.3 14.0,9.7 18.0,7.2 22.0,13.2 26.0,15.8 30.0,12.9 34.0,15.3 38.0,15.4 42.0,9.1 46.0,2.0 50.0,4.2 54.0,4.2 58.0,8.0 62.0,8.0 66.0,9.7 70.0,10.0 74.0,10.0 78.0,22.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  
+
+  <div class="dd-metrics">
+    
+    
+    <div class="detail">Mkt Cap: $418M</div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+</div>
+    
+  </div>
+  
+
+  
+</details>
+    
+    
+    
+    
+    <details class="sector-details" id="sector-cannabis" open>
+  <summary class="sector-summary">
+    <h2>Cannabis <span class="dim">(3)</span></h2>
+  </summary>
+
+  
+  
+
+  
+  <div class="deep-dive-section">
+    
+    <div class="stock-card deep-dive">
+  <div class="dd-header">
+    <div>
+      <div class="company">Ayr Wellness</div>
+      <div class="ticker">AYRWF</div>
+    </div>
+    <div class="dd-price-block">
+      <div class="price">$0.01</div>
+      <div class="change red">-$0.00 (-12.50%)</div>
+    </div>
+  </div>
+
+  
+  <div class="dd-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,6.6 6.0,14.3 10.0,9.7 14.0,3.5 18.0,8.2 22.0,5.1 26.0,8.2 30.0,11.2 34.0,6.6 38.0,2.0 42.0,6.6 46.0,11.2 50.0,14.3 54.0,17.4 58.0,18.9 62.0,18.9 66.0,17.4 70.0,17.4 74.0,18.9 78.0,22.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  
+
+  <div class="dd-metrics">
+    
+    
+    <div class="detail">Mkt Cap: $2M</div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+</div>
+    
+  </div>
+  
+
+  
+  <div class="scan-section">
+    
+    <div class="scan-row">
+  <span class="scan-ticker">MAPS</span>
+  <span class="scan-company dim">WM Technology Inc.</span>
+  <span class="scan-price">$0.64</span>
+  <span class="scan-change red">-$0.00 (-0.73%)</span>
+  <span class="scan-cap dim">$111M</span>
+  
+  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,22.0 6.0,20.1 10.0,17.8 14.0,20.1 18.0,16.7 22.0,14.6 26.0,10.9 30.0,3.9 34.0,5.2 38.0,7.6 42.0,7.5 46.0,4.6 50.0,2.0 54.0,2.8 58.0,15.4 62.0,19.3 66.0,17.5 70.0,20.2 74.0,21.2 78.0,22.0" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  
+</div>
+    
+    <div class="scan-row">
+  <span class="scan-ticker">PLNH</span>
+  <span class="scan-company dim">Planet 13 Holdings</span>
+  <span class="scan-price">$0.15</span>
+  <span class="scan-change red">-$0.01 (-7.59%)</span>
+  <span class="scan-cap dim">$48M</span>
+  
+  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,11.0 6.0,3.9 10.0,2.0 14.0,2.6 18.0,8.5 22.0,16.2 26.0,13.0 30.0,10.4 34.0,18.1 38.0,2.6 42.0,8.5 46.0,12.3 50.0,11.7 54.0,13.0 58.0,12.3 62.0,16.8 66.0,16.8 70.0,18.8 74.0,14.3 78.0,22.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  
+</div>
+    
+  </div>
+  
+</details>
+    
+    
+    
+    
+    <details class="sector-details" id="sector-clean-energy" open>
+  <summary class="sector-summary">
+    <h2>Clean Energy <span class="dim">(6)</span></h2>
+  </summary>
+
+  
+  
+
+  
+  <div class="deep-dive-section">
+    
+    <div class="stock-card deep-dive">
+  <div class="dd-header">
+    <div>
+      <div class="company">Bloom Energy</div>
+      <div class="ticker">BE</div>
+    </div>
+    <div class="dd-price-block">
+      <div class="price">$150.12</div>
+      <div class="change red">-$16.57 (-9.94%)</div>
+    </div>
+  </div>
+
+  
+  <div class="dd-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,9.3 6.0,6.3 10.0,2.0 14.0,5.1 18.0,11.7 22.0,6.4 26.0,13.0 30.0,7.0 34.0,9.5 38.0,22.0 42.0,13.8 46.0,12.5 50.0,9.9 54.0,10.9 58.0,12.2 62.0,12.7 66.0,9.4 70.0,11.2 74.0,6.1 78.0,14.5" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  
+
+  <div class="dd-metrics">
+    
+    
+    <div class="detail">Mkt Cap: $42.1B</div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+</div>
+    
+    <div class="stock-card deep-dive">
+  <div class="dd-header">
+    <div>
+      <div class="company">Plug Power</div>
+      <div class="ticker">PLUG</div>
+    </div>
+    <div class="dd-price-block">
+      <div class="price">$2.23</div>
+      <div class="change red">-$0.17 (-7.08%)</div>
+    </div>
+  </div>
+
+  
+  <div class="dd-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,20.6 6.0,18.5 10.0,18.5 14.0,18.5 18.0,22.0 22.0,21.4 26.0,9.2 30.0,2.0 34.0,7.5 38.0,12.1 42.0,10.7 46.0,12.4 50.0,9.2 54.0,9.8 58.0,11.6 62.0,9.0 66.0,6.3 70.0,6.6 74.0,4.3 78.0,9.2" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  
+
+  <div class="dd-metrics">
+    
+    
+    <div class="detail">Mkt Cap: $3.1B</div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+</div>
+    
+  </div>
+  
+
+  
+  <div class="scan-section">
+    
+    <div class="scan-row">
+  <span class="scan-ticker">BLDP</span>
+  <span class="scan-company dim">Ballard Power Systems</span>
+  <span class="scan-price">$2.41</span>
+  <span class="scan-change red">-$0.07 (-2.82%)</span>
+  <span class="scan-cap dim">$725M</span>
+  
+  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,18.1 6.0,17.8 10.0,16.1 14.0,15.2 18.0,17.2 22.0,16.6 26.0,19.2 30.0,16.9 34.0,18.3 38.0,20.9 42.0,21.4 46.0,22.0 50.0,16.9 54.0,9.3 58.0,10.2 62.0,6.2 66.0,2.0 70.0,4.0 74.0,7.6 78.0,9.6" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  
+</div>
+    
+    <div class="scan-row">
+  <span class="scan-ticker">ENVX</span>
+  <span class="scan-company dim">Enovix Corporation</span>
+  <span class="scan-price">$4.86</span>
+  <span class="scan-change red">-$0.22 (-4.33%)</span>
+  <span class="scan-cap dim">$1.1B</span>
+  
+  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,6.3 6.0,2.6 10.0,2.0 14.0,5.1 18.0,15.4 22.0,12.7 26.0,18.5 30.0,17.9 34.0,18.8 38.0,21.8 42.0,18.2 46.0,20.5 50.0,19.4 54.0,20.8 58.0,20.5 62.0,18.5 66.0,17.9 70.0,22.0 74.0,18.3 78.0,21.7" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  
+</div>
+    
+    <div class="scan-row">
+  <span class="scan-ticker">JKS</span>
+  <span class="scan-company dim">JinkoSolar Holding</span>
+  <span class="scan-price">$23.40</span>
+  <span class="scan-change red">-$0.33 (-1.39%)</span>
+  <span class="scan-cap dim">$1.2B</span>
+  
+  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,8.0 6.0,2.0 10.0,3.4 14.0,6.9 18.0,12.6 22.0,9.9 26.0,20.4 30.0,18.3 34.0,19.8 38.0,22.0 42.0,18.8 46.0,12.2 50.0,9.7 54.0,10.2 58.0,11.2 62.0,11.8 66.0,14.4 70.0,17.7 74.0,20.1 78.0,21.7" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  
+</div>
+    
+    <div class="scan-row">
+  <span class="scan-ticker">STEM</span>
+  <span class="scan-company dim">Stem Inc.</span>
+  <span class="scan-price">$9.70</span>
+  <span class="scan-change red">-$0.76 (-7.27%)</span>
+  <span class="scan-cap dim">$83M</span>
+  
+  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,13.6 6.0,9.8 10.0,6.0 14.0,7.9 18.0,14.5 22.0,17.7 26.0,22.0 30.0,17.9 34.0,2.0 38.0,2.5 42.0,8.8 46.0,11.9 50.0,13.5 54.0,13.8 58.0,14.8 62.0,11.6 66.0,11.6 70.0,13.9 74.0,14.8 78.0,20.5" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  
+</div>
+    
+  </div>
+  
+</details>
+    
+    
+    
+    
+    <details class="sector-details" id="sector-crypto-mining" open>
+  <summary class="sector-summary">
+    <h2>Crypto Mining <span class="dim">(2)</span></h2>
+  </summary>
+
+  
+  
+
+  
+
+  
+  <div class="scan-section">
+    
+    <div class="scan-row">
+  <span class="scan-ticker">ARBK</span>
+  <span class="scan-company dim">Argo Blockchain</span>
+  <span class="scan-price">$2.91</span>
+  <span class="scan-change green">+$0.01 (+0.42%)</span>
+  <span class="scan-cap dim">$969,952</span>
+  
+  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,22.0 6.0,21.3 10.0,13.9 14.0,12.4 18.0,19.8 22.0,14.6 26.0,13.1 30.0,2.0 34.0,11.6 38.0,15.3 42.0,5.5 46.0,8.7 50.0,10.9 54.0,19.0 58.0,13.9 62.0,7.2 66.0,8.7 70.0,17.6 74.0,17.2 78.0,16.3" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  
+</div>
+    
+    <div class="scan-row">
+  <span class="scan-ticker">BITF</span>
+  <span class="scan-company dim">Bitfarms Ltd.</span>
+  <span class="scan-price">$2.21</span>
+  <span class="scan-change red">-$0.18 (-7.32%)</span>
+  <span class="scan-cap dim">$1.3B</span>
+  
+  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,19.5 6.0,11.5 10.0,6.0 14.0,5.0 18.0,11.5 22.0,14.0 26.0,22.0 30.0,9.5 34.0,10.5 38.0,19.5 42.0,16.0 46.0,13.5 50.0,9.5 54.0,10.5 58.0,9.5 62.0,8.5 66.0,3.0 70.0,5.5 74.0,2.0 78.0,10.8" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  
+</div>
+    
+  </div>
+  
+</details>
+    
+    
+    
+    
+    <details class="sector-details" id="sector-cybersecurity" open>
+  <summary class="sector-summary">
+    <h2>Cybersecurity <span class="dim">(1)</span></h2>
+  </summary>
+
+  
+  
+
+  
+
+  
+  <div class="scan-section">
+    
+    <div class="scan-row">
+  <span class="scan-ticker">RPD</span>
+  <span class="scan-company dim">Rapid7</span>
+  <span class="scan-price">$6.31</span>
+  <span class="scan-change dim">+$0.00 (+0.00%)</span>
+  <span class="scan-cap dim">$416M</span>
+  
+  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,22.0 6.0,22.0 10.0,18.8 14.0,16.3 18.0,19.9 22.0,19.1 26.0,12.1 30.0,10.0 34.0,2.6 38.0,2.0 42.0,11.1 46.0,14.0 50.0,3.1 54.0,4.7 58.0,7.3 62.0,18.2 66.0,20.7 70.0,20.5 74.0,18.0 78.0,18.0" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  
+</div>
+    
+  </div>
+  
+</details>
+    
+    
+    
+    
+    <details class="sector-details" id="sector-digital-health" open>
+  <summary class="sector-summary">
+    <h2>Digital Health <span class="dim">(3)</span></h2>
+  </summary>
+
+  
+  
+
+  
+  <div class="deep-dive-section">
+    
+    <div class="stock-card deep-dive">
+  <div class="dd-header">
+    <div>
+      <div class="company">Hims &amp; Hers Health</div>
+      <div class="ticker">HIMS</div>
+    </div>
+    <div class="dd-price-block">
+      <div class="price">$22.02</div>
+      <div class="change red">-$2.14 (-8.86%)</div>
+    </div>
+  </div>
+
+  
+  <div class="dd-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,20.3 6.0,20.3 10.0,19.7 14.0,20.1 18.0,22.0 22.0,18.5 26.0,19.7 30.0,18.6 34.0,19.6 38.0,19.9 42.0,8.5 46.0,6.2 50.0,2.0 54.0,5.6 58.0,4.0 62.0,3.8 66.0,3.6 70.0,6.8 74.0,5.0 78.0,8.8" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  
+
+  <div class="dd-metrics">
+    
+    
+    <div class="detail">Mkt Cap: $5.0B</div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+</div>
+    
+    <div class="stock-card deep-dive">
+  <div class="dd-header">
+    <div>
+      <div class="company">Oscar Health</div>
+      <div class="ticker">OSCR</div>
+    </div>
+    <div class="dd-price-block">
+      <div class="price">$12.63</div>
+      <div class="change red">-$0.67 (-5.04%)</div>
+    </div>
+  </div>
+
+  
+  <div class="dd-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,20.9 6.0,22.0 10.0,17.3 14.0,12.1 18.0,12.3 22.0,9.8 26.0,12.0 30.0,2.0 34.0,6.8 38.0,10.8 42.0,9.9 46.0,14.7 50.0,14.0 54.0,16.9 58.0,15.2 62.0,14.9 66.0,13.2 70.0,12.8 74.0,14.7 78.0,19.6" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  
+
+  <div class="dd-metrics">
+    
+    
+    <div class="detail">Mkt Cap: $3.8B</div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+</div>
+    
+  </div>
+  
+
+  
+  <div class="scan-section">
+    
+    <div class="scan-row">
+  <span class="scan-ticker">TEM</span>
+  <span class="scan-company dim">Tempus AI</span>
+  <span class="scan-price">$46.96</span>
+  <span class="scan-change red">-$1.78 (-3.65%)</span>
+  <span class="scan-cap dim">$8.4B</span>
+  
+  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,3.2 6.0,2.0 10.0,9.7 14.0,6.6 18.0,10.6 22.0,10.4 26.0,13.9 30.0,14.1 34.0,10.9 38.0,12.4 42.0,12.2 46.0,14.8 50.0,11.6 54.0,17.3 58.0,16.5 62.0,14.9 66.0,14.9 70.0,18.9 74.0,18.8 78.0,22.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  
+</div>
+    
+  </div>
+  
+</details>
+    
+    
+    
+    
+    <details class="sector-details" id="sector-fintech" open>
+  <summary class="sector-summary">
+    <h2>Fintech <span class="dim">(1)</span></h2>
+  </summary>
+
+  
+  
+
+  
+
+  
+  <div class="scan-section">
+    
+    <div class="scan-row">
+  <span class="scan-ticker">SEZL</span>
+  <span class="scan-company dim">Sezzle Inc.</span>
+  <span class="scan-price">$66.15</span>
+  <span class="scan-change red">-$0.09 (-0.14%)</span>
+  <span class="scan-cap dim">$2.3B</span>
+  
+  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,22.0 6.0,19.1 10.0,17.7 14.0,2.0 18.0,10.3 22.0,8.3 26.0,10.0 30.0,8.9 34.0,8.3 38.0,10.0 42.0,10.7 46.0,12.8 50.0,13.0 54.0,15.8 58.0,15.0 62.0,14.7 66.0,13.8 70.0,15.6 74.0,15.1 78.0,15.2" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  
+</div>
+    
+  </div>
+  
+</details>
+    
+    
+    
+    
+    <details class="sector-details" id="sector-fintech---ai" open>
+  <summary class="sector-summary">
+    <h2>Fintech / AI <span class="dim">(1)</span></h2>
+  </summary>
+
+  
+  
+
+  
+
+  
+  <div class="scan-section">
+    
+    <div class="scan-row">
+  <span class="scan-ticker">UPST</span>
+  <span class="scan-company dim">Upstart Holdings</span>
+  <span class="scan-price">$25.98</span>
+  <span class="scan-change red">-$0.79 (-2.95%)</span>
+  <span class="scan-cap dim">$2.5B</span>
+  
+  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,14.3 6.0,9.8 10.0,8.3 14.0,2.0 18.0,14.5 22.0,9.1 26.0,9.3 30.0,8.7 34.0,7.4 38.0,11.7 42.0,11.0 46.0,9.7 50.0,13.3 54.0,22.0 58.0,18.9 62.0,11.6 66.0,11.4 70.0,21.6 74.0,16.8 78.0,20.9" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  
+</div>
+    
+  </div>
+  
+</details>
+    
+    
+    
+    
+    <details class="sector-details" id="sector-mining---lithium" open>
+  <summary class="sector-summary">
+    <h2>Mining / Lithium <span class="dim">(1)</span></h2>
+  </summary>
+
+  
+  
+
+  
+
+  
+  <div class="scan-section">
+    
+    <div class="scan-row">
+  <span class="scan-ticker">LAC</span>
+  <span class="scan-company dim">Lithium Americas</span>
+  <span class="scan-price">$3.71</span>
+  <span class="scan-change red">-$0.30 (-7.48%)</span>
+  <span class="scan-cap dim">$1.1B</span>
+  
+  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,10.1 6.0,3.5 10.0,2.6 14.0,2.0 18.0,3.3 22.0,2.4 26.0,7.3 30.0,6.7 34.0,9.6 38.0,10.3 42.0,9.1 46.0,8.4 50.0,8.4 54.0,10.3 58.0,12.6 62.0,12.6 66.0,11.0 70.0,14.1 74.0,17.8 78.0,22.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  
+</div>
+    
+  </div>
+  
+</details>
+    
+    
+    
+    
+    <details class="sector-details" id="sector-mining---rare-earths" open>
+  <summary class="sector-summary">
+    <h2>Mining / Rare Earths <span class="dim">(1)</span></h2>
+  </summary>
+
+  
+  
+
+  
+
+  
+  <div class="scan-section">
+    
+    <div class="scan-row">
+  <span class="scan-ticker">MP</span>
+  <span class="scan-company dim">MP Materials</span>
+  <span class="scan-price">$50.60</span>
+  <span class="scan-change red">-$2.50 (-4.71%)</span>
+  <span class="scan-cap dim">$9.0B</span>
+  
+  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,14.2 6.0,10.1 10.0,9.7 14.0,7.7 18.0,9.4 22.0,2.0 26.0,5.5 30.0,5.2 34.0,10.0 38.0,10.4 42.0,7.2 46.0,5.3 50.0,4.3 54.0,7.6 58.0,11.9 62.0,8.7 66.0,8.7 70.0,11.4 74.0,18.2 78.0,22.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  
+</div>
+    
+  </div>
+  
+</details>
+    
+    
+    
+    
+    <details class="sector-details" id="sector-mining---uranium" open>
+  <summary class="sector-summary">
+    <h2>Mining / Uranium <span class="dim">(5)</span></h2>
+  </summary>
+
+  
+  
+
+  
+  <div class="deep-dive-section">
+    
+    <div class="stock-card deep-dive">
+  <div class="dd-header">
+    <div>
+      <div class="company">Uranium Energy Corp</div>
+      <div class="ticker">UEC</div>
+    </div>
+    <div class="dd-price-block">
+      <div class="price">$12.09</div>
+      <div class="change red">-$1.19 (-8.96%)</div>
+    </div>
+  </div>
+
+  
+  <div class="dd-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,3.0 6.0,2.0 10.0,4.6 14.0,5.9 18.0,6.1 22.0,4.5 26.0,9.9 30.0,7.5 34.0,14.1 38.0,17.9 42.0,14.8 46.0,10.3 50.0,11.9 54.0,12.2 58.0,15.5 62.0,15.1 66.0,12.7 70.0,14.9 74.0,16.2 78.0,22.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  
+
+  <div class="dd-metrics">
+    
+    
+    <div class="detail">Mkt Cap: $5.9B</div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+</div>
+    
+    <div class="stock-card deep-dive">
+  <div class="dd-header">
+    <div>
+      <div class="company">Ur-Energy Inc.</div>
+      <div class="ticker">URG</div>
+    </div>
+    <div class="dd-price-block">
+      <div class="price">$1.45</div>
+      <div class="change green">+$0.13 (+9.85%)</div>
+    </div>
+  </div>
+
+  
+  <div class="dd-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,6.8 6.0,3.4 10.0,3.4 14.0,4.9 18.0,5.3 22.0,2.0 26.0,9.1 30.0,10.1 34.0,15.3 38.0,17.2 42.0,16.3 46.0,11.5 50.0,11.0 54.0,9.1 58.0,8.7 62.0,16.3 66.0,15.8 70.0,19.1 74.0,22.0 78.0,15.8" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  
+
+  <div class="dd-metrics">
+    
+    
+    <div class="detail">Mkt Cap: $576M</div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+</div>
+    
+  </div>
+  
+
+  
+  <div class="scan-section">
+    
+    <div class="scan-row">
+  <span class="scan-ticker">DNN</span>
+  <span class="scan-company dim">Denison Mines</span>
+  <span class="scan-price">$3.33</span>
+  <span class="scan-change red">-$0.19 (-5.40%)</span>
+  <span class="scan-cap dim">$3.0B</span>
+  
+  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,5.5 6.0,3.3 10.0,4.7 14.0,4.1 18.0,5.7 22.0,2.0 26.0,9.1 30.0,6.8 34.0,11.4 38.0,15.5 42.0,12.8 46.0,8.3 50.0,9.1 54.0,8.9 58.0,12.6 62.0,15.7 66.0,14.7 70.0,15.8 74.0,18.3 78.0,22.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  
+</div>
+    
+    <div class="scan-row">
+  <span class="scan-ticker">NXE</span>
+  <span class="scan-company dim">NexGen Energy</span>
+  <span class="scan-price">$11.26</span>
+  <span class="scan-change red">-$0.13 (-1.14%)</span>
+  <span class="scan-cap dim">$7.4B</span>
+  
+  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,10.9 6.0,6.4 10.0,6.7 14.0,7.3 18.0,7.1 22.0,2.0 26.0,11.2 30.0,7.2 34.0,10.8 38.0,13.9 42.0,8.3 46.0,4.9 50.0,8.5 54.0,10.2 58.0,13.8 62.0,17.4 66.0,15.3 70.0,17.1 74.0,20.7 78.0,22.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  
+</div>
+    
+    <div class="scan-row">
+  <span class="scan-ticker">UUUU</span>
+  <span class="scan-company dim">Energy Fuels Inc.</span>
+  <span class="scan-price">$16.75</span>
+  <span class="scan-change red">-$1.17 (-6.53%)</span>
+  <span class="scan-cap dim">$4.0B</span>
+  
+  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,9.1 6.0,3.8 10.0,4.3 14.0,3.6 18.0,8.2 22.0,2.0 26.0,9.5 30.0,6.7 34.0,11.2 38.0,15.1 42.0,12.6 46.0,11.2 50.0,12.0 54.0,12.7 58.0,16.2 62.0,14.5 66.0,14.2 70.0,16.1 74.0,18.5 78.0,22.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  
+</div>
+    
+  </div>
+  
+</details>
+    
+    
+    
+    
+    <details class="sector-details" id="sector-nanotech" open>
+  <summary class="sector-summary">
+    <h2>Nanotech <span class="dim">(1)</span></h2>
+  </summary>
+
+  
+  
+
+  
+
+  
+  <div class="scan-section">
+    
+    <div class="scan-row">
+  <span class="scan-ticker">NNDM</span>
+  <span class="scan-company dim">Nano Dimension</span>
+  <span class="scan-price">$1.59</span>
+  <span class="scan-change red">-$0.01 (-0.62%)</span>
+  <span class="scan-cap dim">$347M</span>
+  
+  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,2.0 6.0,2.5 10.0,5.4 14.0,3.5 18.0,7.9 22.0,4.9 26.0,9.3 30.0,7.9 34.0,7.4 38.0,10.8 42.0,9.8 46.0,8.8 50.0,7.4 54.0,10.3 58.0,14.7 62.0,19.6 66.0,19.6 70.0,21.5 74.0,21.5 78.0,22.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  
+</div>
+    
+  </div>
+  
+</details>
+    
+    
+    
+    
+    <details class="sector-details" id="sector-quantum-computing" open>
+  <summary class="sector-summary">
+    <h2>Quantum Computing <span class="dim">(4)</span></h2>
+  </summary>
+
+  
+  
+
+  
+  <div class="deep-dive-section">
+    
+    <div class="stock-card deep-dive">
+  <div class="dd-header">
+    <div>
+      <div class="company">IonQ</div>
+      <div class="ticker">IONQ</div>
+    </div>
+    <div class="dd-price-block">
+      <div class="price">$31.20</div>
+      <div class="change red">-$0.70 (-2.19%)</div>
+    </div>
+  </div>
+
+  
+  <div class="dd-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,22.0 6.0,20.3 10.0,16.4 14.0,2.0 18.0,7.0 22.0,7.0 26.0,9.6 30.0,9.4 34.0,11.6 38.0,12.2 42.0,11.9 46.0,13.4 50.0,15.1 54.0,17.5 58.0,17.6 62.0,17.0 66.0,17.0 70.0,18.8 74.0,19.8 78.0,21.2" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  
+
+  <div class="dd-metrics">
+    
+    
+    <div class="detail">Mkt Cap: $11.5B</div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+</div>
+    
+    <div class="stock-card deep-dive">
+  <div class="dd-header">
+    <div>
+      <div class="company">D-Wave Quantum</div>
+      <div class="ticker">QBTS</div>
+    </div>
+    <div class="dd-price-block">
+      <div class="price">$15.73</div>
+      <div class="change red">-$0.37 (-2.30%)</div>
+    </div>
+  </div>
+
+  
+  <div class="dd-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,11.5 6.0,8.7 10.0,4.2 14.0,2.0 18.0,8.2 22.0,7.4 26.0,10.6 30.0,7.6 34.0,7.9 38.0,9.0 42.0,7.0 46.0,8.3 50.0,7.6 54.0,12.5 58.0,13.7 62.0,14.2 66.0,14.1 70.0,18.6 74.0,20.3 78.0,22.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  
+
+  <div class="dd-metrics">
+    
+    
+    <div class="detail">Mkt Cap: $5.8B</div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+</div>
+    
+  </div>
+  
+
+  
+  <div class="scan-section">
+    
+    <div class="scan-row">
+  <span class="scan-ticker">QUBT</span>
+  <span class="scan-company dim">Quantum Computing Inc.</span>
+  <span class="scan-price">$6.96</span>
+  <span class="scan-change red">-$0.23 (-3.20%)</span>
+  <span class="scan-cap dim">$1.6B</span>
+  
+  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,13.2 6.0,10.9 10.0,5.5 14.0,2.0 18.0,8.1 22.0,6.3 26.0,14.6 30.0,10.6 34.0,14.7 38.0,15.8 42.0,15.6 46.0,15.8 50.0,15.7 54.0,17.4 58.0,18.7 62.0,18.1 66.0,16.4 70.0,19.2 74.0,19.8 78.0,22.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  
+</div>
+    
+    <div class="scan-row">
+  <span class="scan-ticker">RGTI</span>
+  <span class="scan-company dim">Rigetti Computing</span>
+  <span class="scan-price">$14.88</span>
+  <span class="scan-change red">-$0.53 (-3.44%)</span>
+  <span class="scan-cap dim">$4.9B</span>
+  
+  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,15.9 6.0,13.5 10.0,7.4 14.0,2.0 18.0,8.5 22.0,7.1 26.0,10.9 30.0,6.7 34.0,10.9 38.0,10.7 42.0,7.5 46.0,10.8 50.0,11.0 54.0,15.7 58.0,15.1 62.0,15.3 66.0,14.9 70.0,17.8 74.0,19.2 78.0,22.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  
+</div>
+    
+  </div>
+  
+</details>
+    
+    
+    
+    
+    <details class="sector-details" id="sector-semiconductors" open>
+  <summary class="sector-summary">
+    <h2>Semiconductors <span class="dim">(3)</span></h2>
+  </summary>
+
+  
+  
+
+  
+
+  
+  <div class="scan-section">
+    
+    <div class="scan-row">
+  <span class="scan-ticker">AMBA</span>
+  <span class="scan-company dim">Ambarella Inc.</span>
+  <span class="scan-price">$54.02</span>
+  <span class="scan-change red">-$1.84 (-3.29%)</span>
+  <span class="scan-cap dim">$2.3B</span>
+  
+  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,6.3 6.0,2.0 10.0,3.0 14.0,2.3 18.0,13.5 22.0,12.8 26.0,16.5 30.0,17.5 34.0,18.7 38.0,21.9 42.0,21.0 46.0,20.2 50.0,20.2 54.0,21.9 58.0,22.0 62.0,21.9 66.0,21.6 70.0,20.2 74.0,18.2 78.0,20.2" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  
+</div>
+    
+    <div class="scan-row">
+  <span class="scan-ticker">CAMT</span>
+  <span class="scan-company dim">Camtek Ltd.</span>
+  <span class="scan-price">$165.95</span>
+  <span class="scan-change red">-$6.30 (-3.66%)</span>
+  <span class="scan-cap dim">$7.6B</span>
+  
+  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,17.3 6.0,8.8 10.0,4.6 14.0,5.1 18.0,5.9 22.0,2.6 26.0,9.7 30.0,7.0 34.0,7.8 38.0,22.0 42.0,15.6 46.0,14.8 50.0,10.7 54.0,17.8 58.0,20.7 62.0,18.0 66.0,11.5 70.0,6.5 74.0,2.0 78.0,7.1" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  
+</div>
+    
+    <div class="scan-row">
+  <span class="scan-ticker">NVMI</span>
+  <span class="scan-company dim">Nova Ltd.</span>
+  <span class="scan-price">$465.30</span>
+  <span class="scan-change red">-$6.78 (-1.44%)</span>
+  <span class="scan-cap dim">$14.8B</span>
+  
+  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,11.7 6.0,7.6 10.0,7.0 14.0,12.0 18.0,12.9 22.0,9.9 26.0,17.4 30.0,12.0 34.0,13.4 38.0,22.0 42.0,14.8 46.0,15.1 50.0,14.0 54.0,19.1 58.0,16.3 62.0,13.3 66.0,10.7 70.0,6.7 74.0,2.0 78.0,4.2" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  
+</div>
+    
+  </div>
+  
+</details>
+    
+    
+    
+    
+    <details class="sector-details" id="sector-space---data" open>
+  <summary class="sector-summary">
+    <h2>Space / Data <span class="dim">(1)</span></h2>
+  </summary>
+
+  
+  
+
+  
+
+  
+  <div class="scan-section">
+    
+    <div class="scan-row">
+  <span class="scan-ticker">SIDU</span>
+  <span class="scan-company dim">Sidus Space</span>
+  <span class="scan-price">$2.31</span>
+  <span class="scan-change green">+$0.02 (+0.87%)</span>
+  <span class="scan-cap dim">$154M</span>
+  
+  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,16.5 6.0,13.5 10.0,14.8 14.0,9.7 18.0,19.9 22.0,16.5 26.0,16.5 30.0,13.1 34.0,16.9 38.0,22.0 42.0,17.7 46.0,19.0 50.0,18.2 54.0,10.5 58.0,14.3 62.0,15.6 66.0,2.0 70.0,5.8 74.0,5.4 78.0,4.6" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  
+</div>
+    
+  </div>
+  
+</details>
+    
+    
+    
+    
+    <details class="sector-details" id="sector-space---drones" open>
+  <summary class="sector-summary">
+    <h2>Space / Drones <span class="dim">(1)</span></h2>
+  </summary>
+
+  
+  
+
+  
+
+  
+  <div class="scan-section">
+    
+    <div class="scan-row">
+  <span class="scan-ticker">PDYN</span>
+  <span class="scan-company dim">Palladyne AI</span>
+  <span class="scan-price">$6.34</span>
+  <span class="scan-change red">-$0.32 (-4.80%)</span>
+  <span class="scan-cap dim">$295M</span>
+  
+  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,19.8 6.0,16.9 10.0,16.8 14.0,18.0 18.0,18.0 22.0,15.6 26.0,17.0 30.0,15.8 34.0,2.0 38.0,9.8 42.0,13.7 46.0,15.2 50.0,15.8 54.0,17.8 58.0,18.6 62.0,20.0 66.0,19.4 70.0,22.0 74.0,20.0 78.0,21.8" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  
+</div>
+    
+  </div>
+  
+</details>
+    
+    
+    
+    
+    <details class="sector-details" id="sector-space---launch" open>
+  <summary class="sector-summary">
+    <h2>Space / Launch <span class="dim">(1)</span></h2>
+  </summary>
+
+  
+  
+
+  
+  <div class="deep-dive-section">
+    
+    <div class="stock-card deep-dive">
+  <div class="dd-header">
+    <div>
+      <div class="company">Rocket Lab USA</div>
+      <div class="ticker">RKLB</div>
+    </div>
+    <div class="dd-price-block">
+      <div class="price">$67.23</div>
+      <div class="change red">-$4.70 (-6.53%)</div>
+    </div>
+  </div>
+
+  
+  <div class="dd-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,16.8 6.0,17.2 10.0,16.8 14.0,12.5 18.0,18.7 22.0,15.4 26.0,16.9 30.0,13.8 34.0,17.1 38.0,16.9 42.0,14.5 46.0,19.0 50.0,13.7 54.0,20.0 58.0,19.9 62.0,14.8 66.0,2.0 70.0,18.0 74.0,13.7 78.0,22.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  
+
+  <div class="dd-metrics">
+    
+    
+    <div class="detail">Mkt Cap: $38.1B</div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+</div>
+    
+  </div>
+  
+
+  
+</details>
+    
+    
+    
+    
+    <details class="sector-details" id="sector-space---lunar" open>
+  <summary class="sector-summary">
+    <h2>Space / Lunar <span class="dim">(1)</span></h2>
+  </summary>
+
+  
+  
+
+  
+
+  
+  <div class="scan-section">
+    
+    <div class="scan-row">
+  <span class="scan-ticker">LUNR</span>
+  <span class="scan-company dim">Intuitive Machines</span>
+  <span class="scan-price">$17.83</span>
+  <span class="scan-change red">-$1.08 (-5.71%)</span>
+  <span class="scan-cap dim">$2.5B</span>
+  
+  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,7.1 6.0,2.1 10.0,22.0 14.0,10.2 18.0,18.1 22.0,8.1 26.0,6.7 30.0,3.9 34.0,10.2 38.0,10.5 42.0,7.5 46.0,10.1 50.0,5.0 54.0,10.4 58.0,10.7 62.0,10.1 66.0,2.1 70.0,7.3 74.0,2.0 78.0,9.2" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  
+</div>
+    
+  </div>
+  
+</details>
+    
+    
+    
+    
+    <details class="sector-details" id="sector-space---telecom" open>
+  <summary class="sector-summary">
+    <h2>Space / Telecom <span class="dim">(1)</span></h2>
+  </summary>
+
+  
+  
+
+  
+
+  
+  <div class="scan-section">
+    
+    <div class="scan-row">
+  <span class="scan-ticker">ASTS</span>
+  <span class="scan-company dim">AST SpaceMobile</span>
+  <span class="scan-price">$89.93</span>
+  <span class="scan-change red">-$4.16 (-4.42%)</span>
+  <span class="scan-cap dim">$34.4B</span>
+  
+  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,18.3 6.0,16.8 10.0,19.5 14.0,16.9 18.0,22.0 22.0,16.0 26.0,11.5 30.0,2.0 34.0,10.6 38.0,14.0 42.0,13.8 46.0,15.5 50.0,15.0 54.0,15.9 58.0,16.4 62.0,14.3 66.0,9.2 70.0,13.0 74.0,10.4 78.0,13.6" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  
+</div>
+    
+  </div>
+  
+</details>
+    
+    
+    
+    
+    <details class="sector-details" id="sector-water-utilities" open>
+  <summary class="sector-summary">
+    <h2>Water Utilities <span class="dim">(2)</span></h2>
+  </summary>
+
+  
+  
+
+  
+
+  
+  <div class="scan-section">
+    
+    <div class="scan-row">
+  <span class="scan-ticker">ARTNA</span>
+  <span class="scan-company dim">Artesian Resources</span>
+  <span class="scan-price">$30.50</span>
+  <span class="scan-change red">-$1.10 (-3.48%)</span>
+  <span class="scan-cap dim">$314M</span>
+  
+  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,5.3 6.0,6.6 10.0,2.0 14.0,5.3 18.0,6.1 22.0,6.6 26.0,6.5 30.0,4.2 34.0,6.9 38.0,6.8 42.0,6.5 46.0,12.4 50.0,14.0 54.0,13.1 58.0,11.6 62.0,15.3 66.0,16.6 70.0,20.3 74.0,16.8 78.0,22.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  
+</div>
+    
+    <div class="scan-row">
+  <span class="scan-ticker">YORW</span>
+  <span class="scan-company dim">York Water Company</span>
+  <span class="scan-price">$29.87</span>
+  <span class="scan-change red">-$0.37 (-1.22%)</span>
+  <span class="scan-cap dim">$432M</span>
+  
+  <span class="scan-sparkline" aria-hidden="true"><svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2.0,4.8 6.0,5.5 10.0,3.0 14.0,5.2 18.0,4.5 22.0,3.3 26.0,2.3 30.0,2.0 34.0,6.1 38.0,5.5 42.0,6.8 46.0,11.2 50.0,15.0 54.0,13.7 58.0,12.7 62.0,12.2 66.0,14.6 70.0,20.4 74.0,19.8 78.0,22.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  
+</div>
+    
+  </div>
+  
+</details>
+    
+    
+
+    
+<section>
+  <h2>Scouting Report</h2>
+  <p class="dim">New candidates discovered this cycle</p>
+  <div class="scouting-list">
+    
+    <div class="scouting-item">
+      <span class="scouting-ticker">ATOM</span>
+      <span class="scouting-name">Atomera Inc.</span>
+      <span class="scouting-sector dim">Semiconductors</span>
+      <p class="dim"></p>
+    </div>
+    
+    <div class="scouting-item">
+      <span class="scouting-ticker">STRL</span>
+      <span class="scouting-name">Sterling Infrastructure</span>
+      <span class="scouting-sector dim">Infrastructure / Semiconductors</span>
+      <p class="dim"></p>
+    </div>
+    
+    <div class="scouting-item">
+      <span class="scouting-ticker">AVAV</span>
+      <span class="scouting-name">AeroVironment</span>
+      <span class="scouting-sector dim">Defense / Drones</span>
+      <p class="dim"></p>
+    </div>
+    
+    <div class="scouting-item">
+      <span class="scouting-ticker">FLY</span>
+      <span class="scouting-name">Flywire Corporation</span>
+      <span class="scouting-sector dim">Fintech / Payments</span>
+      <p class="dim"></p>
+    </div>
+    
+  </div>
+</section>
+
+
     <p class="disclaimer">
       This report is for informational purposes only and does not constitute investment advice.
-      All tickers shown are high-risk, clinical-stage biotechs with no revenue.
+      All tickers shown are speculative small/micro-cap stocks with high risk.
       Do your own research. Prices may be delayed.<br>
       Analyzed by Claude Opus. Made by <a href="https://github.com/causztic">Lim Yao Jie</a>. Generated on Monday, March 23, 2026.
     </p>
   </div>
   <script>
-    /* Convert all data-utc timestamps to the viewer's local timezone */
+    /* Convert data-utc timestamps to viewer's local timezone */
     (function () {
-      /* Helpers */
       function localDateStr(d) {
         return d.getFullYear() + '-' +
           String(d.getMonth() + 1).padStart(2, '0') + '-' +
           String(d.getDate()).padStart(2, '0');
       }
       function daysBetween(a, b) {
-        /* a, b are "YYYY-MM-DD" strings; returns integer days (b - a) */
         var da = new Date(a + 'T00:00:00');
         var db = new Date(b + 'T00:00:00');
         return Math.round((db - da) / 86400000);
       }
       var todayStr = localDateStr(new Date());
-
       var els = document.querySelectorAll('[data-format]');
       els.forEach(function (el) {
         try {
           var fmt = el.getAttribute('data-format');
           var iso = el.getAttribute('data-utc');
-
-          /* ── tz-only: show viewer's timezone abbreviation ── */
-          if (fmt === 'tz-only') {
-            if (!iso) return;
-            var d = new Date(iso);
-            if (isNaN(d.getTime())) return;
-            var tz = Intl.DateTimeFormat(undefined, { timeZoneName: 'short' })
-              .formatToParts(d)
-              .find(function (p) { return p.type === 'timeZoneName'; });
-            el.textContent = tz ? tz.value : '';
-            return;
-          }
-
-          /* ── inline: replace text with localized time (for Big Picture) ── */
-          if (fmt === 'inline') {
-            if (!iso) return;
-            var d = new Date(iso);
-            if (isNaN(d.getTime())) return;
-            el.textContent = d.toLocaleString(undefined, {
-              weekday: 'short',
-              month: 'short',
-              day: 'numeric',
-              hour: 'numeric',
-              minute: '2-digit',
-              timeZoneName: 'short',
-            });
-            return;
-          }
-
-          /* ── catalyst-badge: adjust countdown for viewer's local date ── */
           if (fmt === 'catalyst-badge') {
             var countdown = el.getAttribute('data-countdown');
             var targetDate = el.getAttribute('data-target-date');
-
-            /* If there's a concrete target date, recompute day count */
             if (targetDate) {
               var diff = daysBetween(todayStr, targetDate);
               var numEl = el.querySelector('.countdown-num');
@@ -359,8 +3116,6 @@
                 }
               }
             }
-
-            /* If badge says TODAY/TOMORROW, verify against local date */
             if (iso && (countdown === 'TODAY' || countdown === 'TOMORROW')) {
               var eventD = new Date(iso);
               if (!isNaN(eventD.getTime())) {
@@ -381,10 +3136,18 @@
             }
             return;
           }
-        } catch (_) { /* graceful no-op */ }
+          if (fmt === 'inline' && iso) {
+            var d = new Date(iso);
+            if (!isNaN(d.getTime())) {
+              el.textContent = d.toLocaleString(undefined, {
+                weekday: 'short', month: 'short', day: 'numeric',
+                hour: 'numeric', minute: '2-digit', timeZoneName: 'short',
+              });
+            }
+            return;
+          }
+        } catch (_) {}
       });
-
-      /* ── Default: append local-time annotation to any data-utc without a data-format ── */
       document.querySelectorAll('[data-utc]:not([data-format])').forEach(function (el) {
         var iso = el.getAttribute('data-utc');
         if (!iso) return;
@@ -392,13 +3155,8 @@
           var d = new Date(iso);
           if (isNaN(d.getTime())) return;
           var local = d.toLocaleString(undefined, {
-            weekday: 'short',
-            month: 'short',
-            day: 'numeric',
-            year: 'numeric',
-            hour: 'numeric',
-            minute: '2-digit',
-            timeZoneName: 'short',
+            weekday: 'short', month: 'short', day: 'numeric', year: 'numeric',
+            hour: 'numeric', minute: '2-digit', timeZoneName: 'short',
           });
           var span = document.createElement('span');
           span.className = 'local-time';
