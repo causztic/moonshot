@@ -100,6 +100,7 @@
     }
     .news-item:last-child { border-bottom: none; }
     .source { color: var(--text-dim); font-size: 0.75rem; font-style: italic; margin-top: 0.25rem; }
+    .local-time { color: var(--accent); font-style: normal; }
 
     /* Evaluations */
     .eval-card { margin-bottom: 1.25rem; }
@@ -167,23 +168,23 @@
     </div>
     <header>
       <h1>Daily Market Update</h1>
-      <p class="subtitle">CING | PYPD | SLS &mdash; Sunday, March 22, 2026</p>
-      <p class="subtitle">Prices as of Mar 20, 2026 (most recent close)</p>
+      <p class="subtitle">CING | PYPD | SLS &mdash; Monday, March 23, 2026</p>
+      <p class="subtitle">Prices as of Mar 20, 2026 (most recent close, <span data-utc="2026-03-23T20:00:00Z" data-format="tz-only"></span>)</p>
     </header>
     <section>
     <h2>Price Snapshot</h2>
     <div class="stock-grid"><div class="stock-card">
       <div class="company">Cingulate Inc.</div>
       <div class="ticker">CING</div>
-      <div class="price">$7.58</div>
-      <div class="change red">-$0.46 (-5.73%)</div>
-      <div class="detail">Day Range: $7.40 – $8.10</div><div class="detail">52-Week: $3.20 – $11.89</div><div class="detail">Mkt Cap: $94M</div><div class="detail">Target: $37.00 (Strong Buy)</div>
+      <div class="price">$7.48</div>
+      <div class="change red">-$0.10 (-1.32%)</div>
+      <div class="detail">Day Range: $6.60 – $8.19</div><div class="detail">52-Week: $3.20 – $11.89</div><div class="detail">Mkt Cap: $47M</div><div class="detail">Target: $37.00 (Strong Buy)</div>
     </div><div class="stock-card">
       <div class="company">PolyPid Ltd.</div>
       <div class="ticker">PYPD</div>
-      <div class="price">$4.40</div>
-      <div class="change red">-$0.03 (-0.68%)</div>
-      <div class="detail">Day Range: $4.35 – $4.50</div><div class="detail">52-Week: $2.30 – $5.12</div><div class="detail">Mkt Cap: $71M</div><div class="detail">Target: $12.25 (Strong Buy)</div>
+      <div class="price">$4.56</div>
+      <div class="change green">+$0.16 (+3.64%)</div>
+      <div class="detail">Day Range: $4.35 – $4.60</div><div class="detail">52-Week: $2.30 – $5.12</div><div class="detail">Mkt Cap: $84M</div><div class="detail">Target: $12.50 (Strong Buy)</div>
     </div><div class="stock-card">
       <div class="company">SELLAS Life Sciences Group</div>
       <div class="ticker">SLS</div>
@@ -199,93 +200,213 @@
         <div class="catalyst-name"><strong>SLS &mdash; REGAL Phase 3 Final Analysis</strong></div>
         <div class="dim">Overall survival study in AML. 72 of 80 events reached as of late December. Could read out any day now. SELLAS confirmed on March 19 that 2026 is a &#x27;pivotal year&#x27; — they&#x27;ll announce when the 80th event hits.</div>
       </div>
-      <div class="catalyst-badge"><span class="badge imminent">IMMINENT</span></div>
+      <div class="catalyst-badge" data-format="catalyst-badge" data-countdown="IMMINENT"><span class="badge imminent">IMMINENT</span></div>
     </div><div class="catalyst-row">
       <div class="catalyst-info">
         <div class="catalyst-name"><strong>SLS &mdash; SLS009 Phase 2 Topline Data</strong></div>
         <div class="dim">First-line AML trial with ~80 patients. First patient dosed March 12. European expansion via IMPACT-AML in Q2. Data expected Q4 2026.</div>
       </div>
-      <div class="catalyst-badge"><span class="countdown-num">~7</span><span class="countdown-label">months</span></div>
+      <div class="catalyst-badge" data-format="catalyst-badge" data-countdown="~7"><span class="countdown-num">~7</span><span class="countdown-label">months</span></div>
     </div><div class="catalyst-row">
       <div class="catalyst-info">
         <div class="catalyst-name"><strong>SLS &mdash; AACR Presentation</strong></div>
         <div class="dim">SELLAS presenting preclinical SLS009 combination data at the AACR conference in early April.</div>
       </div>
-      <div class="catalyst-badge"><span class="countdown-num">~2</span><span class="countdown-label">weeks</span></div>
+      <div class="catalyst-badge" data-format="catalyst-badge" data-countdown="~2"><span class="countdown-num">~2</span><span class="countdown-label">weeks</span></div>
     </div><div class="catalyst-row">
       <div class="catalyst-info">
         <div class="catalyst-name"><strong>CING &mdash; FDA Decision on CTx-1301 (PDUFA)</strong></div>
         <div class="dim">The deadline for the FDA to say yes or no to their ADHD drug. May 31, 2026.</div>
       </div>
-      <div class="catalyst-badge"><span class="countdown-num">70</span><span class="countdown-label">days</span></div>
+      <div class="catalyst-badge" data-format="catalyst-badge" data-target-date="2026-05-31" data-countdown="69"><span class="countdown-num">69</span><span class="countdown-label">days</span></div>
     </div><div class="catalyst-row">
       <div class="catalyst-info">
         <div class="catalyst-name"><strong>PYPD &mdash; D-PLEX100 Rolling NDA Submission</strong></div>
-        <div class="dim">Submitting approval paperwork to FDA in chunks. Targeted by end of March 2026 — that&#x27;s 9 days away. Manufacturing data goes first, clinical data follows shortly after.</div>
+        <div class="dim">Submitting approval paperwork to FDA in chunks. Targeted by end of March 2026 — that&#x27;s just 8 days away. Manufacturing data goes first, clinical data follows shortly after.</div>
       </div>
-      <div class="catalyst-badge"><span class="countdown-num">≤9</span><span class="countdown-label">days</span></div>
+      <div class="catalyst-badge" data-format="catalyst-badge" data-countdown="≤8"><span class="countdown-num">≤8</span><span class="countdown-label">days</span></div>
     </div><div class="catalyst-row">
       <div class="catalyst-info">
         <div class="catalyst-name"><strong>PYPD &mdash; ROTH Conference Presentation</strong></div>
-        <div class="dim">Senior management presenting at 38th Annual ROTH Conference TOMORROW, March 23 at 12:30 PM PT. Could be where they announce a commercial partnership deal.</div>
+        <div class="dim" data-utc="2026-03-23T19:30:00Z">Senior management presenting at 38th Annual ROTH Conference TODAY, March 23 at 12:30 PM PT at The Ritz-Carlton Laguna Niguel. Could be where they announce a commercial partnership deal.</div>
       </div>
-      <div class="catalyst-badge"><span class="badge imminent">IMMINENT</span></div>
+      <div class="catalyst-badge" data-format="catalyst-badge" data-utc="2026-03-23T19:30:00Z" data-target-date="2026-03-23" data-countdown="TODAY"><span class="badge imminent">IMMINENT</span></div>
     </div><div class="catalyst-row">
       <div class="catalyst-info">
         <div class="catalyst-name"><strong>PYPD &mdash; U.S. Partnership Announcement</strong></div>
-        <div class="dim">Advanced discussions with hospital-focused companies that have deep operating room presence. ROTH Conference on March 23 is a prime venue for partnership announcements in biotech.</div>
+        <div class="dim">Advanced discussions with hospital-focused companies that have deep operating room presence. ROTH Conference TODAY is a prime venue for partnership announcements in biotech.</div>
       </div>
-      <div class="catalyst-badge"><span class="countdown-num">TBD</span><span class="countdown-label"></span></div>
+      <div class="catalyst-badge" data-format="catalyst-badge" data-countdown="TBD"><span class="countdown-num">TBD</span><span class="countdown-label"></span></div>
     </div>
   </section>
     <section>
     <h2>Latest News &mdash; TL;DR</h2>
     <div class="news-item">
       <h3>SELLAS Reports 2025 Results: Loss Shrinks, Cash Swells to $71.8M</h3>
-      <p class="dim">SELLAS posted full-year 2025 earnings on March 19, beating estimates by $0.01 per share. They ended the year with $71.8 million in cash, plus banked another $42.6M from warrant exercises in early 2026. For a company with no revenue, this is a strong war chest.</p><p class="source">GlobeNewsWire — Mar 19, 2026</p>
+      <p class="dim">SELLAS posted full-year 2025 earnings on March 19. They ended the year with $71.8 million in cash, plus banked another $42.6M from warrant exercises in early 2026. Net loss narrowed from $30.9M to $26.9M. For a company with no revenue, that&#x27;s a strong war chest — over $114M total.</p><p class="source" data-utc="2026-03-19T20:00:00Z">GlobeNewsWire — Mar 19, 2026</p>
     </div><div class="news-item">
       <h3>SELLAS Stock Up 346% in One Year as Cancer Vaccine Trial Nears Final 8 Deaths</h3>
-      <p class="dim">24/7 Wall Street highlighted SLS running from under $1 to nearly $5 in a year. The entire thesis revolves around the REGAL Phase 3 trial, which needs just 8 more patient deaths to trigger the final data readout. This is the definition of an all-or-nothing moment.</p><p class="source">24/7 Wall St. — Mar 20, 2026</p>
+      <p class="dim">24/7 Wall Street highlighted SLS running from under $1 to nearly $5 in a year. The entire thesis revolves around the REGAL Phase 3 trial, which needs just 8 more patient deaths to trigger the final data readout. This is the definition of an all-or-nothing moment.</p><p class="source" data-utc="2026-03-20T14:30:00Z">24/7 Wall St. — Mar 20, 2026</p>
     </div><div class="news-item">
       <h3>SELLAS Enrolls First Patient in Phase 2 SLS009 Trial for AML</h3>
-      <p class="dim">SELLAS started dosing patients in a new study testing SLS009 combined with standard chemo for newly diagnosed blood cancer (AML). About 80 patients will be enrolled. Also expanding to European sites through the IMPACT-AML agreement.</p><p class="source">GlobeNewsWire — Mar 12, 2026</p>
+      <p class="dim">SELLAS started dosing patients in a new study testing SLS009 combined with standard chemo for newly diagnosed blood cancer (AML). About 80 patients will be enrolled. Also expanding to European sites through the IMPACT-AML agreement.</p><p class="source" data-utc="2026-03-12T12:00:00Z">GlobeNewsWire — Mar 12, 2026</p>
     </div><div class="news-item">
       <h3>CING Crashes 31% After Earnings Reveal Dangerously Thin Cash</h3>
-      <p class="dim">Cingulate released Q4 2025 results on March 18 — the stock got hammered, dropping 31% in a single day (from $11.66 to $8.04). Despite good news (patent approval, FDA accepted their ADHD drug application), investors focused on the scary part: only $11M in cash, a $22.4M annual loss, and working capital of just $1.7M.</p><p class="source">GlobeNewsWire / Yahoo Finance — Mar 18, 2026</p>
+      <p class="dim">Cingulate released Q4 2025 results on March 18 — the stock got hammered, dropping 31% in a single day (from $11.66 to $8.04). Despite good news (patent approval, FDA accepted their ADHD drug application), investors focused on the scary part: only $11M in cash, a $22.4M annual loss, and working capital of just $1.7M.</p><p class="source" data-utc="2026-03-18T20:15:00Z">GlobeNewsWire / Yahoo Finance — Mar 18, 2026</p>
     </div><div class="news-item">
-      <h3>CING Continues Sliding — Down Another 5.7% to $7.58</h3>
-      <p class="dim">The selling continued on Wednesday with CING dropping another 5.7% to $7.58. The $12M PIPE from January came with 80% warrant coverage — those IOUs let investors buy even more shares later, which creates more shares and makes existing shares worth less. The stock lost roughly 36% from its pre-earnings level in two days.</p><p class="source">Yahoo Finance / Investing.com — Mar 19, 2026</p>
+      <h3>CING Continues Bleeding — Falls to $7.48 in Three-Day Selloff</h3>
+      <p class="dim">The selling continued through the week with CING dropping to $7.48 by Friday. The $12M PIPE from January came with 80% warrant coverage — those IOUs let investors buy even more shares later, which creates more shares and makes each existing share worth less. The stock lost roughly 36% from its pre-earnings peak in just three days.</p><p class="source" data-utc="2026-03-20T20:00:00Z">Yahoo Finance / Investing.com — Mar 20, 2026</p>
     </div><div class="news-item">
       <h3>PolyPid Receives $4.3M PDUFA Fee Waiver from FDA</h3>
-      <p class="dim">The FDA agreed to waive the $4.3 million application fee for PolyPid&#x27;s D-PLEX100 drug approval paperwork. This is a big deal for a company with only $12.9M in cash — it saves them roughly a third of their reserves and lets them focus money on getting ready to sell the drug.</p><p class="source">GlobeNewsWire — Mar 17, 2026</p>
+      <p class="dim">The FDA agreed to waive the $4.3 million application fee for PolyPid&#x27;s D-PLEX100 drug approval paperwork. This is a big deal for a company with only $12.9M in cash — it saves them roughly a third of their reserves and lets them focus money on getting ready to sell the drug.</p><p class="source" data-utc="2026-03-17T12:30:00Z">GlobeNewsWire — Mar 17, 2026</p>
     </div><div class="news-item">
-      <h3>PolyPid NDA Submission on Track, ROTH Presentation Tomorrow (March 23)</h3>
-      <p class="dim">PolyPid confirmed they&#x27;re still on schedule to start submitting their drug approval paperwork to the FDA this month. Manufacturing data goes first, clinical data follows. Tomorrow at 12:30 PM PT they present at the ROTH Conference — a frequent venue for partnership deal announcements in biotech.</p><p class="source">Seeking Alpha / Stock Titan — Mar 2026</p>
+      <h3>PolyPid Presents at ROTH Conference Today — NDA Submission Imminent</h3>
+      <p class="dim">PolyPid&#x27;s senior management presents at the 38th Annual ROTH Conference today at 12:30 PM PT. The rolling NDA submission for D-PLEX100 is targeted by end of March — just 8 days away. This is a frequent venue for partnership deal announcements in biotech, and PolyPid has described their U.S. partnership talks as &#x27;advanced.&#x27;</p><p class="source" data-utc="2026-03-23T16:00:00Z">GlobeNewsWire / Seeking Alpha — Mar 2026</p>
     </div>
   </section>
     <section>
     <h2>What&rsquo;s Going On &mdash; Plain English</h2>
     <div class="eval-card">
       <h3>SLS</h3>
-      <div class="eval bull"><strong class="green">Bull case:</strong> SELLAS just reported a strong balance sheet — $71.8M in cash at year-end plus $42.6M more from warrant exercises in early 2026. That&#x27;s over $114M in firepower, which is unusual for a biotech with no revenue. The REGAL cancer vaccine trial is tantalizingly close: 72 of 80 required patient deaths have occurred, so the final data could drop any day. At the interim look, patients on the vaccine were living more than twice as long as expected (13.5+ months vs ~6 months). Analysts still see 60%+ upside to $7.83. Plus they now have a second shot on goal with SLS009 enrolling in AML.</div><div class="eval bear"><strong class="red">What could go wrong:</strong> This is the textbook definition of an all-or-nothing bet. When the REGAL data drops, SLS either rockets or crashes — there&#x27;s no middle ground. The interim results were encouraging but the trial is still blinded, so nobody actually knows the final answer yet. The stock already ran from under $1 to nearly $6, so a LOT of optimism is priced in. Friday&#x27;s 7.4% drop to $4.76 shows how volatile this stock is even without news. If REGAL fails, the $114M war chest buys time, but the stock would likely lose 50-70% of its value overnight.</div>
+      <div class="eval bull"><strong class="green">Bull case:</strong> SELLAS just reported a strong balance sheet — $71.8M in cash at year-end plus $42.6M more from warrant exercises in early 2026. That&#x27;s over $114M in firepower, which is unusual for a biotech with no revenue. The REGAL cancer vaccine trial is tantalizingly close: 72 of 80 required patient deaths have occurred, so the final data could drop any day. At the interim look, patients on the vaccine were living more than twice as long as expected (13.5+ months vs ~6 months). Analysts still see 65%+ upside to $7.83. Plus they now have a second shot on goal with SLS009 enrolling in AML.</div><div class="eval bear"><strong class="red">What could go wrong:</strong> This is the textbook definition of an all-or-nothing bet. When the REGAL data drops, SLS either rockets or crashes — there&#x27;s no middle ground. The interim results were encouraging but the trial is still blinded, so nobody actually knows the final answer yet. The stock already ran from under $1 to nearly $6, so a LOT of optimism is priced in. Last week&#x27;s 7.4% drop to $4.76 shows how volatile this stock is even without news. If REGAL fails, the $114M war chest buys time, but the stock would likely lose 50-70% of its value overnight.</div>
     </div><div class="eval-card">
       <h3>CING</h3>
-      <div class="eval bull"><strong class="green">Bull case:</strong> Despite the brutal 36% two-day crash, the core story hasn&#x27;t changed: the FDA accepted their ADHD drug application with a May 31 decision date — just 70 days away. They got a key patent approved in both the U.S. and Europe, extending protection into the 2040s. Phase 3 pediatric results showed the drug works for a full active day. Analysts still have a $37 target (nearly 5x from here). If you believe the FDA will approve the drug, buying after a 36% crash could be a huge opportunity.</div><div class="eval bear"><strong class="red">What could go wrong:</strong> The crash was a reality check about the money situation. Only $11M in the bank with a $22.4M annual burn rate and working capital of just $1.7M means they probably need to raise more money before the FDA even makes its decision. The $12M PIPE from January came with 80% warrant coverage — those IOUs let investors buy even more shares later, which creates more shares and makes yours worth less. If the FDA says no or asks for more studies, this stock could go to near zero. Two days of 36% losses show just how violent these moves can be.</div>
+      <div class="eval bull"><strong class="green">Bull case:</strong> Despite the brutal 36% three-day crash, the core story hasn&#x27;t changed: the FDA accepted their ADHD drug application with a May 31 decision date — just 69 days away. They got a key patent approved in both the U.S. and Europe, extending protection into the 2040s. Phase 3 pediatric results showed the drug works for a full active day. Analysts still have a $37 target (nearly 5x from here). If you believe the FDA will approve the drug, buying after a 36% crash could be a huge opportunity. Your friend&#x27;s tip about &#x27;catalyst to pop soon&#x27; = the May 31 FDA decision.</div><div class="eval bear"><strong class="red">What could go wrong:</strong> The crash was a reality check about the money situation. Only $11M in the bank with a $22.4M annual burn rate and working capital of just $1.7M means they probably need to raise more money before the FDA even makes its decision. The $12M PIPE from January came with 80% warrant coverage — those IOUs let investors buy even more shares later, which creates more shares and makes yours worth less. If the FDA says no or asks for more studies, this stock could go to near zero. Three days of 36% losses show just how violent these moves can be. Market cap is now only $47M.</div>
     </div><div class="eval-card">
       <h3>PYPD</h3>
-      <div class="eval bull"><strong class="green">Bull case:</strong> PolyPid is quietly stacking wins heading into a huge week. The $4.3M FDA fee waiver was big for a cash-strapped company. Rolling NDA submission starts within days (end of March target). Their drug D-PLEX100 reduced surgical infections by 60% in Phase 3 — that&#x27;s a massive real-world problem affecting millions of surgeries. TOMORROW at ROTH Conference they present to investors — a frequent venue for partnership deal announcements. Analyst target of $12.25 is nearly 3x current price.</div><div class="eval bear"><strong class="red">What could go wrong:</strong> Cash is the constant worry — $12.9M at year-end (plus $3.7M from warrant exercises) still isn&#x27;t much when you&#x27;re trying to get a drug approved and launched. The NDA review process takes 10-12 months after filing, so they need to survive financially well into 2027. If the partnership deal falls through or drags on, they&#x27;ll almost certainly need to sell new shares at a discount. Management says cash lasts into &#x27;second half of 2026&#x27; — that&#x27;s only a few months of runway. Look at what happened to CING this week: investors punish cash-poor biotechs brutally.</div>
+      <div class="eval bull"><strong class="green">Bull case:</strong> PolyPid is the most action-packed of the three right now. The $4.3M FDA fee waiver was huge for a cash-strapped company. Rolling NDA submission starts within days (end of March target). Their drug D-PLEX100 reduced surgical infections by 60% in Phase 3 — that&#x27;s a massive real-world problem affecting millions of surgeries. TODAY at ROTH Conference they present to investors — a frequent venue for partnership deal announcements. Analyst target of $12.50 is nearly 3x current price. A partnership deal would both validate the drug commercially and solve the cash problem in one announcement.</div><div class="eval bear"><strong class="red">What could go wrong:</strong> Cash is the constant worry — $12.9M at year-end (plus $3.7M from warrant exercises) still isn&#x27;t much when you&#x27;re trying to get a drug approved and launched. The NDA review process takes 10-12 months after filing, so they need to survive financially well into 2027. If the partnership deal falls through or drags on, they&#x27;ll almost certainly need to sell new shares at a discount. Management says cash lasts into &#x27;second half of 2026&#x27; — that&#x27;s only a few months of runway. Look at what happened to CING last week: investors punish cash-poor biotechs brutally.</div>
     </div>
   </section>
     <section>
     <h2>The Big Picture</h2>
-    <div class="big-picture-box"><p><b>Weekend check-in — big week ahead.</b> All three stocks ended Friday in the red. CING was the worst hit this week, losing 36% in two days after earnings exposed just $11M in cash with a $22.4M annual burn. SLS dropped 7.4% Friday to $4.76 despite posting solid earnings with a $114M war chest. PYPD held relatively steady at $4.40.<br/><br/><b>What to watch this week:</b><br/>• <b>PYPD at ROTH Conference TOMORROW</b> (Monday March 23, 12:30 PM PT) — this is where partnership deals get announced. PolyPid described their commercial partnership talks as 'advanced' with hospital-focused companies. A deal announcement here could move this $71M market cap stock significantly.<br/>• <b>SLS REGAL readout</b> could come any day — 72 of 80 events reached. When it drops, expect a massive move in either direction.<br/>• <b>CING</b> needs to find a floor after the 36% plunge. The FDA decision is 70 days away but the cash situation is dicey.<br/><br/><font color="#f0883e"><b>Bottom line:</b></font> PYPD has the most near-term action (ROTH tomorrow + NDA submission this month). SLS is the biggest all-or-nothing bet (REGAL imminent). CING is the most concerning cash-wise despite having a clear FDA timeline. <b>These are all micro-cap biotechs with no revenue — they can move 30%+ in a single day. Don't invest more than you can afford to lose.</b></p></div>
+    <div class="big-picture-box"><p><b>Monday morning — action-packed week begins.</b> Last Friday closed mixed: PYPD was the only green ticker (+3.6% to $4.56), while SLS dropped 7.4% to $4.76 and CING continued its post-earnings slide to $7.48 (-36% from pre-earnings highs).<br/><br/><b>What to watch TODAY and this week:</b><br/>• <b>PYPD at ROTH Conference TODAY</b> (<span data-utc="2026-03-23T19:30:00Z" data-format="inline">Monday March 23, 12:30 PM PT</span>) — PolyPid management takes the stage at The Ritz-Carlton Laguna Niguel. They described commercial partnership talks as 'advanced' with hospital-focused companies. A deal announcement could move this $84M market cap stock significantly. The rolling NDA submission is also due by month-end — just 8 days away.<br/>• <b>SLS REGAL readout</b> could come any day — 72 of 80 events reached. When it drops, expect a massive move in either direction. The $114M cash position means they have plenty of runway regardless.<br/>• <b>CING</b> needs to find a floor after last week's 36% plunge. The FDA decision on CTx-1301 is 69 days away (May 31) but the cash situation ($11M, $1.7M working capital) is dicey. Watch for potential capital raise announcements.<br/><br/><font color="#f0883e"><b>Bottom line:</b></font> PYPD has the most near-term action (ROTH today + NDA this month). SLS is the biggest all-or-nothing bet (REGAL imminent). CING is the most concerning cash-wise despite having a clear FDA timeline. <b>These are all micro-cap biotechs with no revenue — they can move 30%+ in a single day. Don't invest more than you can afford to lose.</b></p></div>
   </section>
     <p class="disclaimer">
       This report is for informational purposes only and does not constitute investment advice.
       All tickers shown are high-risk, clinical-stage biotechs with no revenue.
       Do your own research. Prices may be delayed.<br>
-      Analyzed by Claude Opus. Made by <a href="https://github.com/causztic">Lim Yao Jie</a>. Generated on Sunday, March 22, 2026.
+      Analyzed by Claude Opus. Made by <a href="https://github.com/causztic">Lim Yao Jie</a>. Generated on Monday, March 23, 2026.
     </p>
   </div>
+  <script>
+    /* Convert all data-utc timestamps to the viewer's local timezone */
+    (function () {
+      /* Helpers */
+      function localDateStr(d) {
+        return d.getFullYear() + '-' +
+          String(d.getMonth() + 1).padStart(2, '0') + '-' +
+          String(d.getDate()).padStart(2, '0');
+      }
+      function daysBetween(a, b) {
+        /* a, b are "YYYY-MM-DD" strings; returns integer days (b - a) */
+        var da = new Date(a + 'T00:00:00');
+        var db = new Date(b + 'T00:00:00');
+        return Math.round((db - da) / 86400000);
+      }
+      var todayStr = localDateStr(new Date());
+
+      var els = document.querySelectorAll('[data-format]');
+      els.forEach(function (el) {
+        try {
+          var fmt = el.getAttribute('data-format');
+          var iso = el.getAttribute('data-utc');
+
+          /* ── tz-only: show viewer's timezone abbreviation ── */
+          if (fmt === 'tz-only') {
+            if (!iso) return;
+            var d = new Date(iso);
+            if (isNaN(d.getTime())) return;
+            var tz = Intl.DateTimeFormat(undefined, { timeZoneName: 'short' })
+              .formatToParts(d)
+              .find(function (p) { return p.type === 'timeZoneName'; });
+            el.textContent = tz ? tz.value : '';
+            return;
+          }
+
+          /* ── inline: replace text with localized time (for Big Picture) ── */
+          if (fmt === 'inline') {
+            if (!iso) return;
+            var d = new Date(iso);
+            if (isNaN(d.getTime())) return;
+            el.textContent = d.toLocaleString(undefined, {
+              weekday: 'short',
+              month: 'short',
+              day: 'numeric',
+              hour: 'numeric',
+              minute: '2-digit',
+              timeZoneName: 'short',
+            });
+            return;
+          }
+
+          /* ── catalyst-badge: adjust countdown for viewer's local date ── */
+          if (fmt === 'catalyst-badge') {
+            var countdown = el.getAttribute('data-countdown');
+            var targetDate = el.getAttribute('data-target-date');
+
+            /* If there's a concrete target date, recompute day count */
+            if (targetDate) {
+              var diff = daysBetween(todayStr, targetDate);
+              var numEl = el.querySelector('.countdown-num');
+              var lblEl = el.querySelector('.countdown-label');
+              if (numEl && lblEl) {
+                if (diff <= 0) {
+                  numEl.textContent = diff === 0 ? 'TODAY' : 'PASSED';
+                  lblEl.textContent = '';
+                } else {
+                  numEl.textContent = diff;
+                  lblEl.textContent = diff === 1 ? 'day' : 'days';
+                }
+              }
+            }
+
+            /* If badge says TODAY/TOMORROW, verify against local date */
+            if (iso && (countdown === 'TODAY' || countdown === 'TOMORROW')) {
+              var eventD = new Date(iso);
+              if (!isNaN(eventD.getTime())) {
+                var eventLocalDate = localDateStr(eventD);
+                var badge = el.querySelector('.badge.imminent');
+                if (badge) {
+                  if (eventLocalDate === todayStr) {
+                    badge.textContent = 'TODAY';
+                  } else if (daysBetween(todayStr, eventLocalDate) === 1) {
+                    badge.textContent = 'TOMORROW';
+                    badge.style.background = 'var(--accent-orange)';
+                  } else if (daysBetween(todayStr, eventLocalDate) < 0) {
+                    badge.textContent = 'PASSED';
+                    badge.style.background = 'var(--text-dim)';
+                  }
+                }
+              }
+            }
+            return;
+          }
+        } catch (_) { /* graceful no-op */ }
+      });
+
+      /* ── Default: append local-time annotation to any data-utc without a data-format ── */
+      document.querySelectorAll('[data-utc]:not([data-format])').forEach(function (el) {
+        var iso = el.getAttribute('data-utc');
+        if (!iso) return;
+        try {
+          var d = new Date(iso);
+          if (isNaN(d.getTime())) return;
+          var local = d.toLocaleString(undefined, {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric',
+            year: 'numeric',
+            hour: 'numeric',
+            minute: '2-digit',
+            timeZoneName: 'short',
+          });
+          var span = document.createElement('span');
+          span.className = 'local-time';
+          span.textContent = ' (' + local + ' your time)';
+          el.appendChild(span);
+        } catch (_) {}
+      });
+    })();
+  </script>
 </body>
 </html>
