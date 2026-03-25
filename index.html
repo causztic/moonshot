@@ -14,87 +14,185 @@
   <meta name="twitter:image" content="https://moonshot.causztic.com/banner.png">
   <style>
     :root {
-      --bg: #0d1117;
-      --card-bg: #161b22;
-      --accent: #58a6ff;
-      --accent-orange: #d29922;
-      --text: #e6edf3;
-      --text-dim: #8b949e;
-      --green: #3fb950;
-      --red: #f85149;
-      --border: #30363d;
-      --score-green: #3fb950;
-      --score-light-green: #56d364;
-      --score-gray: #8b949e;
-      --score-amber: #f0883e;
-      --score-red: #f85149;
-      --score-none: #21262d;
+      --bg: #0a0e13;
+      --card-bg: #111820;
+      --card-bg-hover: #161e28;
+      --accent: #00d4aa;
+      --accent-dim: #00d4aa33;
+      --accent-orange: #f0a030;
+      --text: #d1d5db;
+      --text-dim: #6b7280;
+      --text-bright: #f9fafb;
+      --green: #22c55e;
+      --green-dim: #22c55e22;
+      --red: #ef4444;
+      --red-dim: #ef444422;
+      --border: #1e2630;
+      --border-bright: #2a3544;
+      --score-green: #22c55e;
+      --score-light-green: #4ade80;
+      --score-gray: #6b7280;
+      --score-amber: #f59e0b;
+      --score-red: #ef4444;
+      --score-none: #1e2630;
+      --mono: "SF Mono", "Cascadia Code", "Fira Code", "JetBrains Mono", ui-monospace, monospace;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-      line-height: 1.6;
-      padding: 2rem 1rem;
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", sans-serif;
+      line-height: 1.5;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
     }
-    .container { max-width: 960px; margin: 0 auto; }
-    header { text-align: center; margin-bottom: 2rem; }
-    header h1 { font-size: 1.75rem; color: #fff; margin-bottom: 0.25rem; }
-    header .subtitle { color: var(--text-dim); font-size: 0.9rem; }
-    h2 {
+    .container { max-width: 1080px; margin: 0 auto; padding: 1rem 1.5rem 2rem; }
+
+    /* Header — terminal style */
+    .site-header {
+      background: linear-gradient(180deg, #0f1419 0%, var(--bg) 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 1.25rem 1.5rem 1rem;
+      margin-bottom: 0;
+    }
+    .header-inner { max-width: 1080px; margin: 0 auto; }
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.25rem;
+    }
+    .site-title {
+      font-size: 1.1rem;
+      font-weight: 800;
       color: var(--accent);
-      font-size: 1.15rem;
-      border-top: 2px solid var(--accent);
-      padding-top: 0.75rem;
-      margin: 2rem 0 1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-family: var(--mono);
     }
-    h3 { color: #fff; font-size: 1rem; margin-bottom: 0.4rem; }
-    .dim { color: var(--text-dim); font-size: 0.85rem; }
+    .site-date {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--text-dim);
+    }
+    .header-stats {
+      display: flex;
+      gap: 1.5rem;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--text-dim);
+    }
+    .header-stats span { white-space: nowrap; }
+    .header-stats .label { color: var(--text-dim); }
+    .header-stats .value { color: var(--text); font-weight: 600; }
+    .banner { text-align: center; margin-bottom: 0; }
+    .banner img {
+      width: 100%;
+      max-width: 1080px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    h2 {
+      color: var(--text-bright);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-family: var(--mono);
+      padding: 0.6rem 0.75rem;
+      margin: 1.5rem 0 0;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-bottom: none;
+      border-radius: 6px 6px 0 0;
+    }
+    h2 .h2-accent { color: var(--accent); }
+    h3 { color: var(--text-bright); font-size: 0.85rem; margin-bottom: 0.3rem; }
+    .dim { color: var(--text-dim); font-size: 0.8rem; }
     .green { color: var(--green); }
     .red { color: var(--red); }
     .accent { color: var(--accent); }
 
-    /* Banner */
-    .banner { text-align: center; margin-bottom: 1.5rem; }
-    .banner img {
-      width: 100%;
-      max-width: 960px;
-      border-radius: 12px;
+    /* Score bar chart — vertical columns */
+    .score-chart {
+      background: var(--card-bg);
       border: 1px solid var(--border);
+      border-radius: 0 0 6px 6px;
+      padding: 0.75rem 0.5rem;
+      overflow-x: auto;
     }
-
-    /* Heat map */
-    .heat-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
-      gap: 4px;
-    }
-    .heat-tile {
+    .score-bars {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 44px;
-      border-radius: 4px;
-      text-decoration: none;
-      transition: opacity 0.15s;
+      align-items: flex-end;
+      gap: 2px;
+      min-height: 140px;
+      padding-bottom: 0;
     }
-    .heat-tile:hover { opacity: 0.8; }
-    .heat-ticker {
-      font-size: 0.7rem;
+    .score-col {
+      flex: 1;
+      min-width: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      text-decoration: none;
+      transition: opacity 0.12s;
+    }
+    .score-col:hover { opacity: 0.75; }
+    .score-val {
+      font-family: var(--mono);
+      font-size: 0.55rem;
       font-weight: 700;
-      color: #fff;
-      text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+      line-height: 1;
+    }
+    .score-bar-v {
+      width: 100%;
+      height: 100px;
+      background: #0d1117;
+      border-radius: 2px 2px 0 0;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+    .score-fill-v {
+      width: 100%;
+      border-radius: 2px 2px 0 0;
+      transition: height 0.3s ease;
+      min-height: 2px;
+    }
+    .score-tick {
+      font-family: var(--mono);
+      font-size: 0.5rem;
+      font-weight: 600;
+      color: var(--text-dim);
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      transform: rotate(180deg);
+      white-space: nowrap;
+      line-height: 1;
+      height: 36px;
+      overflow: hidden;
+    }
+    .score-summary {
+      padding: 0.5rem 0.75rem 0;
+      font-size: 0.72rem;
+      color: var(--text-dim);
+      text-align: center;
+      font-family: var(--mono);
     }
 
     /* Movers row */
     .movers-row {
       display: flex;
-      gap: 1rem;
+      gap: 0.75rem;
       flex-wrap: wrap;
       margin-top: 0.5rem;
     }
-    .mover { font-weight: 700; font-size: 0.9rem; }
+    .mover {
+      font-weight: 700;
+      font-size: 0.8rem;
+      font-family: var(--mono);
+    }
 
     /* Sector tags */
     .tag-bar {
@@ -104,74 +202,88 @@
       background: var(--bg);
       border-bottom: 1px solid var(--border);
       padding: 0.5rem 0;
-      margin: 1.5rem 0;
+      margin: 1.25rem 0;
       display: flex;
-      gap: 0.4rem;
+      gap: 0.35rem;
       flex-wrap: wrap;
       overflow-x: auto;
     }
     .tag {
       display: inline-block;
-      padding: 0.2rem 0.6rem;
-      border-radius: 999px;
+      padding: 0.2rem 0.55rem;
+      border-radius: 3px;
       border: 1px solid var(--border);
       color: var(--text-dim);
-      font-size: 0.7rem;
+      font-size: 0.65rem;
+      font-family: var(--mono);
       cursor: pointer;
       white-space: nowrap;
-      transition: all 0.15s;
+      transition: all 0.12s;
       user-select: none;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
     }
     .tag:hover {
       color: var(--accent);
       border-color: var(--accent);
+      background: var(--accent-dim);
     }
     .tag--active {
       background: var(--accent);
       color: var(--bg);
       border-color: var(--accent);
+      font-weight: 600;
     }
     .tag--active:hover {
       opacity: 0.85;
       color: var(--bg);
+      background: var(--accent);
     }
 
     /* Moonshot score badge on deep-dive cards */
     .dd-score {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
       padding: 0.15rem 0.5rem;
-      border-radius: 4px;
-      font-size: 0.75rem;
+      border-radius: 3px;
+      font-size: 0.7rem;
       font-weight: 700;
+      font-family: var(--mono);
       color: #fff;
     }
 
     /* Sector label on cards */
     .dd-sector {
       display: inline-block;
-      padding: 0.15rem 0.5rem;
-      border-radius: 999px;
-      font-size: 0.65rem;
+      padding: 0.1rem 0.4rem;
+      border-radius: 3px;
+      font-size: 0.6rem;
+      font-family: var(--mono);
       color: var(--text-dim);
       border: 1px solid var(--border);
-      margin-left: 0.5rem;
+      margin-left: 0.4rem;
       vertical-align: middle;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
     }
 
     /* Scan rows */
     .scan-row {
       display: grid;
-      grid-template-columns: 60px 1fr auto auto auto auto;
+      grid-template-columns: 56px 1fr auto auto auto auto;
       align-items: center;
       gap: 0.5rem;
-      padding: 0.4rem 0.75rem;
+      padding: 0.35rem 0.75rem;
       border-bottom: 1px solid var(--border);
-      font-size: 0.85rem;
+      font-size: 0.8rem;
+      transition: background 0.1s;
     }
-    .scan-ticker { font-weight: 700; color: #fff; }
-    .scan-price { font-weight: 600; color: #fff; text-align: right; }
-    .scan-change { text-align: right; font-size: 0.8rem; }
-    .scan-cap { text-align: right; font-size: 0.75rem; }
+    .scan-row:hover { background: var(--card-bg-hover); }
+    .scan-ticker { font-weight: 700; color: var(--text-bright); font-family: var(--mono); font-size: 0.78rem; }
+    .scan-price { font-weight: 600; color: var(--text-bright); text-align: right; font-family: var(--mono); }
+    .scan-change { text-align: right; font-size: 0.75rem; font-family: var(--mono); }
+    .scan-cap { text-align: right; font-size: 0.7rem; font-family: var(--mono); }
     .scan-sparkline { width: 80px; height: 24px; display: inline-block; }
     .scan-sparkline svg { width: 100%; height: 100%; }
 
@@ -179,32 +291,48 @@
     .stock-card {
       background: var(--card-bg);
       border: 1px solid var(--border);
-      border-radius: 8px;
+      border-radius: 6px;
       padding: 1rem;
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.6rem;
+      transition: border-color 0.15s;
     }
+    .stock-card:hover { border-color: var(--border-bright); }
     .dd-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.6rem;
     }
-    .stock-card .company { color: var(--text-dim); font-size: 0.8rem; }
-    .stock-card .ticker { font-size: 1rem; font-weight: 700; color: #fff; }
+    .stock-card .company { color: var(--text-dim); font-size: 0.75rem; }
+    .stock-card .ticker { font-size: 0.95rem; font-weight: 700; color: var(--text-bright); font-family: var(--mono); }
     .dd-price-group {
       display: flex;
       align-items: center;
       gap: 0.5rem;
     }
     .dd-price-block { text-align: right; white-space: nowrap; }
-    .stock-card .price { font-size: 1.5rem; font-weight: 700; color: #fff; }
-    .stock-card .change { font-size: 0.9rem; }
-    .stock-card .detail { color: var(--text-dim); font-size: 0.75rem; line-height: 1.4; }
+    .stock-card .price {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-bright);
+      font-family: var(--mono);
+    }
+    .stock-card .change { font-size: 0.8rem; font-family: var(--mono); }
+    .stock-card .detail {
+      color: var(--text-dim);
+      font-size: 0.7rem;
+      line-height: 1.4;
+      font-family: var(--mono);
+    }
     .dd-metrics {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.25rem 1rem;
-      margin-bottom: 0.75rem;
+      gap: 0.2rem 0.75rem;
+      margin-bottom: 0.6rem;
+      padding: 0.5rem 0.6rem;
+      background: rgba(255,255,255,0.02);
+      border-radius: 4px;
+      border: 1px solid var(--border);
     }
     .dd-sparkline { flex-shrink: 0; }
     .dd-sparkline svg { width: 100px; height: 32px; }
@@ -212,93 +340,104 @@
       padding: 0.5rem 0.75rem;
       margin-top: 0.4rem;
       border-radius: 4px;
-      font-size: 0.9rem;
+      font-size: 0.82rem;
       border-left: 3px solid var(--accent);
+      background: var(--accent-dim);
     }
-    .dd-catalysts, .dd-news, .dd-insiders { margin-top: 0.75rem; }
+    .dd-catalysts, .dd-news, .dd-insiders { margin-top: 0.6rem; }
 
     /* Evaluations */
     .eval {
       padding: 0.5rem 0.75rem;
-      margin-top: 0.4rem;
+      margin-top: 0.35rem;
       border-radius: 4px;
-      font-size: 0.9rem;
+      font-size: 0.82rem;
       line-height: 1.5;
     }
-    .eval.bull { border-left: 3px solid var(--green); }
-    .eval.bear { border-left: 3px solid var(--red); }
+    .eval.bull { border-left: 3px solid var(--green); background: var(--green-dim); }
+    .eval.bear { border-left: 3px solid var(--red); background: var(--red-dim); }
 
     /* Catalysts */
     .catalyst-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0.5rem 0;
+      padding: 0.4rem 0;
       border-bottom: 1px solid var(--border);
     }
-    .catalyst-row.compact { padding: 0.3rem 0; }
-    .catalyst-info { flex: 1; }
+    .catalyst-row.compact { padding: 0.25rem 0; }
+    .catalyst-info { flex: 1; font-size: 0.82rem; }
     .catalyst-badge { text-align: right; min-width: 70px; }
-    .countdown-num { font-size: 1.2rem; font-weight: 700; color: var(--accent); }
-    .countdown-label { display: block; color: var(--text-dim); font-size: 0.65rem; }
+    .countdown-num { font-size: 1.1rem; font-weight: 700; color: var(--accent); font-family: var(--mono); }
+    .countdown-label { display: block; color: var(--text-dim); font-size: 0.6rem; font-family: var(--mono); }
     .badge.imminent {
       background: var(--red);
       color: #fff;
       font-weight: 700;
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       padding: 0.2rem 0.5rem;
-      border-radius: 4px;
+      border-radius: 3px;
+      font-family: var(--mono);
+      letter-spacing: 0.05em;
     }
 
     /* News */
-    .news-item { padding: 0.5rem 0; border-bottom: 1px solid var(--border); }
-    .news-item.compact { padding: 0.3rem 0; }
+    .news-item { padding: 0.4rem 0; border-bottom: 1px solid var(--border); font-size: 0.82rem; }
+    .news-item.compact { padding: 0.25rem 0; }
     .news-item:last-child { border-bottom: none; }
-    .source { color: var(--text-dim); font-size: 0.7rem; font-style: italic; margin-top: 0.15rem; }
+    .source { color: var(--text-dim); font-size: 0.65rem; font-style: italic; margin-top: 0.1rem; }
     .local-time { color: var(--accent); font-style: normal; }
 
     /* Insiders */
-    .insider { font-size: 0.8rem; margin-right: 0.75rem; }
-    .insider-summary { font-size: 0.8rem; color: var(--dim); }
+    .insider { font-size: 0.75rem; margin-right: 0.5rem; font-family: var(--mono); }
+    .insider-summary { font-size: 0.75rem; color: var(--text-dim); }
 
     /* Big picture */
     .big-picture-box {
       background: var(--card-bg);
       border: 1px solid var(--border);
-      border-radius: 8px;
+      border-radius: 0 0 6px 6px;
       padding: 1rem 1.25rem;
-      font-size: 0.95rem;
-      line-height: 1.7;
+      font-size: 0.88rem;
+      line-height: 1.65;
     }
-    .big-picture-box p { margin-bottom: 0.5rem; }
+    .big-picture-box p { margin-bottom: 0.4rem; }
     .big-picture-box p:last-child { margin-bottom: 0; }
 
     /* Scouting */
     .scouting-item {
-      padding: 0.5rem 0;
+      padding: 0.4rem 0.75rem;
       border-bottom: 1px solid var(--border);
+      transition: background 0.1s;
     }
-    .scouting-ticker { font-weight: 700; color: var(--accent); margin-right: 0.5rem; }
-    .scouting-name { color: #fff; margin-right: 0.5rem; }
+    .scouting-item:hover { background: var(--card-bg-hover); }
+    .scouting-ticker { font-weight: 700; color: var(--accent); margin-right: 0.4rem; font-family: var(--mono); font-size: 0.82rem; }
+    .scouting-name { color: var(--text-bright); margin-right: 0.4rem; font-size: 0.82rem; }
+    .scouting-list {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 0 0 6px 6px;
+      overflow: hidden;
+    }
 
     /* Footer */
     .disclaimer {
       text-align: center;
       color: var(--text-dim);
-      font-size: 0.7rem;
-      margin-top: 3rem;
+      font-size: 0.65rem;
+      margin-top: 2.5rem;
       line-height: 1.5;
+      font-family: var(--mono);
     }
     .disclaimer a { color: var(--accent); text-decoration: none; }
     .disclaimer a:hover { text-decoration: underline; }
 
     /* Responsive */
-    @media (max-width: 900px) {
-      .heat-grid { grid-template-columns: repeat(auto-fill, minmax(60px, 1fr)); }
-    }
     @media (max-width: 640px) {
-      .heat-grid { grid-template-columns: repeat(4, 1fr); }
-      .heat-ticker { font-size: 0.6rem; }
+      .container { padding: 0.75rem 1rem 1.5rem; }
+      .score-col { min-width: 10px; }
+      .score-val { font-size: 0.45rem; }
+      .score-tick { font-size: 0.4rem; height: 28px; }
       .scan-row {
         grid-template-columns: 50px 1fr auto auto;
       }
@@ -306,25 +445,33 @@
       .dd-header { flex-direction: column; }
       .dd-price-block { text-align: left; margin-top: 0.25rem; }
       .tag-bar { padding: 0.4rem 0; }
+      .header-stats { gap: 0.75rem; flex-wrap: wrap; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="banner">
-      <img src="banner.png" alt="Moonshots">
+  <div class="banner">
+    <img src="banner.png" alt="Moonshots">
+  </div>
+  <div class="site-header">
+    <div class="header-inner">
+      <div class="header-top">
+        <span class="site-title">Moonshot Daily</span>
+        <span class="site-date">Wednesday, March 25, 2026</span>
+      </div>
+      <div class="header-stats">
+        <span><span class="label">TICKERS </span><span class="value">67</span></span>
+        <span><span class="label">SECTORS </span><span class="value">16</span></span>
+        <span><span class="label">SCORED </span><span class="value">65</span></span>
+        <span><span class="label">PRICES AS OF </span><span class="value">2026-03-25</span></span>
+      </div>
     </div>
-    <header>
-      <h1>Moonshot Daily</h1>
-      <p class="subtitle">67 stocks across 16 sectors &mdash; Wednesday, March 25, 2026</p>
-      
-      <p class="subtitle">Prices as of 2026-03-25</p>
-      
-    </header>
+  </div>
+  <div class="container">
 
     
 <section>
-  <h2>What&rsquo;s Hot Today</h2>
+  <h2><span class="h2-accent">//</span> What&rsquo;s Hot Today</h2>
   <div class="big-picture-box">
     <p><strong>A rough day for moonshots — but the catalysts keep stacking up.</strong></p>
 
@@ -346,466 +493,663 @@
 
     
 <section>
-  <h2>Moonshot Scores</h2>
-  <div class="heat-grid">
-    
-    <a class="heat-tile" href="#sector-evtol---urban-air-mobility"
-       style="background: #56d364"
-       aria-label="EH: score 76/100"
-       title="EH — 76/100">
-      <span class="heat-ticker">EH</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-biotech---pharma"
-       style="background: #56d364"
-       aria-label="PYPD: score 71/100"
-       title="PYPD — 71/100">
-      <span class="heat-ticker">PYPD</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-biotech---pharma"
-       style="background: #56d364"
-       aria-label="CING: score 70/100"
-       title="CING — 70/100">
-      <span class="heat-ticker">CING</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-biotech---pharma"
-       style="background: #8b949e"
-       aria-label="BEAM: score 68/100"
-       title="BEAM — 68/100">
-      <span class="heat-ticker">BEAM</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-biotech---pharma"
-       style="background: #8b949e"
-       aria-label="TSHA: score 65/100"
-       title="TSHA — 65/100">
-      <span class="heat-ticker">TSHA</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-fintech---crypto-adjacent"
-       style="background: #8b949e"
-       aria-label="SEZL: score 65/100"
-       title="SEZL — 65/100">
-      <span class="heat-ticker">SEZL</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-uranium---nuclear-energy"
-       style="background: #8b949e"
-       aria-label="UEC: score 65/100"
-       title="UEC — 65/100">
-      <span class="heat-ticker">UEC</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-biotech---pharma"
-       style="background: #8b949e"
-       aria-label="NTLA: score 64/100"
-       title="NTLA — 64/100">
-      <span class="heat-ticker">NTLA</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-biotech---pharma"
-       style="background: #8b949e"
-       aria-label="ALLO: score 63/100"
-       title="ALLO — 63/100">
-      <span class="heat-ticker">ALLO</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-biotech---pharma"
-       style="background: #8b949e"
-       aria-label="SLS: score 62/100"
-       title="SLS — 62/100">
-      <span class="heat-ticker">SLS</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-space---aerospace"
-       style="background: #8b949e"
-       aria-label="LUNR: score 62/100"
-       title="LUNR — 62/100">
-      <span class="heat-ticker">LUNR</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-uranium---nuclear-energy"
-       style="background: #8b949e"
-       aria-label="DNN: score 62/100"
-       title="DNN — 62/100">
-      <span class="heat-ticker">DNN</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-space---aerospace"
-       style="background: #8b949e"
-       aria-label="SIDU: score 61/100"
-       title="SIDU — 61/100">
-      <span class="heat-ticker">SIDU</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-ai---technology"
-       style="background: #8b949e"
-       aria-label="UPST: score 59/100"
-       title="UPST — 59/100">
-      <span class="heat-ticker">UPST</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-ai---technology"
-       style="background: #8b949e"
-       aria-label="INOD: score 58/100"
-       title="INOD — 58/100">
-      <span class="heat-ticker">INOD</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-digital-health---medtech"
-       style="background: #8b949e"
-       aria-label="HIMS: score 58/100"
-       title="HIMS — 58/100">
-      <span class="heat-ticker">HIMS</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-quantum-computing"
-       style="background: #8b949e"
-       aria-label="IONQ: score 58/100"
-       title="IONQ — 58/100">
-      <span class="heat-ticker">IONQ</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-uranium---nuclear-energy"
-       style="background: #8b949e"
-       aria-label="NXE: score 58/100"
-       title="NXE — 58/100">
-      <span class="heat-ticker">NXE</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-uranium---nuclear-energy"
-       style="background: #8b949e"
-       aria-label="URG: score 58/100"
-       title="URG — 58/100">
-      <span class="heat-ticker">URG</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-ai---technology"
-       style="background: #8b949e"
-       aria-label="FIVN: score 57/100"
-       title="FIVN — 57/100">
-      <span class="heat-ticker">FIVN</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-space---aerospace"
-       style="background: #8b949e"
-       aria-label="RKLB: score 57/100"
-       title="RKLB — 57/100">
-      <span class="heat-ticker">RKLB</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-quantum-computing"
-       style="background: #8b949e"
-       aria-label="QBTS: score 56/100"
-       title="QBTS — 56/100">
-      <span class="heat-ticker">QBTS</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-biotech---pharma"
-       style="background: #8b949e"
-       aria-label="CRSP: score 55/100"
-       title="CRSP — 55/100">
-      <span class="heat-ticker">CRSP</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-critical-minerals---rare-earths"
-       style="background: #8b949e"
-       aria-label="MP: score 55/100"
-       title="MP — 55/100">
-      <span class="heat-ticker">MP</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-digital-health---medtech"
-       style="background: #8b949e"
-       aria-label="TEM: score 55/100"
-       title="TEM — 55/100">
-      <span class="heat-ticker">TEM</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-nanotechnology---advanced-materials"
-       style="background: #8b949e"
-       aria-label="NNDM: score 55/100"
-       title="NNDM — 55/100">
-      <span class="heat-ticker">NNDM</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-space---aerospace"
-       style="background: #8b949e"
-       aria-label="ASTS: score 55/100"
-       title="ASTS — 55/100">
-      <span class="heat-ticker">ASTS</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-ai---technology"
-       style="background: #8b949e"
-       aria-label="SOUN: score 53/100"
-       title="SOUN — 53/100">
-      <span class="heat-ticker">SOUN</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-quantum-computing"
-       style="background: #8b949e"
-       aria-label="RGTI: score 53/100"
-       title="RGTI — 53/100">
-      <span class="heat-ticker">RGTI</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-biotech---pharma"
-       style="background: #8b949e"
-       aria-label="CRBU: score 52/100"
-       title="CRBU — 52/100">
-      <span class="heat-ticker">CRBU</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-clean-energy---hydrogen"
-       style="background: #8b949e"
-       aria-label="BE: score 52/100"
-       title="BE — 52/100">
-      <span class="heat-ticker">BE</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-semiconductors"
-       style="background: #8b949e"
-       aria-label="AMBA: score 52/100"
-       title="AMBA — 52/100">
-      <span class="heat-ticker">AMBA</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-uranium---nuclear-energy"
-       style="background: #8b949e"
-       aria-label="UUUU: score 52/100"
-       title="UUUU — 52/100">
-      <span class="heat-ticker">UUUU</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-ai---technology"
-       style="background: #8b949e"
-       aria-label="SYM: score 50/100"
-       title="SYM — 50/100">
-      <span class="heat-ticker">SYM</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-semiconductors"
-       style="background: #8b949e"
-       aria-label="CAMT: score 50/100"
-       title="CAMT — 50/100">
-      <span class="heat-ticker">CAMT</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-evtol---urban-air-mobility"
-       style="background: #f0883e"
-       aria-label="JOBY: score 49/100"
-       title="JOBY — 49/100">
-      <span class="heat-ticker">JOBY</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-ai---technology"
-       style="background: #f0883e"
-       aria-label="SERV: score 48/100"
-       title="SERV — 48/100">
-      <span class="heat-ticker">SERV</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-fintech---crypto-adjacent"
-       style="background: #f0883e"
-       aria-label="BITF: score 48/100"
-       title="BITF — 48/100">
-      <span class="heat-ticker">BITF</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-semiconductors"
-       style="background: #f0883e"
-       aria-label="NVMI: score 48/100"
-       title="NVMI — 48/100">
-      <span class="heat-ticker">NVMI</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-space---aerospace"
-       style="background: #f0883e"
-       aria-label="PDYN: score 48/100"
-       title="PDYN — 48/100">
-      <span class="heat-ticker">PDYN</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-quantum-computing"
-       style="background: #f0883e"
-       aria-label="QUBT: score 47/100"
-       title="QUBT — 47/100">
-      <span class="heat-ticker">QUBT</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-clean-energy---hydrogen"
-       style="background: #f0883e"
-       aria-label="ENVX: score 45/100"
-       title="ENVX — 45/100">
-      <span class="heat-ticker">ENVX</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-digital-health---medtech"
-       style="background: #f0883e"
-       aria-label="OSCR: score 45/100"
-       title="OSCR — 45/100">
-      <span class="heat-ticker">OSCR</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-ai---technology"
-       style="background: #f0883e"
-       aria-label="BBAI: score 44/100"
-       title="BBAI — 44/100">
-      <span class="heat-ticker">BBAI</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-battery-tech---solid-state"
-       style="background: #f0883e"
-       aria-label="SLDP: score 44/100"
-       title="SLDP — 44/100">
-      <span class="heat-ticker">SLDP</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-biotech---pharma"
-       style="background: #f0883e"
-       aria-label="VNDA: score 42/100"
-       title="VNDA — 42/100">
-      <span class="heat-ticker">VNDA</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-clean-energy---hydrogen"
-       style="background: #f0883e"
-       aria-label="STEM: score 42/100"
-       title="STEM — 42/100">
-      <span class="heat-ticker">STEM</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-evtol---urban-air-mobility"
-       style="background: #f0883e"
-       aria-label="EVTL: score 41/100"
-       title="EVTL — 41/100">
-      <span class="heat-ticker">EVTL</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-biotech---pharma"
-       style="background: #f0883e"
-       aria-label="FATE: score 40/100"
-       title="FATE — 40/100">
-      <span class="heat-ticker">FATE</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-evtol---urban-air-mobility"
-       style="background: #f0883e"
-       aria-label="ACHR: score 40/100"
-       title="ACHR — 40/100">
-      <span class="heat-ticker">ACHR</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-cannabis"
-       style="background: #f0883e"
-       aria-label="MAPS: score 38/100"
-       title="MAPS — 38/100">
-      <span class="heat-ticker">MAPS</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-clean-energy---hydrogen"
-       style="background: #f0883e"
-       aria-label="JKS: score 38/100"
-       title="JKS — 38/100">
-      <span class="heat-ticker">JKS</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-cybersecurity"
-       style="background: #f0883e"
-       aria-label="RPD: score 38/100"
-       title="RPD — 38/100">
-      <span class="heat-ticker">RPD</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-clean-energy---hydrogen"
-       style="background: #f0883e"
-       aria-label="BLDP: score 35/100"
-       title="BLDP — 35/100">
-      <span class="heat-ticker">BLDP</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-biotech---pharma"
-       style="background: #f0883e"
-       aria-label="PBYI: score 33/100"
-       title="PBYI — 33/100">
-      <span class="heat-ticker">PBYI</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-ai---technology"
-       style="background: #f0883e"
-       aria-label="AI: score 32/100"
-       title="AI — 32/100">
-      <span class="heat-ticker">AI</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-battery-tech---solid-state"
-       style="background: #f0883e"
-       aria-label="QS: score 30/100"
-       title="QS — 30/100">
-      <span class="heat-ticker">QS</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-cannabis"
-       style="background: #f0883e"
-       aria-label="PLNH: score 30/100"
-       title="PLNH — 30/100">
-      <span class="heat-ticker">PLNH</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-clean-energy---hydrogen"
-       style="background: #f85149"
-       aria-label="PLUG: score 28/100"
-       title="PLUG — 28/100">
-      <span class="heat-ticker">PLUG</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-critical-minerals---rare-earths"
-       style="background: #f85149"
-       aria-label="LAC: score 28/100"
-       title="LAC — 28/100">
-      <span class="heat-ticker">LAC</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-water---infrastructure"
-       style="background: #f85149"
-       aria-label="ARTNA: score 22/100"
-       title="ARTNA — 22/100">
-      <span class="heat-ticker">ARTNA</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-water---infrastructure"
-       style="background: #f85149"
-       aria-label="YORW: score 20/100"
-       title="YORW — 20/100">
-      <span class="heat-ticker">YORW</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-fintech---crypto-adjacent"
-       style="background: #f85149"
-       aria-label="ARBK: score 10/100"
-       title="ARBK — 10/100">
-      <span class="heat-ticker">ARBK</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-nanotechnology---advanced-materials"
-       style="background: #f85149"
-       aria-label="STKH: score 8/100"
-       title="STKH — 8/100">
-      <span class="heat-ticker">STKH</span>
-    </a>
-    
-    <a class="heat-tile" href="#sector-cannabis"
-       style="background: #f85149"
-       aria-label="AYRWF: score 5/100"
-       title="AYRWF — 5/100">
-      <span class="heat-ticker">AYRWF</span>
-    </a>
-    
+  <h2><span class="h2-accent">//</span> Moonshot Scores</h2>
+  <div class="score-chart">
+    <div class="score-bars">
+      
+      <a class="score-col" href="#stock-EH"
+         aria-label="EH: score 76/100"
+         title="EH &mdash; 76/100">
+        <span class="score-val" style="color: #00e676">76</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 76%; background: #00e676; box-shadow: 0 0 6px #00e67655"></span>
+        </span>
+        <span class="score-tick">EH</span>
+      </a>
+      
+      <a class="score-col" href="#stock-PYPD"
+         aria-label="PYPD: score 71/100"
+         title="PYPD &mdash; 71/100">
+        <span class="score-val" style="color: #00e676">71</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 71%; background: #00e676; box-shadow: 0 0 6px #00e67655"></span>
+        </span>
+        <span class="score-tick">PYPD</span>
+      </a>
+      
+      <a class="score-col" href="#stock-CING"
+         aria-label="CING: score 70/100"
+         title="CING &mdash; 70/100">
+        <span class="score-val" style="color: #00e676">70</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 70%; background: #00e676; box-shadow: 0 0 6px #00e67655"></span>
+        </span>
+        <span class="score-tick">CING</span>
+      </a>
+      
+      <a class="score-col" href="#stock-BEAM"
+         aria-label="BEAM: score 68/100"
+         title="BEAM &mdash; 68/100">
+        <span class="score-val" style="color: #00bcd4">68</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 68%; background: #00bcd4; box-shadow: 0 0 6px #00bcd455"></span>
+        </span>
+        <span class="score-tick">BEAM</span>
+      </a>
+      
+      <a class="score-col" href="#stock-TSHA"
+         aria-label="TSHA: score 65/100"
+         title="TSHA &mdash; 65/100">
+        <span class="score-val" style="color: #00bcd4">65</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 65%; background: #00bcd4; box-shadow: 0 0 6px #00bcd455"></span>
+        </span>
+        <span class="score-tick">TSHA</span>
+      </a>
+      
+      <a class="score-col" href="#stock-SEZL"
+         aria-label="SEZL: score 65/100"
+         title="SEZL &mdash; 65/100">
+        <span class="score-val" style="color: #00bcd4">65</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 65%; background: #00bcd4; box-shadow: 0 0 6px #00bcd455"></span>
+        </span>
+        <span class="score-tick">SEZL</span>
+      </a>
+      
+      <a class="score-col" href="#stock-UEC"
+         aria-label="UEC: score 65/100"
+         title="UEC &mdash; 65/100">
+        <span class="score-val" style="color: #00bcd4">65</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 65%; background: #00bcd4; box-shadow: 0 0 6px #00bcd455"></span>
+        </span>
+        <span class="score-tick">UEC</span>
+      </a>
+      
+      <a class="score-col" href="#stock-NTLA"
+         aria-label="NTLA: score 64/100"
+         title="NTLA &mdash; 64/100">
+        <span class="score-val" style="color: #00bcd4">64</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 64%; background: #00bcd4; box-shadow: 0 0 6px #00bcd455"></span>
+        </span>
+        <span class="score-tick">NTLA</span>
+      </a>
+      
+      <a class="score-col" href="#stock-ALLO"
+         aria-label="ALLO: score 63/100"
+         title="ALLO &mdash; 63/100">
+        <span class="score-val" style="color: #00bcd4">63</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 63%; background: #00bcd4; box-shadow: 0 0 6px #00bcd455"></span>
+        </span>
+        <span class="score-tick">ALLO</span>
+      </a>
+      
+      <a class="score-col" href="#stock-SLS"
+         aria-label="SLS: score 62/100"
+         title="SLS &mdash; 62/100">
+        <span class="score-val" style="color: #00bcd4">62</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 62%; background: #00bcd4; box-shadow: 0 0 6px #00bcd455"></span>
+        </span>
+        <span class="score-tick">SLS</span>
+      </a>
+      
+      <a class="score-col" href="#stock-LUNR"
+         aria-label="LUNR: score 62/100"
+         title="LUNR &mdash; 62/100">
+        <span class="score-val" style="color: #00bcd4">62</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 62%; background: #00bcd4; box-shadow: 0 0 6px #00bcd455"></span>
+        </span>
+        <span class="score-tick">LUNR</span>
+      </a>
+      
+      <a class="score-col" href="#stock-DNN"
+         aria-label="DNN: score 62/100"
+         title="DNN &mdash; 62/100">
+        <span class="score-val" style="color: #00bcd4">62</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 62%; background: #00bcd4; box-shadow: 0 0 6px #00bcd455"></span>
+        </span>
+        <span class="score-tick">DNN</span>
+      </a>
+      
+      <a class="score-col" href="#stock-SIDU"
+         aria-label="SIDU: score 61/100"
+         title="SIDU &mdash; 61/100">
+        <span class="score-val" style="color: #00bcd4">61</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 61%; background: #00bcd4; box-shadow: 0 0 6px #00bcd455"></span>
+        </span>
+        <span class="score-tick">SIDU</span>
+      </a>
+      
+      <a class="score-col" href="#stock-UPST"
+         aria-label="UPST: score 59/100"
+         title="UPST &mdash; 59/100">
+        <span class="score-val" style="color: #42a5f5">59</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 59%; background: #42a5f5; box-shadow: 0 0 6px #42a5f555"></span>
+        </span>
+        <span class="score-tick">UPST</span>
+      </a>
+      
+      <a class="score-col" href="#stock-INOD"
+         aria-label="INOD: score 58/100"
+         title="INOD &mdash; 58/100">
+        <span class="score-val" style="color: #42a5f5">58</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 58%; background: #42a5f5; box-shadow: 0 0 6px #42a5f555"></span>
+        </span>
+        <span class="score-tick">INOD</span>
+      </a>
+      
+      <a class="score-col" href="#stock-HIMS"
+         aria-label="HIMS: score 58/100"
+         title="HIMS &mdash; 58/100">
+        <span class="score-val" style="color: #42a5f5">58</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 58%; background: #42a5f5; box-shadow: 0 0 6px #42a5f555"></span>
+        </span>
+        <span class="score-tick">HIMS</span>
+      </a>
+      
+      <a class="score-col" href="#stock-IONQ"
+         aria-label="IONQ: score 58/100"
+         title="IONQ &mdash; 58/100">
+        <span class="score-val" style="color: #42a5f5">58</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 58%; background: #42a5f5; box-shadow: 0 0 6px #42a5f555"></span>
+        </span>
+        <span class="score-tick">IONQ</span>
+      </a>
+      
+      <a class="score-col" href="#stock-NXE"
+         aria-label="NXE: score 58/100"
+         title="NXE &mdash; 58/100">
+        <span class="score-val" style="color: #42a5f5">58</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 58%; background: #42a5f5; box-shadow: 0 0 6px #42a5f555"></span>
+        </span>
+        <span class="score-tick">NXE</span>
+      </a>
+      
+      <a class="score-col" href="#stock-URG"
+         aria-label="URG: score 58/100"
+         title="URG &mdash; 58/100">
+        <span class="score-val" style="color: #42a5f5">58</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 58%; background: #42a5f5; box-shadow: 0 0 6px #42a5f555"></span>
+        </span>
+        <span class="score-tick">URG</span>
+      </a>
+      
+      <a class="score-col" href="#stock-FIVN"
+         aria-label="FIVN: score 57/100"
+         title="FIVN &mdash; 57/100">
+        <span class="score-val" style="color: #42a5f5">57</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 57%; background: #42a5f5; box-shadow: 0 0 6px #42a5f555"></span>
+        </span>
+        <span class="score-tick">FIVN</span>
+      </a>
+      
+      <a class="score-col" href="#stock-RKLB"
+         aria-label="RKLB: score 57/100"
+         title="RKLB &mdash; 57/100">
+        <span class="score-val" style="color: #42a5f5">57</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 57%; background: #42a5f5; box-shadow: 0 0 6px #42a5f555"></span>
+        </span>
+        <span class="score-tick">RKLB</span>
+      </a>
+      
+      <a class="score-col" href="#stock-QBTS"
+         aria-label="QBTS: score 56/100"
+         title="QBTS &mdash; 56/100">
+        <span class="score-val" style="color: #42a5f5">56</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 56%; background: #42a5f5; box-shadow: 0 0 6px #42a5f555"></span>
+        </span>
+        <span class="score-tick">QBTS</span>
+      </a>
+      
+      <a class="score-col" href="#stock-CRSP"
+         aria-label="CRSP: score 55/100"
+         title="CRSP &mdash; 55/100">
+        <span class="score-val" style="color: #42a5f5">55</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 55%; background: #42a5f5; box-shadow: 0 0 6px #42a5f555"></span>
+        </span>
+        <span class="score-tick">CRSP</span>
+      </a>
+      
+      <a class="score-col" href="#stock-MP"
+         aria-label="MP: score 55/100"
+         title="MP &mdash; 55/100">
+        <span class="score-val" style="color: #42a5f5">55</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 55%; background: #42a5f5; box-shadow: 0 0 6px #42a5f555"></span>
+        </span>
+        <span class="score-tick">MP</span>
+      </a>
+      
+      <a class="score-col" href="#stock-TEM"
+         aria-label="TEM: score 55/100"
+         title="TEM &mdash; 55/100">
+        <span class="score-val" style="color: #42a5f5">55</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 55%; background: #42a5f5; box-shadow: 0 0 6px #42a5f555"></span>
+        </span>
+        <span class="score-tick">TEM</span>
+      </a>
+      
+      <a class="score-col" href="#stock-NNDM"
+         aria-label="NNDM: score 55/100"
+         title="NNDM &mdash; 55/100">
+        <span class="score-val" style="color: #42a5f5">55</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 55%; background: #42a5f5; box-shadow: 0 0 6px #42a5f555"></span>
+        </span>
+        <span class="score-tick">NNDM</span>
+      </a>
+      
+      <a class="score-col" href="#stock-ASTS"
+         aria-label="ASTS: score 55/100"
+         title="ASTS &mdash; 55/100">
+        <span class="score-val" style="color: #42a5f5">55</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 55%; background: #42a5f5; box-shadow: 0 0 6px #42a5f555"></span>
+        </span>
+        <span class="score-tick">ASTS</span>
+      </a>
+      
+      <a class="score-col" href="#stock-SOUN"
+         aria-label="SOUN: score 53/100"
+         title="SOUN &mdash; 53/100">
+        <span class="score-val" style="color: #42a5f5">53</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 53%; background: #42a5f5; box-shadow: 0 0 6px #42a5f555"></span>
+        </span>
+        <span class="score-tick">SOUN</span>
+      </a>
+      
+      <a class="score-col" href="#stock-RGTI"
+         aria-label="RGTI: score 53/100"
+         title="RGTI &mdash; 53/100">
+        <span class="score-val" style="color: #42a5f5">53</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 53%; background: #42a5f5; box-shadow: 0 0 6px #42a5f555"></span>
+        </span>
+        <span class="score-tick">RGTI</span>
+      </a>
+      
+      <a class="score-col" href="#stock-CRBU"
+         aria-label="CRBU: score 52/100"
+         title="CRBU &mdash; 52/100">
+        <span class="score-val" style="color: #42a5f5">52</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 52%; background: #42a5f5; box-shadow: 0 0 6px #42a5f555"></span>
+        </span>
+        <span class="score-tick">CRBU</span>
+      </a>
+      
+      <a class="score-col" href="#stock-BE"
+         aria-label="BE: score 52/100"
+         title="BE &mdash; 52/100">
+        <span class="score-val" style="color: #42a5f5">52</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 52%; background: #42a5f5; box-shadow: 0 0 6px #42a5f555"></span>
+        </span>
+        <span class="score-tick">BE</span>
+      </a>
+      
+      <a class="score-col" href="#stock-AMBA"
+         aria-label="AMBA: score 52/100"
+         title="AMBA &mdash; 52/100">
+        <span class="score-val" style="color: #42a5f5">52</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 52%; background: #42a5f5; box-shadow: 0 0 6px #42a5f555"></span>
+        </span>
+        <span class="score-tick">AMBA</span>
+      </a>
+      
+      <a class="score-col" href="#stock-UUUU"
+         aria-label="UUUU: score 52/100"
+         title="UUUU &mdash; 52/100">
+        <span class="score-val" style="color: #42a5f5">52</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 52%; background: #42a5f5; box-shadow: 0 0 6px #42a5f555"></span>
+        </span>
+        <span class="score-tick">UUUU</span>
+      </a>
+      
+      <a class="score-col" href="#stock-SYM"
+         aria-label="SYM: score 50/100"
+         title="SYM &mdash; 50/100">
+        <span class="score-val" style="color: #42a5f5">50</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 50%; background: #42a5f5; box-shadow: 0 0 6px #42a5f555"></span>
+        </span>
+        <span class="score-tick">SYM</span>
+      </a>
+      
+      <a class="score-col" href="#stock-CAMT"
+         aria-label="CAMT: score 50/100"
+         title="CAMT &mdash; 50/100">
+        <span class="score-val" style="color: #42a5f5">50</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 50%; background: #42a5f5; box-shadow: 0 0 6px #42a5f555"></span>
+        </span>
+        <span class="score-tick">CAMT</span>
+      </a>
+      
+      <a class="score-col" href="#stock-JOBY"
+         aria-label="JOBY: score 49/100"
+         title="JOBY &mdash; 49/100">
+        <span class="score-val" style="color: #ffa726">49</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 49%; background: #ffa726; box-shadow: 0 0 6px #ffa72655"></span>
+        </span>
+        <span class="score-tick">JOBY</span>
+      </a>
+      
+      <a class="score-col" href="#stock-SERV"
+         aria-label="SERV: score 48/100"
+         title="SERV &mdash; 48/100">
+        <span class="score-val" style="color: #ffa726">48</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 48%; background: #ffa726; box-shadow: 0 0 6px #ffa72655"></span>
+        </span>
+        <span class="score-tick">SERV</span>
+      </a>
+      
+      <a class="score-col" href="#stock-BITF"
+         aria-label="BITF: score 48/100"
+         title="BITF &mdash; 48/100">
+        <span class="score-val" style="color: #ffa726">48</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 48%; background: #ffa726; box-shadow: 0 0 6px #ffa72655"></span>
+        </span>
+        <span class="score-tick">BITF</span>
+      </a>
+      
+      <a class="score-col" href="#stock-NVMI"
+         aria-label="NVMI: score 48/100"
+         title="NVMI &mdash; 48/100">
+        <span class="score-val" style="color: #ffa726">48</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 48%; background: #ffa726; box-shadow: 0 0 6px #ffa72655"></span>
+        </span>
+        <span class="score-tick">NVMI</span>
+      </a>
+      
+      <a class="score-col" href="#stock-PDYN"
+         aria-label="PDYN: score 48/100"
+         title="PDYN &mdash; 48/100">
+        <span class="score-val" style="color: #ffa726">48</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 48%; background: #ffa726; box-shadow: 0 0 6px #ffa72655"></span>
+        </span>
+        <span class="score-tick">PDYN</span>
+      </a>
+      
+      <a class="score-col" href="#stock-QUBT"
+         aria-label="QUBT: score 47/100"
+         title="QUBT &mdash; 47/100">
+        <span class="score-val" style="color: #ffa726">47</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 47%; background: #ffa726; box-shadow: 0 0 6px #ffa72655"></span>
+        </span>
+        <span class="score-tick">QUBT</span>
+      </a>
+      
+      <a class="score-col" href="#stock-ENVX"
+         aria-label="ENVX: score 45/100"
+         title="ENVX &mdash; 45/100">
+        <span class="score-val" style="color: #ffa726">45</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 45%; background: #ffa726; box-shadow: 0 0 6px #ffa72655"></span>
+        </span>
+        <span class="score-tick">ENVX</span>
+      </a>
+      
+      <a class="score-col" href="#stock-OSCR"
+         aria-label="OSCR: score 45/100"
+         title="OSCR &mdash; 45/100">
+        <span class="score-val" style="color: #ffa726">45</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 45%; background: #ffa726; box-shadow: 0 0 6px #ffa72655"></span>
+        </span>
+        <span class="score-tick">OSCR</span>
+      </a>
+      
+      <a class="score-col" href="#stock-BBAI"
+         aria-label="BBAI: score 44/100"
+         title="BBAI &mdash; 44/100">
+        <span class="score-val" style="color: #ffa726">44</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 44%; background: #ffa726; box-shadow: 0 0 6px #ffa72655"></span>
+        </span>
+        <span class="score-tick">BBAI</span>
+      </a>
+      
+      <a class="score-col" href="#stock-SLDP"
+         aria-label="SLDP: score 44/100"
+         title="SLDP &mdash; 44/100">
+        <span class="score-val" style="color: #ffa726">44</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 44%; background: #ffa726; box-shadow: 0 0 6px #ffa72655"></span>
+        </span>
+        <span class="score-tick">SLDP</span>
+      </a>
+      
+      <a class="score-col" href="#stock-VNDA"
+         aria-label="VNDA: score 42/100"
+         title="VNDA &mdash; 42/100">
+        <span class="score-val" style="color: #ffa726">42</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 42%; background: #ffa726; box-shadow: 0 0 6px #ffa72655"></span>
+        </span>
+        <span class="score-tick">VNDA</span>
+      </a>
+      
+      <a class="score-col" href="#stock-STEM"
+         aria-label="STEM: score 42/100"
+         title="STEM &mdash; 42/100">
+        <span class="score-val" style="color: #ffa726">42</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 42%; background: #ffa726; box-shadow: 0 0 6px #ffa72655"></span>
+        </span>
+        <span class="score-tick">STEM</span>
+      </a>
+      
+      <a class="score-col" href="#stock-EVTL"
+         aria-label="EVTL: score 41/100"
+         title="EVTL &mdash; 41/100">
+        <span class="score-val" style="color: #ffa726">41</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 41%; background: #ffa726; box-shadow: 0 0 6px #ffa72655"></span>
+        </span>
+        <span class="score-tick">EVTL</span>
+      </a>
+      
+      <a class="score-col" href="#stock-FATE"
+         aria-label="FATE: score 40/100"
+         title="FATE &mdash; 40/100">
+        <span class="score-val" style="color: #ffa726">40</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 40%; background: #ffa726; box-shadow: 0 0 6px #ffa72655"></span>
+        </span>
+        <span class="score-tick">FATE</span>
+      </a>
+      
+      <a class="score-col" href="#stock-ACHR"
+         aria-label="ACHR: score 40/100"
+         title="ACHR &mdash; 40/100">
+        <span class="score-val" style="color: #ffa726">40</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 40%; background: #ffa726; box-shadow: 0 0 6px #ffa72655"></span>
+        </span>
+        <span class="score-tick">ACHR</span>
+      </a>
+      
+      <a class="score-col" href="#stock-MAPS"
+         aria-label="MAPS: score 38/100"
+         title="MAPS &mdash; 38/100">
+        <span class="score-val" style="color: #ff7043">38</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 38%; background: #ff7043; box-shadow: 0 0 6px #ff704355"></span>
+        </span>
+        <span class="score-tick">MAPS</span>
+      </a>
+      
+      <a class="score-col" href="#stock-JKS"
+         aria-label="JKS: score 38/100"
+         title="JKS &mdash; 38/100">
+        <span class="score-val" style="color: #ff7043">38</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 38%; background: #ff7043; box-shadow: 0 0 6px #ff704355"></span>
+        </span>
+        <span class="score-tick">JKS</span>
+      </a>
+      
+      <a class="score-col" href="#stock-RPD"
+         aria-label="RPD: score 38/100"
+         title="RPD &mdash; 38/100">
+        <span class="score-val" style="color: #ff7043">38</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 38%; background: #ff7043; box-shadow: 0 0 6px #ff704355"></span>
+        </span>
+        <span class="score-tick">RPD</span>
+      </a>
+      
+      <a class="score-col" href="#stock-BLDP"
+         aria-label="BLDP: score 35/100"
+         title="BLDP &mdash; 35/100">
+        <span class="score-val" style="color: #ff7043">35</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 35%; background: #ff7043; box-shadow: 0 0 6px #ff704355"></span>
+        </span>
+        <span class="score-tick">BLDP</span>
+      </a>
+      
+      <a class="score-col" href="#stock-PBYI"
+         aria-label="PBYI: score 33/100"
+         title="PBYI &mdash; 33/100">
+        <span class="score-val" style="color: #ff7043">33</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 33%; background: #ff7043; box-shadow: 0 0 6px #ff704355"></span>
+        </span>
+        <span class="score-tick">PBYI</span>
+      </a>
+      
+      <a class="score-col" href="#stock-AI"
+         aria-label="AI: score 32/100"
+         title="AI &mdash; 32/100">
+        <span class="score-val" style="color: #ff7043">32</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 32%; background: #ff7043; box-shadow: 0 0 6px #ff704355"></span>
+        </span>
+        <span class="score-tick">AI</span>
+      </a>
+      
+      <a class="score-col" href="#stock-QS"
+         aria-label="QS: score 30/100"
+         title="QS &mdash; 30/100">
+        <span class="score-val" style="color: #ff7043">30</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 30%; background: #ff7043; box-shadow: 0 0 6px #ff704355"></span>
+        </span>
+        <span class="score-tick">QS</span>
+      </a>
+      
+      <a class="score-col" href="#stock-PLNH"
+         aria-label="PLNH: score 30/100"
+         title="PLNH &mdash; 30/100">
+        <span class="score-val" style="color: #ff7043">30</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 30%; background: #ff7043; box-shadow: 0 0 6px #ff704355"></span>
+        </span>
+        <span class="score-tick">PLNH</span>
+      </a>
+      
+      <a class="score-col" href="#stock-PLUG"
+         aria-label="PLUG: score 28/100"
+         title="PLUG &mdash; 28/100">
+        <span class="score-val" style="color: #ef5350">28</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 28%; background: #ef5350; box-shadow: 0 0 6px #ef535055"></span>
+        </span>
+        <span class="score-tick">PLUG</span>
+      </a>
+      
+      <a class="score-col" href="#stock-LAC"
+         aria-label="LAC: score 28/100"
+         title="LAC &mdash; 28/100">
+        <span class="score-val" style="color: #ef5350">28</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 28%; background: #ef5350; box-shadow: 0 0 6px #ef535055"></span>
+        </span>
+        <span class="score-tick">LAC</span>
+      </a>
+      
+      <a class="score-col" href="#stock-ARTNA"
+         aria-label="ARTNA: score 22/100"
+         title="ARTNA &mdash; 22/100">
+        <span class="score-val" style="color: #ef5350">22</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 22%; background: #ef5350; box-shadow: 0 0 6px #ef535055"></span>
+        </span>
+        <span class="score-tick">ARTNA</span>
+      </a>
+      
+      <a class="score-col" href="#stock-YORW"
+         aria-label="YORW: score 20/100"
+         title="YORW &mdash; 20/100">
+        <span class="score-val" style="color: #ef5350">20</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 20%; background: #ef5350; box-shadow: 0 0 6px #ef535055"></span>
+        </span>
+        <span class="score-tick">YORW</span>
+      </a>
+      
+      <a class="score-col" href="#stock-ARBK"
+         aria-label="ARBK: score 10/100"
+         title="ARBK &mdash; 10/100">
+        <span class="score-val" style="color: #ef5350">10</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 10%; background: #ef5350; box-shadow: 0 0 6px #ef535055"></span>
+        </span>
+        <span class="score-tick">ARBK</span>
+      </a>
+      
+      <a class="score-col" href="#stock-STKH"
+         aria-label="STKH: score 8/100"
+         title="STKH &mdash; 8/100">
+        <span class="score-val" style="color: #ef5350">8</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 8%; background: #ef5350; box-shadow: 0 0 6px #ef535055"></span>
+        </span>
+        <span class="score-tick">STKH</span>
+      </a>
+      
+      <a class="score-col" href="#stock-AYRWF"
+         aria-label="AYRWF: score 5/100"
+         title="AYRWF &mdash; 5/100">
+        <span class="score-val" style="color: #ef5350">5</span>
+        <span class="score-bar-v">
+          <span class="score-fill-v" style="height: 5%; background: #ef5350; box-shadow: 0 0 6px #ef535055"></span>
+        </span>
+        <span class="score-tick">AYRWF</span>
+      </a>
+      
+    </div>
+    <p class="score-summary">65 scored / 67 tracked &mdash; 2 awaiting deep dive</p>
   </div>
-  <p class="dim" style="margin-top: 0.5rem; text-align: center;">65 scored of 67 tracked &mdash; 2 awaiting deep dive</p>
 </section>
 
 
@@ -850,11 +1194,11 @@
     <div id="stock-list">
     
       <div class="stock-card-wrap" data-sector="evtol---urban-air-mobility">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-EH">
   <div class="dd-header">
     <div>
       <div class="company">EHang Holdings</div>
-      <div class="ticker">EH <span class="dd-score" style="background: #56d364">76/100</span> <span class="dd-sector">eVTOL / Urban Air Mobility</span></div>
+      <div class="ticker">EH <span class="dd-score" style="background: #00e676">76/100</span> <span class="dd-sector">eVTOL / Urban Air Mobility</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -967,11 +1311,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="biotech---pharma">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-PYPD">
   <div class="dd-header">
     <div>
       <div class="company">PolyPid Ltd.</div>
-      <div class="ticker">PYPD <span class="dd-score" style="background: #56d364">71/100</span> <span class="dd-sector">Biotech / Pharma</span></div>
+      <div class="ticker">PYPD <span class="dd-score" style="background: #00e676">71/100</span> <span class="dd-sector">Biotech / Pharma</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -1078,11 +1422,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="biotech---pharma">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-CING">
   <div class="dd-header">
     <div>
       <div class="company">Cingulate Inc.</div>
-      <div class="ticker">CING <span class="dd-score" style="background: #56d364">70/100</span> <span class="dd-sector">Biotech / Pharma</span></div>
+      <div class="ticker">CING <span class="dd-score" style="background: #00e676">70/100</span> <span class="dd-sector">Biotech / Pharma</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -1195,11 +1539,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="biotech---pharma">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-BEAM">
   <div class="dd-header">
     <div>
       <div class="company">Beam Therapeutics</div>
-      <div class="ticker">BEAM <span class="dd-score" style="background: #8b949e">68/100</span> <span class="dd-sector">Biotech / Pharma</span></div>
+      <div class="ticker">BEAM <span class="dd-score" style="background: #00bcd4">68/100</span> <span class="dd-sector">Biotech / Pharma</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -1306,11 +1650,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="biotech---pharma">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-TSHA">
   <div class="dd-header">
     <div>
       <div class="company">Taysha Gene Therapies</div>
-      <div class="ticker">TSHA <span class="dd-score" style="background: #8b949e">65/100</span> <span class="dd-sector">Biotech / Pharma</span></div>
+      <div class="ticker">TSHA <span class="dd-score" style="background: #00bcd4">65/100</span> <span class="dd-sector">Biotech / Pharma</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -1417,11 +1761,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="fintech---crypto-adjacent">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-SEZL">
   <div class="dd-header">
     <div>
       <div class="company">Sezzle Inc.</div>
-      <div class="ticker">SEZL <span class="dd-score" style="background: #8b949e">65/100</span> <span class="dd-sector">Fintech / Crypto-Adjacent</span></div>
+      <div class="ticker">SEZL <span class="dd-score" style="background: #00bcd4">65/100</span> <span class="dd-sector">Fintech / Crypto-Adjacent</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -1528,11 +1872,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="uranium---nuclear-energy">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-UEC">
   <div class="dd-header">
     <div>
       <div class="company">Uranium Energy Corp</div>
-      <div class="ticker">UEC <span class="dd-score" style="background: #8b949e">65/100</span> <span class="dd-sector">Uranium / Nuclear Energy</span></div>
+      <div class="ticker">UEC <span class="dd-score" style="background: #00bcd4">65/100</span> <span class="dd-sector">Uranium / Nuclear Energy</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -1639,11 +1983,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="biotech---pharma">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-NTLA">
   <div class="dd-header">
     <div>
       <div class="company">Intellia Therapeutics</div>
-      <div class="ticker">NTLA <span class="dd-score" style="background: #8b949e">64/100</span> <span class="dd-sector">Biotech / Pharma</span></div>
+      <div class="ticker">NTLA <span class="dd-score" style="background: #00bcd4">64/100</span> <span class="dd-sector">Biotech / Pharma</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -1750,11 +2094,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="biotech---pharma">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-ALLO">
   <div class="dd-header">
     <div>
       <div class="company">Allogene Therapeutics</div>
-      <div class="ticker">ALLO <span class="dd-score" style="background: #8b949e">63/100</span> <span class="dd-sector">Biotech / Pharma</span></div>
+      <div class="ticker">ALLO <span class="dd-score" style="background: #00bcd4">63/100</span> <span class="dd-sector">Biotech / Pharma</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -1861,11 +2205,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="biotech---pharma">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-SLS">
   <div class="dd-header">
     <div>
       <div class="company">SELLAS Life Sciences</div>
-      <div class="ticker">SLS <span class="dd-score" style="background: #8b949e">62/100</span> <span class="dd-sector">Biotech / Pharma</span></div>
+      <div class="ticker">SLS <span class="dd-score" style="background: #00bcd4">62/100</span> <span class="dd-sector">Biotech / Pharma</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -1978,11 +2322,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="space---aerospace">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-LUNR">
   <div class="dd-header">
     <div>
       <div class="company">Intuitive Machines</div>
-      <div class="ticker">LUNR <span class="dd-score" style="background: #8b949e">62/100</span> <span class="dd-sector">Space / Aerospace</span></div>
+      <div class="ticker">LUNR <span class="dd-score" style="background: #00bcd4">62/100</span> <span class="dd-sector">Space / Aerospace</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -2095,11 +2439,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="uranium---nuclear-energy">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-DNN">
   <div class="dd-header">
     <div>
       <div class="company">Denison Mines</div>
-      <div class="ticker">DNN <span class="dd-score" style="background: #8b949e">62/100</span> <span class="dd-sector">Uranium / Nuclear Energy</span></div>
+      <div class="ticker">DNN <span class="dd-score" style="background: #00bcd4">62/100</span> <span class="dd-sector">Uranium / Nuclear Energy</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -2206,11 +2550,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="space---aerospace">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-SIDU">
   <div class="dd-header">
     <div>
       <div class="company">Sidus Space</div>
-      <div class="ticker">SIDU <span class="dd-score" style="background: #8b949e">61/100</span> <span class="dd-sector">Space / Aerospace</span></div>
+      <div class="ticker">SIDU <span class="dd-score" style="background: #00bcd4">61/100</span> <span class="dd-sector">Space / Aerospace</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -2317,11 +2661,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="ai---technology">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-UPST">
   <div class="dd-header">
     <div>
       <div class="company">Upstart Holdings</div>
-      <div class="ticker">UPST <span class="dd-score" style="background: #8b949e">59/100</span> <span class="dd-sector">AI / Technology</span></div>
+      <div class="ticker">UPST <span class="dd-score" style="background: #42a5f5">59/100</span> <span class="dd-sector">AI / Technology</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -2428,11 +2772,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="ai---technology">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-INOD">
   <div class="dd-header">
     <div>
       <div class="company">Innodata Inc.</div>
-      <div class="ticker">INOD <span class="dd-score" style="background: #8b949e">58/100</span> <span class="dd-sector">AI / Technology</span></div>
+      <div class="ticker">INOD <span class="dd-score" style="background: #42a5f5">58/100</span> <span class="dd-sector">AI / Technology</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -2539,11 +2883,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="digital-health---medtech">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-HIMS">
   <div class="dd-header">
     <div>
       <div class="company">Hims &amp; Hers Health</div>
-      <div class="ticker">HIMS <span class="dd-score" style="background: #8b949e">58/100</span> <span class="dd-sector">Digital Health / MedTech</span></div>
+      <div class="ticker">HIMS <span class="dd-score" style="background: #42a5f5">58/100</span> <span class="dd-sector">Digital Health / MedTech</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -2656,11 +3000,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="quantum-computing">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-IONQ">
   <div class="dd-header">
     <div>
       <div class="company">IonQ</div>
-      <div class="ticker">IONQ <span class="dd-score" style="background: #8b949e">58/100</span> <span class="dd-sector">Quantum Computing</span></div>
+      <div class="ticker">IONQ <span class="dd-score" style="background: #42a5f5">58/100</span> <span class="dd-sector">Quantum Computing</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -2773,11 +3117,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="uranium---nuclear-energy">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-NXE">
   <div class="dd-header">
     <div>
       <div class="company">NexGen Energy</div>
-      <div class="ticker">NXE <span class="dd-score" style="background: #8b949e">58/100</span> <span class="dd-sector">Uranium / Nuclear Energy</span></div>
+      <div class="ticker">NXE <span class="dd-score" style="background: #42a5f5">58/100</span> <span class="dd-sector">Uranium / Nuclear Energy</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -2884,11 +3228,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="uranium---nuclear-energy">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-URG">
   <div class="dd-header">
     <div>
       <div class="company">Ur-Energy Inc.</div>
-      <div class="ticker">URG <span class="dd-score" style="background: #8b949e">58/100</span> <span class="dd-sector">Uranium / Nuclear Energy</span></div>
+      <div class="ticker">URG <span class="dd-score" style="background: #42a5f5">58/100</span> <span class="dd-sector">Uranium / Nuclear Energy</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -2995,11 +3339,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="ai---technology">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-FIVN">
   <div class="dd-header">
     <div>
       <div class="company">Five9 Inc.</div>
-      <div class="ticker">FIVN <span class="dd-score" style="background: #8b949e">57/100</span> <span class="dd-sector">AI / Technology</span></div>
+      <div class="ticker">FIVN <span class="dd-score" style="background: #42a5f5">57/100</span> <span class="dd-sector">AI / Technology</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -3106,11 +3450,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="space---aerospace">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-RKLB">
   <div class="dd-header">
     <div>
       <div class="company">Rocket Lab USA</div>
-      <div class="ticker">RKLB <span class="dd-score" style="background: #8b949e">57/100</span> <span class="dd-sector">Space / Aerospace</span></div>
+      <div class="ticker">RKLB <span class="dd-score" style="background: #42a5f5">57/100</span> <span class="dd-sector">Space / Aerospace</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -3217,11 +3561,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="quantum-computing">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-QBTS">
   <div class="dd-header">
     <div>
       <div class="company">D-Wave Quantum</div>
-      <div class="ticker">QBTS <span class="dd-score" style="background: #8b949e">56/100</span> <span class="dd-sector">Quantum Computing</span></div>
+      <div class="ticker">QBTS <span class="dd-score" style="background: #42a5f5">56/100</span> <span class="dd-sector">Quantum Computing</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -3328,11 +3672,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="biotech---pharma">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-CRSP">
   <div class="dd-header">
     <div>
       <div class="company">CRISPR Therapeutics</div>
-      <div class="ticker">CRSP <span class="dd-score" style="background: #8b949e">55/100</span> <span class="dd-sector">Biotech / Pharma</span></div>
+      <div class="ticker">CRSP <span class="dd-score" style="background: #42a5f5">55/100</span> <span class="dd-sector">Biotech / Pharma</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -3439,11 +3783,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="critical-minerals---rare-earths">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-MP">
   <div class="dd-header">
     <div>
       <div class="company">MP Materials</div>
-      <div class="ticker">MP <span class="dd-score" style="background: #8b949e">55/100</span> <span class="dd-sector">Critical Minerals / Rare Earths</span></div>
+      <div class="ticker">MP <span class="dd-score" style="background: #42a5f5">55/100</span> <span class="dd-sector">Critical Minerals / Rare Earths</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -3550,11 +3894,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="digital-health---medtech">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-TEM">
   <div class="dd-header">
     <div>
       <div class="company">Tempus AI</div>
-      <div class="ticker">TEM <span class="dd-score" style="background: #8b949e">55/100</span> <span class="dd-sector">Digital Health / MedTech</span></div>
+      <div class="ticker">TEM <span class="dd-score" style="background: #42a5f5">55/100</span> <span class="dd-sector">Digital Health / MedTech</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -3661,11 +4005,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="nanotechnology---advanced-materials">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-NNDM">
   <div class="dd-header">
     <div>
       <div class="company">Nano Dimension</div>
-      <div class="ticker">NNDM <span class="dd-score" style="background: #8b949e">55/100</span> <span class="dd-sector">Nanotechnology / Advanced Materials</span></div>
+      <div class="ticker">NNDM <span class="dd-score" style="background: #42a5f5">55/100</span> <span class="dd-sector">Nanotechnology / Advanced Materials</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -3770,11 +4114,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="space---aerospace">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-ASTS">
   <div class="dd-header">
     <div>
       <div class="company">AST SpaceMobile</div>
-      <div class="ticker">ASTS <span class="dd-score" style="background: #8b949e">55/100</span> <span class="dd-sector">Space / Aerospace</span></div>
+      <div class="ticker">ASTS <span class="dd-score" style="background: #42a5f5">55/100</span> <span class="dd-sector">Space / Aerospace</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -3881,11 +4225,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="ai---technology">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-SOUN">
   <div class="dd-header">
     <div>
       <div class="company">SoundHound AI</div>
-      <div class="ticker">SOUN <span class="dd-score" style="background: #8b949e">53/100</span> <span class="dd-sector">AI / Technology</span></div>
+      <div class="ticker">SOUN <span class="dd-score" style="background: #42a5f5">53/100</span> <span class="dd-sector">AI / Technology</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -3992,11 +4336,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="quantum-computing">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-RGTI">
   <div class="dd-header">
     <div>
       <div class="company">Rigetti Computing</div>
-      <div class="ticker">RGTI <span class="dd-score" style="background: #8b949e">53/100</span> <span class="dd-sector">Quantum Computing</span></div>
+      <div class="ticker">RGTI <span class="dd-score" style="background: #42a5f5">53/100</span> <span class="dd-sector">Quantum Computing</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -4103,11 +4447,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="biotech---pharma">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-CRBU">
   <div class="dd-header">
     <div>
       <div class="company">Caribou Biosciences</div>
-      <div class="ticker">CRBU <span class="dd-score" style="background: #8b949e">52/100</span> <span class="dd-sector">Biotech / Pharma</span></div>
+      <div class="ticker">CRBU <span class="dd-score" style="background: #42a5f5">52/100</span> <span class="dd-sector">Biotech / Pharma</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -4208,11 +4552,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="clean-energy---hydrogen">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-BE">
   <div class="dd-header">
     <div>
       <div class="company">Bloom Energy</div>
-      <div class="ticker">BE <span class="dd-score" style="background: #8b949e">52/100</span> <span class="dd-sector">Clean Energy / Hydrogen</span></div>
+      <div class="ticker">BE <span class="dd-score" style="background: #42a5f5">52/100</span> <span class="dd-sector">Clean Energy / Hydrogen</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -4319,11 +4663,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="semiconductors">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-AMBA">
   <div class="dd-header">
     <div>
       <div class="company">Ambarella Inc.</div>
-      <div class="ticker">AMBA <span class="dd-score" style="background: #8b949e">52/100</span> <span class="dd-sector">Semiconductors</span></div>
+      <div class="ticker">AMBA <span class="dd-score" style="background: #42a5f5">52/100</span> <span class="dd-sector">Semiconductors</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -4430,11 +4774,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="uranium---nuclear-energy">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-UUUU">
   <div class="dd-header">
     <div>
       <div class="company">Energy Fuels Inc.</div>
-      <div class="ticker">UUUU <span class="dd-score" style="background: #8b949e">52/100</span> <span class="dd-sector">Uranium / Nuclear Energy</span></div>
+      <div class="ticker">UUUU <span class="dd-score" style="background: #42a5f5">52/100</span> <span class="dd-sector">Uranium / Nuclear Energy</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -4547,11 +4891,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="ai---technology">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-SYM">
   <div class="dd-header">
     <div>
       <div class="company">Symbotic Inc.</div>
-      <div class="ticker">SYM <span class="dd-score" style="background: #8b949e">50/100</span> <span class="dd-sector">AI / Technology</span></div>
+      <div class="ticker">SYM <span class="dd-score" style="background: #42a5f5">50/100</span> <span class="dd-sector">AI / Technology</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -4658,11 +5002,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="semiconductors">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-CAMT">
   <div class="dd-header">
     <div>
       <div class="company">Camtek Ltd.</div>
-      <div class="ticker">CAMT <span class="dd-score" style="background: #8b949e">50/100</span> <span class="dd-sector">Semiconductors</span></div>
+      <div class="ticker">CAMT <span class="dd-score" style="background: #42a5f5">50/100</span> <span class="dd-sector">Semiconductors</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -4769,11 +5113,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="evtol---urban-air-mobility">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-JOBY">
   <div class="dd-header">
     <div>
       <div class="company">Joby Aviation</div>
-      <div class="ticker">JOBY <span class="dd-score" style="background: #f0883e">49/100</span> <span class="dd-sector">eVTOL / Urban Air Mobility</span></div>
+      <div class="ticker">JOBY <span class="dd-score" style="background: #ffa726">49/100</span> <span class="dd-sector">eVTOL / Urban Air Mobility</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -4886,11 +5230,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="ai---technology">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-SERV">
   <div class="dd-header">
     <div>
       <div class="company">Serve Robotics</div>
-      <div class="ticker">SERV <span class="dd-score" style="background: #f0883e">48/100</span> <span class="dd-sector">AI / Technology</span></div>
+      <div class="ticker">SERV <span class="dd-score" style="background: #ffa726">48/100</span> <span class="dd-sector">AI / Technology</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -4997,11 +5341,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="fintech---crypto-adjacent">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-BITF">
   <div class="dd-header">
     <div>
       <div class="company">Bitfarms Ltd.</div>
-      <div class="ticker">BITF <span class="dd-score" style="background: #f0883e">48/100</span> <span class="dd-sector">Fintech / Crypto-Adjacent</span></div>
+      <div class="ticker">BITF <span class="dd-score" style="background: #ffa726">48/100</span> <span class="dd-sector">Fintech / Crypto-Adjacent</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -5108,11 +5452,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="semiconductors">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-NVMI">
   <div class="dd-header">
     <div>
       <div class="company">Nova Ltd.</div>
-      <div class="ticker">NVMI <span class="dd-score" style="background: #f0883e">48/100</span> <span class="dd-sector">Semiconductors</span></div>
+      <div class="ticker">NVMI <span class="dd-score" style="background: #ffa726">48/100</span> <span class="dd-sector">Semiconductors</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -5219,11 +5563,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="space---aerospace">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-PDYN">
   <div class="dd-header">
     <div>
       <div class="company">Palladyne AI</div>
-      <div class="ticker">PDYN <span class="dd-score" style="background: #f0883e">48/100</span> <span class="dd-sector">Space / Aerospace</span></div>
+      <div class="ticker">PDYN <span class="dd-score" style="background: #ffa726">48/100</span> <span class="dd-sector">Space / Aerospace</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -5330,11 +5674,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="quantum-computing">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-QUBT">
   <div class="dd-header">
     <div>
       <div class="company">Quantum Computing Inc.</div>
-      <div class="ticker">QUBT <span class="dd-score" style="background: #f0883e">47/100</span> <span class="dd-sector">Quantum Computing</span></div>
+      <div class="ticker">QUBT <span class="dd-score" style="background: #ffa726">47/100</span> <span class="dd-sector">Quantum Computing</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -5441,11 +5785,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="clean-energy---hydrogen">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-ENVX">
   <div class="dd-header">
     <div>
       <div class="company">Enovix Corporation</div>
-      <div class="ticker">ENVX <span class="dd-score" style="background: #f0883e">45/100</span> <span class="dd-sector">Clean Energy / Hydrogen</span></div>
+      <div class="ticker">ENVX <span class="dd-score" style="background: #ffa726">45/100</span> <span class="dd-sector">Clean Energy / Hydrogen</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -5552,11 +5896,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="digital-health---medtech">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-OSCR">
   <div class="dd-header">
     <div>
       <div class="company">Oscar Health</div>
-      <div class="ticker">OSCR <span class="dd-score" style="background: #f0883e">45/100</span> <span class="dd-sector">Digital Health / MedTech</span></div>
+      <div class="ticker">OSCR <span class="dd-score" style="background: #ffa726">45/100</span> <span class="dd-sector">Digital Health / MedTech</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -5663,11 +6007,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="ai---technology">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-BBAI">
   <div class="dd-header">
     <div>
       <div class="company">BigBear.ai</div>
-      <div class="ticker">BBAI <span class="dd-score" style="background: #f0883e">44/100</span> <span class="dd-sector">AI / Technology</span></div>
+      <div class="ticker">BBAI <span class="dd-score" style="background: #ffa726">44/100</span> <span class="dd-sector">AI / Technology</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -5774,11 +6118,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="battery-tech---solid-state">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-SLDP">
   <div class="dd-header">
     <div>
       <div class="company">Solid Power</div>
-      <div class="ticker">SLDP <span class="dd-score" style="background: #f0883e">44/100</span> <span class="dd-sector">Battery Tech / Solid-State</span></div>
+      <div class="ticker">SLDP <span class="dd-score" style="background: #ffa726">44/100</span> <span class="dd-sector">Battery Tech / Solid-State</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -5885,11 +6229,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="biotech---pharma">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-VNDA">
   <div class="dd-header">
     <div>
       <div class="company">Vanda Pharmaceuticals</div>
-      <div class="ticker">VNDA <span class="dd-score" style="background: #f0883e">42/100</span> <span class="dd-sector">Biotech / Pharma</span></div>
+      <div class="ticker">VNDA <span class="dd-score" style="background: #ffa726">42/100</span> <span class="dd-sector">Biotech / Pharma</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -6002,11 +6346,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="clean-energy---hydrogen">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-STEM">
   <div class="dd-header">
     <div>
       <div class="company">Stem Inc.</div>
-      <div class="ticker">STEM <span class="dd-score" style="background: #f0883e">42/100</span> <span class="dd-sector">Clean Energy / Hydrogen</span></div>
+      <div class="ticker">STEM <span class="dd-score" style="background: #ffa726">42/100</span> <span class="dd-sector">Clean Energy / Hydrogen</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -6113,11 +6457,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="evtol---urban-air-mobility">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-EVTL">
   <div class="dd-header">
     <div>
       <div class="company">Vertical Aerospace</div>
-      <div class="ticker">EVTL <span class="dd-score" style="background: #f0883e">41/100</span> <span class="dd-sector">eVTOL / Urban Air Mobility</span></div>
+      <div class="ticker">EVTL <span class="dd-score" style="background: #ffa726">41/100</span> <span class="dd-sector">eVTOL / Urban Air Mobility</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -6230,11 +6574,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="biotech---pharma">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-FATE">
   <div class="dd-header">
     <div>
       <div class="company">Fate Therapeutics</div>
-      <div class="ticker">FATE <span class="dd-score" style="background: #f0883e">40/100</span> <span class="dd-sector">Biotech / Pharma</span></div>
+      <div class="ticker">FATE <span class="dd-score" style="background: #ffa726">40/100</span> <span class="dd-sector">Biotech / Pharma</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -6341,11 +6685,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="evtol---urban-air-mobility">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-ACHR">
   <div class="dd-header">
     <div>
       <div class="company">Archer Aviation</div>
-      <div class="ticker">ACHR <span class="dd-score" style="background: #f0883e">40/100</span> <span class="dd-sector">eVTOL / Urban Air Mobility</span></div>
+      <div class="ticker">ACHR <span class="dd-score" style="background: #ffa726">40/100</span> <span class="dd-sector">eVTOL / Urban Air Mobility</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -6452,11 +6796,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="cannabis">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-MAPS">
   <div class="dd-header">
     <div>
       <div class="company">WM Technology Inc.</div>
-      <div class="ticker">MAPS <span class="dd-score" style="background: #f0883e">38/100</span> <span class="dd-sector">Cannabis</span></div>
+      <div class="ticker">MAPS <span class="dd-score" style="background: #ff7043">38/100</span> <span class="dd-sector">Cannabis</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -6557,11 +6901,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="clean-energy---hydrogen">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-JKS">
   <div class="dd-header">
     <div>
       <div class="company">JinkoSolar Holding</div>
-      <div class="ticker">JKS <span class="dd-score" style="background: #f0883e">38/100</span> <span class="dd-sector">Clean Energy / Hydrogen</span></div>
+      <div class="ticker">JKS <span class="dd-score" style="background: #ff7043">38/100</span> <span class="dd-sector">Clean Energy / Hydrogen</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -6668,11 +7012,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="cybersecurity">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-RPD">
   <div class="dd-header">
     <div>
       <div class="company">Rapid7</div>
-      <div class="ticker">RPD <span class="dd-score" style="background: #f0883e">38/100</span> <span class="dd-sector">Cybersecurity</span></div>
+      <div class="ticker">RPD <span class="dd-score" style="background: #ff7043">38/100</span> <span class="dd-sector">Cybersecurity</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -6779,11 +7123,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="clean-energy---hydrogen">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-BLDP">
   <div class="dd-header">
     <div>
       <div class="company">Ballard Power Systems</div>
-      <div class="ticker">BLDP <span class="dd-score" style="background: #f0883e">35/100</span> <span class="dd-sector">Clean Energy / Hydrogen</span></div>
+      <div class="ticker">BLDP <span class="dd-score" style="background: #ff7043">35/100</span> <span class="dd-sector">Clean Energy / Hydrogen</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -6890,11 +7234,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="biotech---pharma">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-PBYI">
   <div class="dd-header">
     <div>
       <div class="company">Puma Biotechnology</div>
-      <div class="ticker">PBYI <span class="dd-score" style="background: #f0883e">33/100</span> <span class="dd-sector">Biotech / Pharma</span></div>
+      <div class="ticker">PBYI <span class="dd-score" style="background: #ff7043">33/100</span> <span class="dd-sector">Biotech / Pharma</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -7001,11 +7345,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="ai---technology">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-AI">
   <div class="dd-header">
     <div>
       <div class="company">C3.ai Inc.</div>
-      <div class="ticker">AI <span class="dd-score" style="background: #f0883e">32/100</span> <span class="dd-sector">AI / Technology</span></div>
+      <div class="ticker">AI <span class="dd-score" style="background: #ff7043">32/100</span> <span class="dd-sector">AI / Technology</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -7112,11 +7456,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="battery-tech---solid-state">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-QS">
   <div class="dd-header">
     <div>
       <div class="company">QuantumScape</div>
-      <div class="ticker">QS <span class="dd-score" style="background: #f0883e">30/100</span> <span class="dd-sector">Battery Tech / Solid-State</span></div>
+      <div class="ticker">QS <span class="dd-score" style="background: #ff7043">30/100</span> <span class="dd-sector">Battery Tech / Solid-State</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -7223,11 +7567,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="cannabis">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-PLNH">
   <div class="dd-header">
     <div>
       <div class="company">Planet 13 Holdings</div>
-      <div class="ticker">PLNH <span class="dd-score" style="background: #f0883e">30/100</span> <span class="dd-sector">Cannabis</span></div>
+      <div class="ticker">PLNH <span class="dd-score" style="background: #ff7043">30/100</span> <span class="dd-sector">Cannabis</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -7326,11 +7670,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="clean-energy---hydrogen">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-PLUG">
   <div class="dd-header">
     <div>
       <div class="company">Plug Power</div>
-      <div class="ticker">PLUG <span class="dd-score" style="background: #f85149">28/100</span> <span class="dd-sector">Clean Energy / Hydrogen</span></div>
+      <div class="ticker">PLUG <span class="dd-score" style="background: #ef5350">28/100</span> <span class="dd-sector">Clean Energy / Hydrogen</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -7437,11 +7781,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="critical-minerals---rare-earths">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-LAC">
   <div class="dd-header">
     <div>
       <div class="company">Lithium Americas</div>
-      <div class="ticker">LAC <span class="dd-score" style="background: #f85149">28/100</span> <span class="dd-sector">Critical Minerals / Rare Earths</span></div>
+      <div class="ticker">LAC <span class="dd-score" style="background: #ef5350">28/100</span> <span class="dd-sector">Critical Minerals / Rare Earths</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -7548,11 +7892,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="water---infrastructure">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-ARTNA">
   <div class="dd-header">
     <div>
       <div class="company">Artesian Resources</div>
-      <div class="ticker">ARTNA <span class="dd-score" style="background: #f85149">22/100</span> <span class="dd-sector">Water / Infrastructure</span></div>
+      <div class="ticker">ARTNA <span class="dd-score" style="background: #ef5350">22/100</span> <span class="dd-sector">Water / Infrastructure</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -7651,11 +7995,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="water---infrastructure">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-YORW">
   <div class="dd-header">
     <div>
       <div class="company">York Water Company</div>
-      <div class="ticker">YORW <span class="dd-score" style="background: #f85149">20/100</span> <span class="dd-sector">Water / Infrastructure</span></div>
+      <div class="ticker">YORW <span class="dd-score" style="background: #ef5350">20/100</span> <span class="dd-sector">Water / Infrastructure</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -7756,11 +8100,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="fintech---crypto-adjacent">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-ARBK">
   <div class="dd-header">
     <div>
       <div class="company">Argo Blockchain</div>
-      <div class="ticker">ARBK <span class="dd-score" style="background: #f85149">10/100</span> <span class="dd-sector">Fintech / Crypto-Adjacent</span></div>
+      <div class="ticker">ARBK <span class="dd-score" style="background: #ef5350">10/100</span> <span class="dd-sector">Fintech / Crypto-Adjacent</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -7865,11 +8209,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="nanotechnology---advanced-materials">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-STKH">
   <div class="dd-header">
     <div>
       <div class="company">Steakholder Foods</div>
-      <div class="ticker">STKH <span class="dd-score" style="background: #f85149">8/100</span> <span class="dd-sector">Nanotechnology / Advanced Materials</span></div>
+      <div class="ticker">STKH <span class="dd-score" style="background: #ef5350">8/100</span> <span class="dd-sector">Nanotechnology / Advanced Materials</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -7974,11 +8318,11 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="cannabis">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-AYRWF">
   <div class="dd-header">
     <div>
       <div class="company">Ayr Wellness</div>
-      <div class="ticker">AYRWF <span class="dd-score" style="background: #f85149">5/100</span> <span class="dd-sector">Cannabis</span></div>
+      <div class="ticker">AYRWF <span class="dd-score" style="background: #ef5350">5/100</span> <span class="dd-sector">Cannabis</span></div>
     </div>
     <div class="dd-price-group">
       <div class="dd-price-block">
@@ -8084,7 +8428,7 @@
     
     
       <div class="stock-card-wrap" data-sector="biotech---pharma">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-PRTX">
   <div class="dd-header">
     <div>
       <div class="company">Protara Therapeutics</div>
@@ -8135,7 +8479,7 @@
       </div>
     
       <div class="stock-card-wrap" data-sector="space---aerospace">
-      <div class="stock-card deep-dive">
+      <div class="stock-card deep-dive" id="stock-ONDAS">
   <div class="dd-header">
     <div>
       <div class="company">Ondas Holdings</div>
@@ -8190,8 +8534,7 @@
 
     
 <section>
-  <h2>Scouting Report</h2>
-  <p class="dim">New candidates discovered this cycle</p>
+  <h2><span class="h2-accent">//</span> Scouting Report</h2>
   <div class="scouting-list">
     
     <div class="scouting-item">
